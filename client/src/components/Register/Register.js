@@ -1,8 +1,7 @@
 import { useState } from "react";
-import axios from "axios";
 import { registerUser } from "../../helpers/registerHelpers";
+const bcrypt = require("bcryptjs");
 
-// TODO encrypt password
 // TODO if register success redirect to homepage
 // TODO display error message to user
 // TODO set cookie
@@ -16,14 +15,20 @@ export default function Register(props) {
     password: "",
   });
 
+  function encryptPassword(password) {
+    const newHash = bcrypt.hashSync(password, 10);
+    return newHash;
+  }
+
   function submit() {
     if (state.password === confirmPassword) {
       registerUser(
         state.firstName,
         state.lastName,
         state.email,
-        state.password
+        encryptPassword(state.password)
       );
+      console.log(encryptPassword("leslieville"));
       console.log("success");
       return;
     }

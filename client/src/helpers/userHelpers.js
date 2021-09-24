@@ -1,4 +1,5 @@
 import axios from "axios";
+const bcrypt = require("bcryptjs");
 
 export function findEmail(email) {
   return axios(`/api/users/${email}`)
@@ -11,6 +12,8 @@ export function findEmail(email) {
 }
 
 export function validateUser(user, password) {
-  if (user.password === password) return true;
+  if (bcrypt.compareSync(password, user.password)) {
+    return true;
+  }
   return false;
 }
