@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import "./Login.css";
 import { findEmail, validateUser } from "../../helpers/userHelpers";
 
+// TODO Login should set the cookie for current user
+// TODO password should be decrypted when recieving from database
+// TODO successful login should redirect user to somewhere else
+
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
