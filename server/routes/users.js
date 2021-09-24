@@ -34,5 +34,17 @@ module.exports = ({ getUsers, getUserByEmail, addUser }) => {
       );
   });
 
+  router.get("/:email", (req, res) => {
+    const email = req.params.email;
+
+    getUserByEmail(email)
+      .then((user) => {
+        res.json({ user });
+      })
+      .catch((err) => {
+        res.send(err);
+      });
+  });
+
   return router;
 };
