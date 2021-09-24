@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-module.exports = ({ getUsers, getUserByEmail, addUser, getUsersPosts }) => {
+module.exports = ({ getUsers, getUserByEmail, addUser }) => {
   /* GET users listing. */
   router.get("/", (req, res) => {
     getUsers()
@@ -32,6 +32,18 @@ module.exports = ({ getUsers, getUserByEmail, addUser, getUsersPosts }) => {
           error: err.message,
         })
       );
+  });
+
+  router.get("/:email", (req, res) => {
+    const email = req.params.email;
+
+    getUserByEmail(email)
+      .then((user) => {
+        res.json({ user });
+      })
+      .catch((err) => {
+        res.send(err);
+      });
   });
 
   return router;
