@@ -7,7 +7,7 @@ psql -U vagrant
 ```
 
 ```
-CREATE ROLE xxx WITH login 'xxx';
+CREATE ROLE xxx WITH login password 'xxx';
 CREATE DATABASE fithub OWNER xxx;
 ```
 
