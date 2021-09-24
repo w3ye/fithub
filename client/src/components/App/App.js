@@ -4,13 +4,15 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Dashboard from "../Dashboard/Dashboard";
 import Login from "../Login/Login";
+import Register from "../Register/Register";
 import Preferences from "../Preferences/Preferences";
 
 function App() {
   const [token, setToken] = useState();
 
   if (!token) {
-    return <Login setToken={setToken} />;
+    // return <Login setToken={setToken} />;
+    return <Register />
   }
 
   return (
