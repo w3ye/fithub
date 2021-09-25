@@ -47,7 +47,7 @@ export default function Register(props) {
             }
             type="text"
             name="name"
-            id="name"
+            id="first-name"
             required
           ></input>
         </div>
@@ -59,7 +59,7 @@ export default function Register(props) {
             }
             type="text"
             name="name"
-            id="name"
+            id="last-name"
             required
           ></input>
         </div>
