@@ -5,30 +5,27 @@ import "./App.css";
 import Dashboard from "../Dashboard/Dashboard";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
-import Preferences from "../Preferences/Preferences";
+import Navbar from "../Navbar/Navbar";
 
 function App() {
-  const [token, setToken] = useState();
-
-  if (!token) {
-    return <Login setToken={setToken} />;
-    // return <Register />
-  }
+  const [main, setMain] = useState();
+  // const [currentUser, setCurrentUser] = useState();
 
   return (
-    <div className="wrapper">
-      <h1>Application</h1>
-      <BrowserRouter>
-        <Switch>
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
-          <Route path="/preferences">
-            <Preferences />
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    </div>
+    <>
+      <Navbar setMain={setMain} />
+      {main === "login" && <Login />}
+      {main === "register" && <Register />}
+      <div className="wrapper">
+        <BrowserRouter>
+          <Switch>
+            <Route path="/dashboard">
+              <Dashboard />
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      </div>
+    </>
   );
 }
 
