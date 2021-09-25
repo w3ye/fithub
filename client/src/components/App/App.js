@@ -6,10 +6,16 @@ import Dashboard from "../Dashboard/Dashboard";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
 import Navbar from "../Navbar/Navbar";
+import Topbar from "../topbar/Topbar";
 
 function App() {
   const [main, setMain] = useState();
-  // const [currentUser, setCurrentUser] = useState();
+
+  if (!main) {
+    // return <Login setToken={setToken} />;
+    // return <Register />
+    return <Topbar />;
+  }
 
   return (
     <>
