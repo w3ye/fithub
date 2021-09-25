@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./Register.css";
 import { registerUser } from "../../helpers/registerHelpers";
 const bcrypt = require("bcryptjs");
 
@@ -37,10 +38,11 @@ export default function Register(props) {
   }
 
   return (
-    <div className="card col-12 col-lg-4 login-card mt-2 hv-center">
+    <div className="register-wrapper">
+      <h1>Please Register</h1>
       <form onSubmit={(event) => event.preventDefault()}>
-        <div className="form-group text-left">
-          <label for="name">First name</label>
+        <label>
+          <p>First Name</p>
           <input
             onChange={(event) =>
               setState((prev) => ({ ...prev, firstName: event.target.value }))
@@ -50,9 +52,9 @@ export default function Register(props) {
             id="first-name"
             required
           ></input>
-        </div>
-        <div className="form-group text-left">
-          <label for="name">Last name</label>
+        </label>
+        <label>
+          <p>Last Name</p>
           <input
             onChange={(event) =>
               setState((prev) => ({ ...prev, lastName: event.target.value }))
@@ -62,9 +64,9 @@ export default function Register(props) {
             id="last-name"
             required
           ></input>
-        </div>
-        <div className="form-group text-left">
-          <label htmlFor="exampleInputEmail1">Email address</label>
+        </label>
+        <label>
+          <p>Email Address</p>
           <input
             onChange={(event) =>
               setState((prev) => ({ ...prev, email: event.target.value }))
@@ -75,10 +77,9 @@ export default function Register(props) {
             aria-describedby="emailHelp"
             placeholder="Enter email"
           />
-          <small id="emailHelp" className="form-text text-muted"></small>
-        </div>
-        <div className="form-group text-left">
-          <label htmlFor="exampleInputPassword1">Password</label>
+        </label>
+        <label>
+          <p>Password</p>
           <input
             onChange={(event) =>
               setState((prev) => ({ ...prev, password: event.target.value }))
@@ -88,9 +89,9 @@ export default function Register(props) {
             id="password"
             placeholder="Password"
           />
-        </div>
-        <div className="form-group text-left">
-          <label htmlFor="exampleInputPassword1">Confirm Password</label>
+        </label>
+        <label>
+          <p>Confirm Password</p>
           <input
             onChange={(event) => setConfirmPassword(event.target.value)}
             type="password"
@@ -98,10 +99,12 @@ export default function Register(props) {
             id="confirmPassword"
             placeholder="Confirm Password"
           />
+        </label>
+        <div>
+          <button type="submit" onClick={submit}>
+            Submit
+          </button>
         </div>
-        <button onClick={submit} type="submit" className="btn btn-primary">
-          Register
-        </button>
       </form>
     </div>
   );
