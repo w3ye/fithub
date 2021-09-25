@@ -23,12 +23,12 @@ export default function Register(props) {
 
   function submit() {
     if (state.password === confirmPassword) {
-      registerUser(
-        state.firstName,
-        state.lastName,
-        state.email,
-        encryptPassword(state.password)
-      );
+      registerUser({
+        firstName: state.firstName,
+        lastName: state.lastName,
+        email: state.email,
+        password: encryptPassword(state.password),
+      });
       console.log(encryptPassword("leslieville"));
       console.log("success");
       return;
