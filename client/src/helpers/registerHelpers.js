@@ -2,19 +2,16 @@ import axios from "axios";
 
 /**
  * Register a user
- * @param {string} firstName
- * @param {string} lastName
- * @param {string} email
- * @param {string} password
+ * @param {Object} user
  * @returns {Promise}
  */
-export function registerUser(firstName, lastName, email, password) {
+export function registerUser(user) {
   return axios
     .post("/api/users", {
-      first_name: firstName,
-      last_name: lastName,
-      email: email,
-      password: password,
+      first_name: user.firstName,
+      last_name: user.lastName,
+      email: user.email,
+      password: user.password,
     })
     .then((result) => {
       console.log(result);
