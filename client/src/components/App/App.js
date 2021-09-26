@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import { findEmail, validateUser } from "../../helpers/userHelpers";
+import { findEmail } from "../../helpers/userHelpers";
 
 import "./App.css";
 import Dashboard from "../Dashboard/Dashboard";
