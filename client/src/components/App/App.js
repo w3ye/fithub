@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { findEmail, validateUser } from "../../helpers/userHelpers";
 
 import "./App.css";
 import Dashboard from "../Dashboard/Dashboard";
@@ -9,13 +11,44 @@ import Navbar from "../Navbar/Navbar";
 
 function App() {
   const [main, setMain] = useState();
-  // const [currentUser, setCurrentUser] = useState();
+  const [user, setUser] = useState();
+  const [cookies, setCookie, removeCookie] = useCookies(["name"]);
+
+  function handleRemoveCookie() {
+    if (cookies) {
+      removeCookie("name");
+    }
+  }
+
+  function onChange(user) {
+    setCookie("name", user.email, { path: "/" });
+    setUser(user);
+  }
+
+  useEffect(() => {
+    if (cookies) {
+      findEmail(cookies.name).then((cookieUser) => {
+        setUser(cookieUser);
+      });
+    }
+  }, [cookies]);
+
+  if (user) {
+    return (
+      <>
+        <Navbar setMain={setMain} handleRemoveCookie={handleRemoveCookie} />
+        <div>
+          {user.first_name} {user.last_name} is logged in
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
-      <Navbar setMain={setMain} />
-      {main === "login" && <Login />}
-      {main === "register" && <Register />}
+      <Navbar setMain={setMain} setUser={setUser} />
+      {main === "login" && <Login onChange={onChange} />}
+      {main === "register" && <Register onChange={onChange} />}
       <div className="wrapper">
         <BrowserRouter>
           <Switch>

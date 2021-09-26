@@ -8,6 +8,8 @@ const bcrypt = require("bcryptjs");
 // TODO set cookie
 
 export default function Register(props) {
+  const { onChange } = props;
+
   const [confirmPassword, setConfirmPassword] = useState("");
   const [state, setState] = useState({
     firstName: "",
@@ -21,7 +23,7 @@ export default function Register(props) {
     return newHash;
   }
 
-  function submit() {
+  function handleSubmit() {
     if (state.password === confirmPassword) {
       registerUser({
         firstName: state.firstName,
@@ -29,8 +31,7 @@ export default function Register(props) {
         email: state.email,
         password: encryptPassword(state.password),
       });
-      console.log(encryptPassword("leslieville"));
-      console.log("success");
+      onChange(state);
       return;
     }
     console.log("err");
@@ -101,7 +102,7 @@ export default function Register(props) {
           />
         </label>
         <div>
-          <button type="submit" onClick={submit}>
+          <button type="submit" onClick={handleSubmit}>
             Submit
           </button>
         </div>
