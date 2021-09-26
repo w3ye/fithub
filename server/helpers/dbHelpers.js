@@ -36,7 +36,7 @@ module.exports = (db) => {
 
   const getUserById = (id) => {
     const query = {
-      query: "SELECT * FROM users WHERE id = $1",
+      text: "SELECT * FROM users WHERE id = $1",
       values: [id],
     };
 

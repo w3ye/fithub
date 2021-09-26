@@ -1,6 +1,5 @@
 require("dotenv/config");
 const express = require("express");
-const cookieParser = require("cookie-parser");
 const { verify } = require("jsonwebtoken");
 const { hash, compare } = require("bcryptjs");
 const { route } = require(".");
@@ -71,7 +70,7 @@ module.exports = ({
   });
 
   router.post("/logout", (_req, res) => {
-    res.clearCookie("refreshtoken", { path: "/refresh_token" });
+    res.clearCookie("refreshtoken", { path: "/api/users/refresh_token" });
     return res.send({
       message: "Logged out",
     });
@@ -92,27 +91,21 @@ module.exports = ({
 
   router.post("/refresh_token", async (req, res) => {
     const token = req.cookies.refreshtoken;
-    console.log(token);
-    // if (!token) return res.send({ accessToken: "" });
-    // // verify if we have a token
-    // let payload = null;
-    // try {
-    //   payload = verify(token, process.env.REFRESH_TOKEN_SCERET);
-    // } catch (err) {
-    //   return res.send({ accessToken: "" });
-    // }
+    if (!token) res.send({ accessToken: "" });
+    let payload = null;
+    try {
+      payload = verify(token, process.env.REFRESH_TOKEN_SECRET);
+    } catch (err) {
+      return res.send({ accessToken: "" });
+    }
+    const user = await getUserById(payload.userId);
+    if (!user || user.refresh_token !== token) res.send({ accessToken: "" });
 
-    // const user = await getUserById(payload.id);
-    // if (!user) return res.send({ accessToken: "" });
-    // if (user.refreshToken !== token) {
-    //   return res.send({ accessToken: "" });
-    // }
-
-    // const accessToken = createAccessToken(user.id);
-    // const refreshToken = createRefreshToken(user.id);
-    // updateRefreshToken(user.id, refreshToken);
-    // sendRefreshToken(res, refreshToken);
-    // return res.send({ accessToken: "" });
+    const accessToken = createAccessToken(user.id);
+    const refreshToken = createRefreshToken(user.id);
+    updateRefreshToken(user.id, refreshToken);
+    sendRefreshToken(res, refreshToken);
+    return res.send({ accessToken });
   });
 
   return router;
