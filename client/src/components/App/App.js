@@ -37,17 +37,18 @@ function App() {
   if (user) {
     return (
       <>
-        <Topbar setMain={setMain} handleRemoveCookie={handleRemoveCookie} />
-        <div>
-          {user.first_name} {user.last_name} is logged in
-        </div>
+        <Topbar
+          setMain={setMain}
+          handleRemoveCookie={handleRemoveCookie}
+          user={user}
+        />
       </>
     );
   }
 
   return (
     <>
-      <Navbar setMain={setMain} setUser={setUser} />
+      <Topbar setMain={setMain} setUser={setUser} />
       {main === "login" && <Login onChange={onChange} />}
       {main === "register" && <Register onChange={onChange} />}
       <div className="wrapper">

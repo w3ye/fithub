@@ -1,4 +1,4 @@
-.topbarContainer{
+.topbarContainer {
   height: 50px;
   width: 100%;
   background-color: orange;
@@ -8,20 +8,18 @@
   top: 0;
 }
 
-
-
 .logo {
   font-size: 24px;
   font-weight: bold;
   color: white;
 }
 
-.topbarLeft{
+.topbarLeft {
   flex: 3;
   border: red solid;
 }
 
-.topbarCenter{
+.topbarCenter {
   flex: 5;
 }
 
@@ -35,20 +33,20 @@
   align-items: center;
 }
 
-.searchIcon{
-  font-size:  20px !important;
+.searchIcon {
+  font-size: 20px !important;
 }
 
-.searchInput{
+.searchInput {
   border: none;
   width: 200px;
 }
 
-.searchFocus{
+.searchFocus {
   outline: none;
 }
 
-.topbarRight{
+.topbarRight {
   flex: 4;
   background-color: green;
   display: flex;
@@ -63,7 +61,7 @@
 }
 
 .topbarIcons {
-  display:flex
+  display: flex;
 }
 
 .topbarIconsItem {
@@ -73,9 +71,13 @@
   display: flex;
 }
 
-.topbarImg{
+.topbarImg {
   height: 32px;
   width: 32px;
   border-radius: 50%;
   object-fit: cover;
+}
+
+#user-login-name {
+  font-size: 10px;
 }
