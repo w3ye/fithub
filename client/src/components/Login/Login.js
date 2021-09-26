@@ -14,17 +14,19 @@ export default function Login() {
   const [user, setUser] = useContext(UserContext);
 
   async function submit() {
-    const result = await await fetch("/api/users/login", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    }).json();
+    const result = await (
+      await fetch("/api/users/login", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      })
+    ).json();
 
     if (result.accessToken) {
       setUser({

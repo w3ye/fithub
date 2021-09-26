@@ -65,7 +65,7 @@ module.exports = ({
       sendRefreshToken(res, refreshToken);
       sendAccessToken(req, res, accessToken);
     } catch (err) {
-      res.json({ errror: err.message });
+      res.json({ error: err.message });
     }
   });
 
