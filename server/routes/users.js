@@ -3,6 +3,7 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const { verify } = require("jsonwebtoken");
 const { hash, compare } = require("bcryptjs");
+const { route } = require(".");
 const router = express.Router();
 
 module.exports = ({ getUsers, getUserByEmail, addUser }) => {
@@ -34,6 +35,21 @@ module.exports = ({ getUsers, getUserByEmail, addUser }) => {
       );
       if (!newUser) res.json({ error: err.message });
       res.json(newUser);
+    }
+  });
+
+  router.post("/login", async (req, res) => {
+    const { email, password } = req.body;
+    try {
+      const user = await getUserByEmail(email);
+      if (!user) throw new Error("User does not exist");
+      const valid = await compare(password, user.password);
+      if (!valid) throw new Error("Incorrect Password");
+      // refresh and access token
+      const accessToken = ;
+      const refreshToken = ;
+    } catch (err) {
+      res.json({ errror: err.message });
     }
   });
 
