@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Login.css";
 import { findEmail, validateUser } from "../../helpers/userHelpers";
+import { UserContext } from "../App/App";
+import axios from "axios";
 
 // TODO Login should set the cookie for current user
 // TODO password should be decrypted when recieving from database
@@ -9,16 +11,28 @@ import { findEmail, validateUser } from "../../helpers/userHelpers";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [user, setUser] = useContext(UserContext);
 
-  function submit() {
-    findEmail(email)
-      .then((user) => {
-        return user;
-      })
-      .then((user) => {
-        const flag = validateUser(user, password);
-        console.log(flag);
+  async function submit() {
+    const result = await await fetch("/api/users/login", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    }).json();
+
+    if (result.accessToken) {
+      setUser({
+        accessToken: result.accessToken,
       });
+    } else {
+      console.log(result.error);
+    }
   }
 
   return (
