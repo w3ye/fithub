@@ -10,6 +10,7 @@ const {
   sendAccessToken,
   sendRefreshToken,
 } = require("../tokens");
+const { isAuth } = require("../isAuth");
 const router = express.Router();
 
 module.exports = ({
@@ -17,6 +18,7 @@ module.exports = ({
   getUserByEmail,
   addUser,
   updateRefreshToken,
+  getUserById,
 }) => {
   /* GET users listing. */
   router.get("/", (req, res) => {
@@ -66,6 +68,51 @@ module.exports = ({
     } catch (err) {
       res.json({ errror: err.message });
     }
+  });
+
+  router.post("/logout", (_req, res) => {
+    res.clearCookie("refreshtoken", { path: "/refresh_token" });
+    return res.send({
+      message: "Logged out",
+    });
+  });
+
+  router.post("/protected", async (req, res) => {
+    try {
+      const userId = isAuth(req);
+      if (userId !== null) {
+        res.send({
+          data: "this is protected data",
+        });
+      }
+    } catch (err) {
+      res.send({ error: err.message });
+    }
+  });
+
+  router.post("/refresh_token", async (req, res) => {
+    const token = req.cookies.refreshtoken;
+    console.log(token);
+    // if (!token) return res.send({ accessToken: "" });
+    // // verify if we have a token
+    // let payload = null;
+    // try {
+    //   payload = verify(token, process.env.REFRESH_TOKEN_SCERET);
+    // } catch (err) {
+    //   return res.send({ accessToken: "" });
+    // }
+
+    // const user = await getUserById(payload.id);
+    // if (!user) return res.send({ accessToken: "" });
+    // if (user.refreshToken !== token) {
+    //   return res.send({ accessToken: "" });
+    // }
+
+    // const accessToken = createAccessToken(user.id);
+    // const refreshToken = createRefreshToken(user.id);
+    // updateRefreshToken(user.id, refreshToken);
+    // sendRefreshToken(res, refreshToken);
+    // return res.send({ accessToken: "" });
   });
 
   return router;

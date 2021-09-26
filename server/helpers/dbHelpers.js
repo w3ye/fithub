@@ -34,6 +34,18 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const getUserById = (id) => {
+    const query = {
+      query: "SELECT * FROM users WHERE id = $1",
+      values: [id],
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows[0])
+      .catch((err) => err);
+  };
+
   const updateRefreshToken = (id, refreshToken) => {
     const query = {
       text: "UPDATE users SET refresh_token = $1 WHERE id = $2 RETURNING *;",
@@ -50,5 +62,6 @@ module.exports = (db) => {
     getUserByEmail,
     addUser,
     updateRefreshToken,
+    getUserById,
   };
 };
