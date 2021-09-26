@@ -8,6 +8,7 @@ import Dashboard from "../Dashboard/Dashboard";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
 import Navbar from "../Navbar/Navbar";
+import Topbar from "../topbar/Topbar";
 
 function App() {
   const [main, setMain] = useState();
@@ -36,7 +37,7 @@ function App() {
   if (user) {
     return (
       <>
-        <Navbar setMain={setMain} handleRemoveCookie={handleRemoveCookie} />
+        <Topbar setMain={setMain} handleRemoveCookie={handleRemoveCookie} />
         <div>
           {user.first_name} {user.last_name} is logged in
         </div>
