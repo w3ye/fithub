@@ -1,4 +1,8 @@
+require("dotenv/config");
 const express = require("express");
+const cookieParser = require("cookie-parser");
+const { verify } = require("jsonwebtoken");
+const { hash, compare } = require("bcryptjs");
 const router = express.Router();
 
 module.exports = ({ getUsers, getUserByEmail, addUser }) => {
@@ -13,25 +17,24 @@ module.exports = ({ getUsers, getUserByEmail, addUser }) => {
       );
   });
 
-  router.post("/", (req, res) => {
+  router.post("/", async (req, res) => {
     const { first_name, last_name, email, password } = req.body;
-
-    getUserByEmail(email)
-      .then((user) => {
-        if (user) {
-          res.json({
-            msg: "Sorry, a user account with this email already exists",
-          });
-        } else {
-          return addUser(first_name, last_name, email, password);
-        }
-      })
-      .then((newUser) => res.json(newUser))
-      .catch((err) =>
-        res.json({
-          error: err.message,
-        })
+    const user = await getUserByEmail(email);
+    if (user) {
+      res.json({
+        message: "User with this email already exists",
+      });
+    } else {
+      const hashedPassword = await hash(password, 10);
+      const newUser = await addUser(
+        first_name,
+        last_name,
+        email,
+        hashedPassword
       );
+      if (!newUser) res.json({ error: err.message });
+      res.json(newUser);
+    }
   });
 
   return router;
