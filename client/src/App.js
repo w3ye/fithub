@@ -1,8 +1,8 @@
-import Topbar from "./components/topbar/Topbar"
+import Home from "./components/home/index";
 
 function App() {
   return (
-    <Topbar />
+    <Home />
   );
 }
 
