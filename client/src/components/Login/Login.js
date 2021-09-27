@@ -6,9 +6,7 @@ import { UserContext } from "../App/App";
 // TODO password should be decrypted when recieving from database
 // TODO successful login should redirect user to somewhere else
 
-export default function Login(props) {
-  const { onChange } = props;
-
+export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useContext(UserContext);
@@ -32,7 +30,9 @@ export default function Login(props) {
       setUser({
         accessToken: result.accessToken,
       });
+      console.log("Inside If block");
     } else {
+      console.log("Inside Else block", result);
       return result.error;
     }
   }
@@ -55,22 +55,28 @@ export default function Login(props) {
   return (
     <div className="login-wrapper">
       <h1>Please Log In</h1>
-      <form onSubmit={submit}>
-        <label htmlFor="email">Email: </label>
-        <input
-          type="text"
-          value={email}
-          onChange={({ target }) => setEmail(target.value)}
-        />
-        <div>
-          <label htmlFor="password">Password: </label>
+      <form onSubmit={(event) => event.preventDefault()}>
+        <label>
+          <p>Email Address</p>
           <input
-            type="password"
-            value={password}
-            onChange={({ target }) => setPassword(target.value)}
+            name="email"
+            type="email"
+            onChange={(event) => setEmail(event.target.value)}
           />
+        </label>
+        <label>
+          <p>Password</p>
+          <input
+            name="password"
+            type="password"
+            onChange={(event) => setPassword(event.target.value)}
+          />
+        </label>
+        <div>
+          <button type="submit" onClick={submit}>
+            Submit
+          </button>
         </div>
-        <button type="submit">Login</button>
       </form>
       <button onClick={logout}>Logout</button>
     </div>

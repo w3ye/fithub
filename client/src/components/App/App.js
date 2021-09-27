@@ -77,20 +77,11 @@ function App() {
 
   return (
     <UserContext.Provider value={[user, setUser]}>
-      <>
-        <Topbar setMain={setMain} setUser={setUser} />
-        {main === "login" && <Login onChange={setToken} />}
-        {main === "register" && <Register onChange={setUser} />}
-        <div className="wrapper">
-          <BrowserRouter>
-            <Switch>
-              <Route path="/dashboard">
-                <Dashboard />
-              </Route>
-            </Switch>
-          </BrowserRouter>
-        </div>
-      </>
+      {/* <> */}
+      <Topbar setMain={setMain} setUser={setUser} />
+      {main === "login" && <Login path="login" onChange={setToken} />}
+      {/* {main === "register" && <Register onChange={setUser} />}
+      </> */}
     </UserContext.Provider>
   );
 }
