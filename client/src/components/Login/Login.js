@@ -2,11 +2,11 @@ import React, { useState, useContext, useEffect } from "react";
 import "./Login.css";
 import { UserContext } from "../App/App";
 
-// TODO Login should set the cookie for current user
-// TODO password should be decrypted when recieving from database
 // TODO successful login should redirect user to somewhere else
 
-export default function Login() {
+export default function Login(props) {
+  const { setMain } = props;
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useContext(UserContext);
@@ -30,9 +30,7 @@ export default function Login() {
       setUser({
         accessToken: result.accessToken,
       });
-      console.log("Inside If block");
     } else {
-      console.log("Inside Else block", result);
       return result.error;
     }
   }
@@ -76,6 +74,8 @@ export default function Login() {
           <button type="submit" onClick={submit}>
             Submit
           </button>
+          <br />
+          <button onClick={() => setMain("dashboard")}>Back</button>
         </div>
       </form>
       <button onClick={logout}>Logout</button>
