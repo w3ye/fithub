@@ -1,15 +1,12 @@
 import { useState } from "react";
 import "./Register.css";
 import { registerUser } from "../../helpers/registerHelpers";
-const bcrypt = require("bcryptjs");
 
 // TODO if register success redirect to homepage
 // TODO display error message to user
-// TODO set cookie
 
 export default function Register(props) {
-  const { onChange } = props;
-
+  const { setMain } = props;
   const [confirmPassword, setConfirmPassword] = useState("");
   const [state, setState] = useState({
     firstName: "",
@@ -18,20 +15,17 @@ export default function Register(props) {
     password: "",
   });
 
-  function encryptPassword(password) {
-    const newHash = bcrypt.hashSync(password, 10);
-    return newHash;
-  }
-
-  function handleSubmit() {
+  function submit() {
     if (state.password === confirmPassword) {
       registerUser({
         firstName: state.firstName,
         lastName: state.lastName,
         email: state.email,
-        password: encryptPassword(state.password),
+        password: state.password,
       });
-      onChange(state);
+      // * automatically login
+      // * redirect
+      console.log("success");
       return;
     }
     console.log("err");
@@ -102,9 +96,11 @@ export default function Register(props) {
           />
         </label>
         <div>
-          <button type="submit" onClick={handleSubmit}>
+          <button type="submit" onClick={submit}>
             Submit
           </button>
+          <br />
+          <button onClick={() => setMain("dashboard")}>Back</button>
         </div>
       </form>
     </div>

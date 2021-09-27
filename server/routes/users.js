@@ -57,11 +57,8 @@ module.exports = ({
       const user = await getUserByEmail(email);
       if (!user) throw new Error("User does not exist");
       const valid = await compare(password, user.password);
-      if (!valid) {
-        console.log("Pass", password);
-        console.log("User Pass:", user.password);
-        throw new Error("Incorrect Password");
-      }
+      if (!valid) throw new Error("Incorrect Password");
+
       // refresh and access token
       const accessToken = createAccessToken(user.id);
       const refreshToken = createRefreshToken(user.id);
@@ -81,6 +78,7 @@ module.exports = ({
   });
 
   // * This route could be used with any route
+  // * Maybe move this to index.js
   router.post("/protected", async (req, res) => {
     try {
       const userId = isAuth(req);
