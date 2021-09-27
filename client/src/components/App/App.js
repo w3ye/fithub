@@ -5,7 +5,7 @@ import "./App.css";
 import Dashboard from "../Dashboard/Dashboard";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
-import Preferences from "../Preferences/Preferences";
+import Navbar from "../Navbar/Navbar";
 
 export const UserContext = React.createContext([]);
 
