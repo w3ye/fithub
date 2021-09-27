@@ -23,4 +23,10 @@ VALUES ('Mario', 'Bros', 'mario@nintendo.com', 'test'),
     'Kong',
     'donkey@nintendo.com',
     '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju'
+  ),
+  (
+    'Donkey',
+    'Kong Jr',
+    'donkeyjr@nintendo.com',
+    '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju'
   );
