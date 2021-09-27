@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import "./App.css";
@@ -11,11 +11,30 @@ export const UserContext = React.createContext([]);
 function App() {
   const [token, setToken] = useState();
   const [user, setUser] = useState({});
-  const [loading, setLoading] = useState(true);
 
   // if (!token) {
   //   return <Login setToken={setToken} />;
   // }
+
+  useEffect(() => {
+    async function checkRefreshToken() {
+      const result = await (
+        await fetch("/api/users/refresh_token", {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+      ).json();
+      setUser({
+        accessToken: result.accessToken,
+      });
+    }
+
+    checkRefreshToken();
+    console.log(user);
+  }, []);
 
   return (
     // <div className="wrapper">

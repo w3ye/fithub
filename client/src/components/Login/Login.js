@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./Login.css";
 import { findEmail, validateUser } from "../../helpers/userHelpers";
 import { UserContext } from "../App/App";
@@ -33,9 +33,24 @@ export default function Login() {
         accessToken: result.accessToken,
       });
     } else {
-      console.log(result.error);
+      return result.error;
     }
   }
+
+  async function logout() {
+    const result = await (
+      await fetch("/api/users/logout", {
+        method: "POST",
+        credentials: "include",
+      })
+    ).json();
+    setUser({});
+    console.log(result);
+  }
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
 
   return (
     <div className="login-wrapper">
@@ -63,6 +78,7 @@ export default function Login() {
           </button>
         </div>
       </form>
+      <button onClick={logout}>Logout</button>
     </div>
   );
 }
