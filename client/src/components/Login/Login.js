@@ -1,8 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./Login.css";
-import { findEmail, validateUser } from "../../helpers/userHelpers";
 import { UserContext } from "../App/App";
-import axios from "axios";
 
 // TODO Login should set the cookie for current user
 // TODO password should be decrypted when recieving from database
