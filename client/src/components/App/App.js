@@ -10,57 +10,88 @@ import Register from "../Register/Register";
 import Navbar from "../Navbar/Navbar";
 import Topbar from "../topbar/Topbar";
 
+export const UserContext = React.createContext([]);
+
 function App() {
   const [main, setMain] = useState();
-  const [user, setUser] = useState();
-  const [cookies, setCookie, removeCookie] = useCookies(["name"]);
+  // const [user, setUser] = useState();
+  // const [cookies, setCookie, removeCookie] = useCookies(["name"]);
 
-  function handleRemoveCookie() {
-    if (cookies) {
-      removeCookie("name");
-    }
-  }
+  // function handleRemoveCookie() {
+  //   if (cookies) {
+  //     removeCookie("name");
+  //   }
+  // }
 
-  function onChange(user) {
-    setCookie("name", user.email, { path: "/" });
-    setUser(user);
-  }
+  // function onChange(user) {
+  //   setCookie("name", user.email, { path: "/" });
+  //   setUser(user);
+  // }
+
+  // useEffect(() => {
+  //   if (cookies) {
+  //     findEmail(cookies.name).then((cookieUser) => {
+  //       setUser(cookieUser);
+  //     });
+  //   }
+  // }, [cookies]);
+
+  // if (user) {
+  //   return (
+  //     <>
+  //       <Topbar
+  //         setMain={setMain}
+  //         handleRemoveCookie={handleRemoveCookie}
+  //         user={user}
+  //       />
+  //     </>
+  //   );
+  // }
+
+  const [token, setToken] = useState();
+  const [user, setUser] = useState({});
+
+  // if (!token) {
+  //   return <Login setToken={setToken} />;
+  // }
 
   useEffect(() => {
-    if (cookies) {
-      findEmail(cookies.name).then((cookieUser) => {
-        setUser(cookieUser);
+    async function checkRefreshToken() {
+      const result = await (
+        await fetch("/api/users/refresh_token", {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+      ).json();
+      setUser({
+        accessToken: result.accessToken,
       });
     }
-  }, [cookies]);
 
-  if (user) {
-    return (
-      <>
-        <Topbar
-          setMain={setMain}
-          handleRemoveCookie={handleRemoveCookie}
-          user={user}
-        />
-      </>
-    );
-  }
+    checkRefreshToken();
+    console.log(user);
+  }, []);
 
   return (
-    <>
-      <Topbar setMain={setMain} setUser={setUser} />
-      {main === "login" && <Login onChange={onChange} />}
-      {main === "register" && <Register onChange={onChange} />}
-      <div className="wrapper">
-        <BrowserRouter>
-          <Switch>
-            <Route path="/dashboard">
-              <Dashboard />
-            </Route>
-          </Switch>
-        </BrowserRouter>
-      </div>
-    </>
+    <UserContext.Provider value={[user, setUser]}>
+      <>
+        <Topbar setMain={setMain} setUser={setUser} />
+        {main === "login" && <Login onChange={setToken} />}
+        {main === "register" && <Register onChange={setUser} />}
+        <div className="wrapper">
+          <BrowserRouter>
+            <Switch>
+              <Route path="/dashboard">
+                <Dashboard />
+              </Route>
+            </Switch>
+          </BrowserRouter>
+        </div>
+      </>
+    </UserContext.Provider>
   );
 }
 
