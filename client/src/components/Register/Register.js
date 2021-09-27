@@ -24,6 +24,8 @@ export default function Register(props) {
         email: state.email,
         password: state.password,
       });
+      // * automatically login
+      // * redirect
       console.log("success");
       return;
     }
