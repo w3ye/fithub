@@ -76,12 +76,13 @@ module.exports = ({
     });
   });
 
+  // * This route could be used with any route
   router.post("/protected", async (req, res) => {
     try {
       const userId = isAuth(req);
       if (userId !== null) {
         res.send({
-          data: "this is protected data",
+          user: await getUserById(userId),
         });
       }
     } catch (err) {
