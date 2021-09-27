@@ -77,6 +77,7 @@ module.exports = ({
   });
 
   // * This route could be used with any route
+  // * Maybe move this to index.js
   router.post("/protected", async (req, res) => {
     try {
       const userId = isAuth(req);
