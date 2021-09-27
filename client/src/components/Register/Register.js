@@ -16,20 +16,14 @@ export default function Register(props) {
     password: "",
   });
 
-  function encryptPassword(password) {
-    const newHash = bcrypt.hashSync(password, 10);
-    return newHash;
-  }
-
   function submit() {
     if (state.password === confirmPassword) {
       registerUser({
         firstName: state.firstName,
         lastName: state.lastName,
         email: state.email,
-        password: encryptPassword(state.password),
+        password: state.password,
       });
-      console.log(encryptPassword("leslieville"));
       console.log("success");
       return;
     }

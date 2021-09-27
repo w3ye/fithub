@@ -54,6 +54,7 @@ function App() {
     <UserContext.Provider value={[user, setUser]}>
       <div className="App">
         <Login path="login" />
+        {/* <Register /> */}
       </div>
     </UserContext.Provider>
   );
