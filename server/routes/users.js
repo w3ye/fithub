@@ -58,6 +58,7 @@ module.exports = ({
       if (!user) throw new Error("User does not exist");
       const valid = await compare(password, user.password);
       if (!valid) throw new Error("Incorrect Password");
+
       // refresh and access token
       const accessToken = createAccessToken(user.id);
       const refreshToken = createRefreshToken(user.id);

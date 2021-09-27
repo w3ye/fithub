@@ -1,13 +1,12 @@
 import { useState } from "react";
 import "./Register.css";
 import { registerUser } from "../../helpers/registerHelpers";
-const bcrypt = require("bcryptjs");
 
 // TODO if register success redirect to homepage
 // TODO display error message to user
-// TODO set cookie
 
 export default function Register(props) {
+  const { setMain } = props;
   const [confirmPassword, setConfirmPassword] = useState("");
   const [state, setState] = useState({
     firstName: "",
@@ -100,6 +99,8 @@ export default function Register(props) {
           <button type="submit" onClick={submit}>
             Submit
           </button>
+          <br />
+          <button onClick={() => setMain("dashboard")}>Back</button>
         </div>
       </form>
     </div>
