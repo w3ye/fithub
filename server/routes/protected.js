@@ -9,7 +9,6 @@ module.exports = ({ getUserById, getUserGroups }) => {
       const userId = isAuth(req);
       if (userId !== null) {
         const { password, refresh_token, ...rest } = await getUserById(userId);
-        console.log(rest);
         res.send({
           user: rest,
           groups: await getUserGroups(userId),
