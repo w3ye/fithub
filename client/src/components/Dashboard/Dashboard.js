@@ -7,6 +7,10 @@ export default function Dashboard(props) {
         <button onClick={() => setMain("login")}>Login</button>
         <br />
         <button onClick={() => setMain("register")}>Register</button>
+        <br />
+        <button onClick={() => setMain("workout")}>Create Workout</button>
+        <br />
+        <button onClick={() => setMain("center")}>Create Workout 2</button>
       </div>
     </>
   );

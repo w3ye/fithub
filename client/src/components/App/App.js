@@ -6,6 +6,8 @@ import Register from "../Register/Register";
 import Topbar from "../topbar/Topbar";
 import Dashboard from "../Dashboard/Dashboard";
 
+import Center from "../home/Center";
+
 export const UserContext = React.createContext([]);
 
 function App() {
@@ -49,6 +51,7 @@ function App() {
         <Login path="login" onChange={setToken} setMain={setMain} />
       )}
       {main === "register" && <Register onChange={setUser} setMain={setMain} />}
+      {main === "center" && <Center onChange={setUser} setMain={setMain} />}
     </UserContext.Provider>
   );
 }

@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import ExerciseListItem from "./ExerciseListItem";
-import "./center.css";
+import React, { useEffect, useState } from "react";
+import ExerciseListItem from "../home/ExerciseListItem";
 const axios = require("axios").default;
 require("dotenv").config();
 const myKey = process.env.REACT_APP_API_KEY;
 
-export default function Center() {
+export default function CreateWorkout() {
   const [responseData, setResponseData] = useState(null);
   let parsedResponse = [];
 
@@ -61,7 +60,6 @@ export default function Center() {
         id="search-name"
         placeholder="search by name"
       ></input>
-
       <div id="exerciseStorage">{parsedResponse}</div>
     </div>
   );
