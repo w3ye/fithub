@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./Login.css";
-import { UserContext } from "../App/App";
+import { TokenUserContext } from "../App/App";
+import axios from "axios";
 
 // TODO successful login should redirect user to somewhere else
 
@@ -9,45 +10,69 @@ export default function Login(props) {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useContext(UserContext);
+  // const [token, setToken] = useContext(TokenUserContext);
+  const { tokenState, userState } = useContext(TokenUserContext);
+  const [token, setToken] = tokenState;
+  const [user, setUser] = userState;
 
-  async function submit() {
-    const result = await (
-      await fetch("/api/users/login", {
-        method: "POST",
-        credentials: "include",
+  function fetchProtected(token) {
+    axios
+      .get("/api/protected", {
         headers: {
           "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
       })
-    ).json();
-
-    if (result.accessToken) {
-      setUser({
-        accessToken: result.accessToken,
+      .then((result) => {
+        setUser(result.data);
+      })
+      .catch((err) => {
+        return err;
       });
-    } else {
-      return result.error;
-    }
+  }
+
+  function submit() {
+    fetch("/api/users/login", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
+      .then((result) => {
+        return result.json();
+      })
+      .then((result) => {
+        if (result.accessToken) {
+          setToken(result.accessToken);
+          fetchProtected(result.accessToken);
+        } else throw new Error(result.error);
+      })
+      .catch((err) => err);
   }
 
   async function logout() {
-    const result = await (
-      await fetch("/api/users/logout", {
-        method: "POST",
+    axios
+      .post("/api/users/logout", {
         credentials: "include",
       })
-    ).json();
-    setUser({});
-    console.log(result);
+      .then((result) => {
+        setToken("");
+        setUser({});
+        return result.data;
+      })
+      .catch((err) => err);
   }
 
   useEffect(() => {
-    console.log(user);
+    console.log("token", token);
+  }, [token]);
+  useEffect(() => {
+    console.log("user", user);
   }, [user]);
 
   return (
