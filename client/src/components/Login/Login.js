@@ -1,16 +1,13 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import "./Login.css";
 import { TokenUserContext } from "../App/App";
 import axios from "axios";
-
-// TODO successful login should redirect user to somewhere else
 
 export default function Login(props) {
   const { setMain } = props;
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [token, setToken] = useContext(TokenUserContext);
   const { tokenState, userState } = useContext(TokenUserContext);
   const [token, setToken] = tokenState;
   const [user, setUser] = userState;
@@ -31,7 +28,7 @@ export default function Login(props) {
       });
   }
 
-  function submit() {
+  function submitLogin() {
     fetch("/api/users/login", {
       method: "POST",
       credentials: "include",
@@ -56,25 +53,12 @@ export default function Login(props) {
       .catch((err) => err);
   }
 
-  async function logout() {
-    axios
-      .post("/api/users/logout", {
-        credentials: "include",
-      })
-      .then((result) => {
-        setToken("");
-        setUser({});
-        return result.data;
-      })
-      .catch((err) => err);
-  }
-
-  useEffect(() => {
-    console.log("token", token);
-  }, [token]);
-  useEffect(() => {
-    console.log("user", user);
-  }, [user]);
+  // useEffect(() => {
+  //   console.log("token", token);
+  // }, [token]);
+  // useEffect(() => {
+  //   console.log("user", user);
+  // }, [user]);
 
   return (
     <div className="login-wrapper">
@@ -97,14 +81,13 @@ export default function Login(props) {
           />
         </label>
         <div>
-          <button type="submit" onClick={submit}>
+          <button type="submit" onClick={submitLogin}>
             Submit
           </button>
           <br />
           <button onClick={() => setMain("dashboard")}>Back</button>
         </div>
       </form>
-      <button onClick={logout}>Logout</button>
     </div>
   );
 }

@@ -55,7 +55,7 @@ function App() {
           <Register setMain={setMain} />
         </>
       )}
-      {main === "home" && <Home />}
+      {main === "home" && <Home setMain={setMain} />}
     </TokenUserContext.Provider>
   );
 }

@@ -5,10 +5,10 @@ import Rightbar from "./Rightbar";
 import "./index.css";
 
 export default function Home(props) {
-  const { user, token } = props;
+  const { setMain } = props;
   return (
     <>
-      <Topbar user={user} token={token} />
+      <Topbar setMain={setMain} />
       <div className="homeContainer">
         <Leftbar />
         <Center />
