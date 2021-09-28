@@ -5,8 +5,8 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import ListGroupItem from 'react-bootstrap/ListGroupItem'
 
 export default function ExerciseListItem (props) {
-  // console.log('ExerciseListItemprops', props)
   const { id, name, equipment, gifUrl, bodyPart, target, onAdd } = props
+  const exercise = { id, name, equipment, gifUrl, bodyPart, target }
 
   function capitalizeWords (string) {
     const words = string.split(' ')
@@ -18,12 +18,6 @@ export default function ExerciseListItem (props) {
   }
 
   return (
-    // <li className='exercise'>
-    //   <img src={gifUrl} alt='' className='exercise__item-image' />
-    //   <h2>{name}</h2>
-    //   <h2>{equipment}</h2>
-    // </li>
-
     <Row xs={1} md={2} className='g-4'>
       {Array.from({ length: 1 }).map((_, idx) => (
         <Col>
@@ -40,7 +34,7 @@ export default function ExerciseListItem (props) {
                 </ListGroupItem>
                 <ListGroupItem>Target: {capitalizeWords(target)}</ListGroupItem>
               </ListGroup>
-              <button onClick={() => onAdd(props)}>Add to Workout</button>
+              <button onClick={() => onAdd(exercise)}>Add to Workout</button>
             </Card.Body>
           </Card>
         </Col>

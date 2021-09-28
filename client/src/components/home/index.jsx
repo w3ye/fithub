@@ -7,21 +7,9 @@ import { useState } from 'react'
 
 export default function Home () {
   const [workout, setWorkout] = useState([])
-  const onAdd = exercise => {
-    console.log('workout', workout)
-    const exist = workout.find(x => x.id === exercise.id)
-    console.log('exist', exist)
 
-    console.log('exercise', exercise)
-    // if (exercise) {
-    //   setWorkout(
-    //     workout.map(x =>
-    //       x.id === exercise.id ? { ...exist, set: exist.set + 1 } : x
-    //     )
-    //   )
-    // } else {
-    setWorkout([...workout, { ...exercise, set: 1, reps: 1 }])
-    // }
+  const onAdd = exercise => {
+    setWorkout([...workout, { ...exercise, set: 1, reps: 10 }])
   }
   return (
     <>
@@ -29,7 +17,7 @@ export default function Home () {
       <div className='homeContainer'>
         <Leftbar />
         <Center onAdd={onAdd} />
-        <Rightbar workout={workout} setWorkout={setWorkout} onAdd={onAdd} />
+        <Rightbar workout={workout} setWorkout={setWorkout} />
       </div>
     </>
   )

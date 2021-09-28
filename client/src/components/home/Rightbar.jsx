@@ -1,12 +1,12 @@
-import NewWorkout from './NewWorkout'
+import WorkoutList from './WorkoutList'
 import './rightbar.css'
 
 export default function Rightbar (props) {
-  const { workout, setWorkout, onAdd } = props
+  const { workout, setWorkout } = props
   console.log('Rightbar', props)
   return (
     <div className='rightbar'>
-      <NewWorkout workout={workout} setWorkout={setWorkout} onAdd={onAdd} />
+      <WorkoutList workout={workout} setWorkout={setWorkout} />
     </div>
   )
 }

@@ -10,7 +10,6 @@ export default function ExerciseSearch (props) {
 
   const handleChange = event => {
     setSearch(event.target.value)
-    console.log(event.target.value)
   }
 
   const handleSearch = event => {
@@ -28,7 +27,6 @@ export default function ExerciseSearch (props) {
       .request(options)
       .then(response => {
         setResponseData(response.data)
-        console.log('using new options', response.data)
       })
       .catch(error => {
         console.log(error)
@@ -40,6 +38,7 @@ export default function ExerciseSearch (props) {
     responseData.map(exercise => (
       <ExerciseListItem
         key={exercise.id}
+        id={exercise.id}
         bodyPart={exercise.bodyPart}
         equipment={exercise.equipment}
         gifUrl={exercise.gifUrl}
