@@ -6,7 +6,7 @@ import Register from "../Register/Register";
 import Topbar from "../topbar/Topbar";
 import Dashboard from "../Dashboard/Dashboard";
 
-export const UserContext = React.createContext([]);
+export const TokenUserContext = React.createContext({});
 
 function App() {
   const [main, setMain] = useState("dashboard");
@@ -24,32 +24,22 @@ function App() {
           },
         })
       ).json();
-      setUser({
-        accessToken: result.accessToken,
-      });
+      setToken(result.accessToken);
     }
 
     checkRefreshToken();
-    console.log(user);
+    console.log(token);
   }, []);
 
   return (
-    <UserContext.Provider value={[user, setUser]}>
-      <Topbar setMain={setMain} setUser={setUser} user={user} />
-      {main === "dashboard" && (
-        <Dashboard
-          setMain={setMain}
-          setUser={setUser}
-          user={user}
-          token={token}
-          setToken={setToken}
-        />
-      )}
-      {main === "login" && (
-        <Login path="login" onChange={setToken} setMain={setMain} />
-      )}
-      {main === "register" && <Register onChange={setUser} setMain={setMain} />}
-    </UserContext.Provider>
+    <TokenUserContext.Provider
+      value={{ tokenState: [token, setToken], userState: [user, setUser] }}
+    >
+      <Topbar setMain={setMain} />
+      {main === "dashboard" && <Dashboard setMain={setMain} />}
+      {main === "login" && <Login path="login" setMain={setMain} />}
+      {main === "register" && <Register setMain={setMain} />}
+    </TokenUserContext.Provider>
   );
 }
 

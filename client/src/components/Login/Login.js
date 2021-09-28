@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./Login.css";
-import { UserContext } from "../App/App";
+import { TokenUserContext } from "../App/App";
 
 // TODO successful login should redirect user to somewhere else
 
@@ -9,7 +9,10 @@ export default function Login(props) {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useContext(UserContext);
+  // const [token, setToken] = useContext(TokenUserContext);
+  const { tokenState, userState } = useContext(TokenUserContext);
+  const [token, setToken] = tokenState;
+  const [user, setUser] = userState;
 
   async function submit() {
     const result = await (
@@ -27,9 +30,7 @@ export default function Login(props) {
     ).json();
 
     if (result.accessToken) {
-      setUser({
-        accessToken: result.accessToken,
-      });
+      setToken(result.accessToken);
     } else {
       return result.error;
     }
@@ -42,13 +43,13 @@ export default function Login(props) {
         credentials: "include",
       })
     ).json();
-    setUser({});
+    setToken({});
     console.log(result);
   }
 
   useEffect(() => {
-    console.log(user);
-  }, [user]);
+    console.log("token", token);
+  }, [token]);
 
   return (
     <div className="login-wrapper">
