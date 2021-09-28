@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "./topbar.css";
 import { MdPerson, MdSearch, MdChat, MdNotifications } from "react-icons/md";
 import { TokenUserContext } from "../App/App";
+import axios from "axios";
 
 export default function Topbar() {
   const { tokenState, userState } = useContext(TokenUserContext);
@@ -9,6 +10,7 @@ export default function Topbar() {
   const [user, setUser] = userState;
   console.log("HOME USER:", user);
   console.log("HOME TOKEN:", token);
+
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
@@ -28,7 +30,7 @@ export default function Topbar() {
         <div className="topbarLinks">
           {/* <span className='topbarLink'>Homepage</span>
           <span className='topbarLink'>Workouts</span> */}
-          <p>Logged in as </p>
+          <p>Logged in as {user.user.first_name}</p>
         </div>
         <div className="topbarIcons">
           <div className="topbarIconItem">
