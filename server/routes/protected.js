@@ -3,15 +3,15 @@ const express = require("express");
 const { isAuth } = require("../isAuth");
 const router = express.Router();
 
-module.exports = ({ getUserById }) => {
+module.exports = ({ getUserById, getUserGroups }) => {
   router.get("/", async (req, res) => {
     try {
       const userId = isAuth(req);
       if (userId !== null) {
         const { password, refresh_token, ...rest } = await getUserById(userId);
-        console.log(rest);
         res.send({
           user: rest,
+          groups: await getUserGroups(userId),
         });
       }
     } catch (err) {
