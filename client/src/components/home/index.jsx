@@ -1,19 +1,19 @@
-import Topbar from "./Topbar"
-import Leftbar from "./Leftbar"
-import Center from "./Center"
-import Rightbar from "./Rightbar"
-import "./index.css"
+import Topbar from "./Topbar";
+import Leftbar from "./Leftbar";
+import Center from "./Center";
+import Rightbar from "./Rightbar";
+import "./index.css";
 
-export default function Home() {
+export default function Home(props) {
+  const { setMain } = props;
   return (
     <>
-    <Topbar />
-    <div className="homeContainer">
-      <Leftbar />
-      <Center />
-      <Rightbar />
-    </div>
-
+      <Topbar setMain={setMain} />
+      <div className="homeContainer">
+        <Leftbar />
+        <Center />
+        <Rightbar />
+      </div>
     </>
-  )
+  );
 }

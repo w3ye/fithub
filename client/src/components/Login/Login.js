@@ -1,54 +1,64 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import "./Login.css";
-import { UserContext } from "../App/App";
-
-// TODO successful login should redirect user to somewhere else
+import { TokenUserContext } from "../App/App";
+import axios from "axios";
 
 export default function Login(props) {
   const { setMain } = props;
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useContext(UserContext);
+  const { tokenState, userState } = useContext(TokenUserContext);
+  const [token, setToken] = tokenState;
+  const [user, setUser] = userState;
 
-  async function submit() {
-    const result = await (
-      await fetch("/api/users/login", {
-        method: "POST",
-        credentials: "include",
+  function fetchProtected(token) {
+    axios
+      .get("/api/protected", {
         headers: {
           "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
       })
-    ).json();
-
-    if (result.accessToken) {
-      setUser({
-        accessToken: result.accessToken,
+      .then((result) => {
+        setUser(result.data);
+      })
+      .catch((err) => {
+        return err;
       });
-    } else {
-      return result.error;
-    }
   }
 
-  async function logout() {
-    const result = await (
-      await fetch("/api/users/logout", {
-        method: "POST",
-        credentials: "include",
+  function submitLogin() {
+    fetch("/api/users/login", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
+      .then((result) => {
+        return result.json();
       })
-    ).json();
-    setUser({});
-    console.log(result);
+      .then((result) => {
+        if (result.accessToken) {
+          setToken(result.accessToken);
+          fetchProtected(result.accessToken);
+          setMain("home");
+        } else throw new Error(result.error);
+      })
+      .catch((err) => err);
   }
 
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
+  // useEffect(() => {
+  //   console.log("token", token);
+  // }, [token]);
+  // useEffect(() => {
+  //   console.log("user", user);
+  // }, [user]);
 
   return (
     <div className="login-wrapper">
@@ -71,14 +81,13 @@ export default function Login(props) {
           />
         </label>
         <div>
-          <button type="submit" onClick={submit}>
+          <button type="submit" onClick={submitLogin}>
             Submit
           </button>
           <br />
           <button onClick={() => setMain("dashboard")}>Back</button>
         </div>
       </form>
-      <button onClick={logout}>Logout</button>
     </div>
   );
 }
