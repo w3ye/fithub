@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import ExerciseListItem from './ExerciseListItem'
 
-export default function Center () {
+export default function ExerciseSearch () {
   const [responseData, setResponseData] = useState(null)
   const [search, setSearch] = useState('')
 
@@ -43,6 +43,7 @@ export default function Center () {
         equipment={exercise.equipment}
         gifUrl={exercise.gifUrl}
         name={exercise.name}
+        target={exercise.target}
       />
     ))
 
