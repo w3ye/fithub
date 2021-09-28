@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./Login.css";
 import { TokenUserContext } from "../App/App";
+import axios from "axios";
 
 // TODO successful login should redirect user to somewhere else
 
@@ -14,47 +15,45 @@ export default function Login(props) {
   const [token, setToken] = tokenState;
   const [user, setUser] = userState;
 
-  function fetchProtected() {
-    fetch("/api/protected", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${token}`,
-      },
-    })
-      .then((result) => {
-        return result.json();
+  function fetchProtected(token) {
+    axios
+      .get("/api/protected", {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
       })
       .then((result) => {
-        setUser(result);
+        setUser(result.data);
       })
       .catch((err) => {
         return err;
       });
   }
 
-  async function submit() {
-    const result = await (
-      await fetch("/api/users/login", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
+  function submit() {
+    fetch("/api/users/login", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
+      .then((result) => {
+        return result.json();
       })
-    ).json();
-
-    if (result.accessToken) {
-      await setToken(result.accessToken);
-      fetchProtected();
-      setMain("home");
-    } else {
-      return result.error;
-    }
+      .then((result) => {
+        if (result.accessToken) {
+          setToken(result.accessToken);
+          fetchProtected(result.accessToken);
+          setMain("home");
+        } else throw new Error(result.error);
+      })
+      .catch((err) => err);
   }
 
   async function logout() {
@@ -64,8 +63,8 @@ export default function Login(props) {
         credentials: "include",
       })
     ).json();
-    setToken({});
-    console.log(result);
+    setToken("");
+    setUser({});
   }
 
   useEffect(() => {
