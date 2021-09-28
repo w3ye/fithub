@@ -7,7 +7,7 @@ import Topbar from "../topbar/Topbar";
 import Dashboard from "../Dashboard/Dashboard";
 import Home from "../home/index";
 
-export const UserContext = React.createContext([]);
+export const TokenUserContext = React.createContext({});
 
 function App() {
   const [main, setMain] = useState("dashboard");
@@ -25,47 +25,25 @@ function App() {
           },
         })
       ).json();
-      setUser({
-        accessToken: result.accessToken,
-      });
+      setToken(result.accessToken);
     }
 
     checkRefreshToken();
-    console.log(user);
+    console.log(token);
   }, []);
   console.log("USER:", user);
   console.log("TOKEN:", token);
 
   return (
-    <UserContext.Provider value={[user, setUser]}>
-      <>
-        {main === "dashboard" && (
-          <>
-            <Topbar setMain={setMain} setUser={setUser} user={user} />
-            <Dashboard
-              setMain={setMain}
-              setUser={setUser}
-              user={user}
-              token={token}
-              setToken={setToken}
-            />
-          </>
-        )}
-        {main === "login" && (
-          <>
-            <Topbar setMain={setMain} setUser={setUser} user={user} />
-            <Login path="login" onChange={setToken} setMain={setMain} />
-          </>
-        )}
-        {main === "register" && (
-          <>
-            <Topbar setMain={setMain} setUser={setUser} user={user} />
-            <Register onChange={setUser} setMain={setMain} />
-          </>
-        )}
-        {main === "home" && <Home user={user} token={token} />}
-      </>
-    </UserContext.Provider>
+    <TokenUserContext.Provider
+      value={{ tokenState: [token, setToken], userState: [user, setUser] }}
+    >
+      <Topbar setMain={setMain} />
+      {main === "dashboard" && <Dashboard setMain={setMain} />}
+      {main === "login" && <Login path="login" setMain={setMain} />}
+      {main === "register" && <Register setMain={setMain} />}
+      {main === "home" && <Home user={user} token={token} />}
+    </TokenUserContext.Provider>
   );
 }
 

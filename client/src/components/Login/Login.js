@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./Login.css";
-import { UserContext } from "../App/App";
+import { TokenUserContext } from "../App/App";
 
 // TODO successful login should redirect user to somewhere else
 
@@ -9,7 +9,29 @@ export default function Login(props) {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useContext(UserContext);
+  // const [token, setToken] = useContext(TokenUserContext);
+  const { tokenState, userState } = useContext(TokenUserContext);
+  const [token, setToken] = tokenState;
+  const [user, setUser] = userState;
+
+  function fetchProtected() {
+    fetch("/api/protected", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+    })
+      .then((result) => {
+        return result.json();
+      })
+      .then((result) => {
+        setUser(result);
+      })
+      .catch((err) => {
+        return err;
+      });
+  }
 
   async function submit() {
     const result = await (
@@ -27,8 +49,8 @@ export default function Login(props) {
     ).json();
 
     if (result.accessToken) {
-      setUser({ ...user, accessToken: result.accessToken });
-      setMain("home");
+      await setToken(result.accessToken);
+      fetchProtected();
     } else {
       return result.error;
     }
@@ -41,12 +63,16 @@ export default function Login(props) {
         credentials: "include",
       })
     ).json();
-    setUser({});
+    setToken({});
     console.log(result);
   }
 
   useEffect(() => {
-    console.log(user);
+    console.log("token", token);
+  }, [token]);
+
+  useEffect(() => {
+    console.log("user", user);
   }, [user]);
 
   return (
