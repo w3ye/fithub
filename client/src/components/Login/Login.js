@@ -51,6 +51,7 @@ export default function Login(props) {
     if (result.accessToken) {
       await setToken(result.accessToken);
       fetchProtected();
+      setMain("home");
     } else {
       return result.error;
     }

@@ -31,17 +31,30 @@ function App() {
     checkRefreshToken();
     console.log(token);
   }, []);
-  console.log("USER:", user);
-  console.log("TOKEN:", token);
 
   return (
     <TokenUserContext.Provider
       value={{ tokenState: [token, setToken], userState: [user, setUser] }}
     >
-      <Topbar setMain={setMain} />
-      {main === "dashboard" && <Dashboard setMain={setMain} />}
-      {main === "login" && <Login path="login" setMain={setMain} />}
-      {main === "register" && <Register setMain={setMain} />}
+      {main === "dashboard" && (
+        <>
+          <Topbar setMain={setMain} />
+          <Dashboard setMain={setMain} />
+        </>
+      )}
+      {main === "login" && (
+        <>
+          <Topbar setMain={setMain} />
+          <Login path="login" setMain={setMain} />
+        </>
+      )}
+
+      {main === "register" && (
+        <>
+          <Topbar setMain={setMain} />
+          <Register setMain={setMain} />
+        </>
+      )}
       {main === "home" && <Home user={user} token={token} />}
     </TokenUserContext.Provider>
   );

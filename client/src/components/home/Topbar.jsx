@@ -1,10 +1,14 @@
+import React, { useContext } from "react";
 import "./topbar.css";
 import { MdPerson, MdSearch, MdChat, MdNotifications } from "react-icons/md";
+import { TokenUserContext } from "../App/App";
 
-export default function Topbar(props) {
-  const { user, token } = props;
-  console.log("TOPBAR USER:", user);
-  console.log("TOPBAR TOKEN:", token);
+export default function Topbar() {
+  const { tokenState, userState } = useContext(TokenUserContext);
+  const [token, setToken] = tokenState;
+  const [user, setUser] = userState;
+  console.log("HOME USER:", user);
+  console.log("HOME TOKEN:", token);
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
