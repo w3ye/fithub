@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 
 import "./App.css";
 import Login from "../Login/Login";
@@ -15,22 +14,6 @@ function App() {
   const [token, setToken] = useState();
   const [user, setUser] = useState({});
 
-  function fetchProtected(token) {
-    axios
-      .get("/api/protected", {
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${token}`,
-        },
-      })
-      .then((result) => {
-        setUser(result.data);
-      })
-      .catch((err) => {
-        return err;
-      });
-  }
-
   useEffect(() => {
     async function checkRefreshToken() {
       const result = await (
@@ -43,7 +26,6 @@ function App() {
         })
       ).json();
       setToken(result.accessToken);
-      fetchProtected(result.accessToken);
     }
 
     checkRefreshToken();

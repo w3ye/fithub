@@ -1,8 +1,7 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import "./topbar.css";
 import { MdPerson, MdSearch, MdChat, MdNotifications } from "react-icons/md";
 import { TokenUserContext } from "../App/App";
-import axios from "axios";
 
 export default function Topbar() {
   const { tokenState, userState } = useContext(TokenUserContext);
@@ -30,7 +29,10 @@ export default function Topbar() {
         <div className="topbarLinks">
           {/* <span className='topbarLink'>Homepage</span>
           <span className='topbarLink'>Workouts</span> */}
-          <p>Logged in as {user.user.first_name}</p>
+          <p>
+            Logged in as {user.user ? user.user.first_name + " " : ""}
+            {user.user ? user.user.last_name : ""}
+          </p>
         </div>
         <div className="topbarIcons">
           <div className="topbarIconItem">
