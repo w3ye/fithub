@@ -14,6 +14,25 @@ export default function Login(props) {
   const [token, setToken] = tokenState;
   const [user, setUser] = userState;
 
+  function fetchProtected() {
+    fetch("/api/protected", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+    })
+      .then((result) => {
+        return result.json();
+      })
+      .then((result) => {
+        setUser(result);
+      })
+      .catch((err) => {
+        return err;
+      });
+  }
+
   async function submit() {
     const result = await (
       await fetch("/api/users/login", {
@@ -30,7 +49,8 @@ export default function Login(props) {
     ).json();
 
     if (result.accessToken) {
-      setToken(result.accessToken);
+      await setToken(result.accessToken);
+      fetchProtected();
     } else {
       return result.error;
     }
@@ -50,6 +70,10 @@ export default function Login(props) {
   useEffect(() => {
     console.log("token", token);
   }, [token]);
+
+  useEffect(() => {
+    console.log("user", user);
+  }, [user]);
 
   return (
     <div className="login-wrapper">
