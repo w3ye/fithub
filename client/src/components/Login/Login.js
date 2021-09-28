@@ -56,20 +56,21 @@ export default function Login(props) {
   }
 
   async function logout() {
-    const result = await (
-      await fetch("/api/users/logout", {
-        method: "POST",
+    axios
+      .post("/api/users/logout", {
         credentials: "include",
       })
-    ).json();
-    setToken("");
-    setUser({});
+      .then((result) => {
+        setToken("");
+        setUser({});
+        return result.data;
+      })
+      .catch((err) => err);
   }
 
   useEffect(() => {
     console.log("token", token);
   }, [token]);
-
   useEffect(() => {
     console.log("user", user);
   }, [user]);
