@@ -77,21 +77,6 @@ module.exports = ({
     });
   });
 
-  // * This route could be used with any route
-  // * Maybe move this to index.js
-  router.post("/protected", async (req, res) => {
-    try {
-      const userId = isAuth(req);
-      if (userId !== null) {
-        res.send({
-          user: await getUserById(userId),
-        });
-      }
-    } catch (err) {
-      res.send({ error: err.message });
-    }
-  });
-
   router.post("/refresh_token", async (req, res) => {
     const token = req.cookies.refreshtoken;
     if (!token) res.send({ accessToken: "" });
@@ -109,18 +94,6 @@ module.exports = ({
     updateRefreshToken(user.id, refreshToken);
     sendRefreshToken(res, refreshToken);
     return res.send({ accessToken });
-  });
-
-  router.get("/:email", (req, res) => {
-    const email = req.params.email;
-
-    getUserByEmail(email)
-      .then((user) => {
-        res.json({ user });
-      })
-      .catch((err) => {
-        res.send(err);
-      });
   });
 
   return router;
