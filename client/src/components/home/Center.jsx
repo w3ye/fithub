@@ -2,7 +2,6 @@ import './center.css'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import ExerciseListItem from './ExerciseListItem'
-import { GiHangGlider } from 'react-icons/gi'
 
 export default function Center () {
   const [responseData, setResponseData] = useState(null)
