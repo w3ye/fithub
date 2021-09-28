@@ -27,7 +27,8 @@ function App() {
       setToken(result.accessToken);
     }
 
-    checkRefreshToken();
+    if (token) checkRefreshToken();
+
     console.log(token);
   }, []);
 
