@@ -1,43 +1,44 @@
-import './topbar.css'
-import { MdPerson, MdSearch, MdChat, MdNotifications } from 'react-icons/md'
+import "./topbar.css";
+import { MdPerson, MdSearch, MdChat, MdNotifications } from "react-icons/md";
 
-export default function Topbar () {
+export default function Topbar(props) {
+  const { user, token } = props;
+  console.log("TOPBAR USER:", user);
+  console.log("TOPBAR TOKEN:", token);
   return (
-    <div className='topbarContainer'>
-      <div className='topbarLeft'>
-        <span className='logo'>FitHub</span>
+    <div className="topbarContainer">
+      <div className="topbarLeft">
+        <span className="logo">FitHub</span>
       </div>
-      <div className='topbarCenter'>
-        <div className='searchBar'>
-          <MdSearch className='searchIcon' />
+      <div className="topbarCenter">
+        <div className="searchBar">
+          <MdSearch className="searchIcon" />
           <input
-            placeholder='Search for friend, post or video'
-            type='text'
-            className='searchInput'
+            placeholder="Search for friend, post or video"
+            type="text"
+            className="searchInput"
           />
         </div>
       </div>
-      <div className='topbarRight'>
-        <div className='topbarLinks'>
-          <span className='topbarLink'>Homepage</span>
-          <span className='topbarLink'>Workouts</span>
+      <div className="topbarRight">
+        <div className="topbarLinks">
+          {/* <span className='topbarLink'>Homepage</span>
+          <span className='topbarLink'>Workouts</span> */}
+          <p>Logged in as </p>
         </div>
-        <div className='topbarIcons'>
-          <div className='topbarIconItem'>
+        <div className="topbarIcons">
+          <div className="topbarIconItem">
             <MdPerson />
-           
           </div>
-          <div className='tobarIconItem'>
+          <div className="tobarIconItem">
             <MdChat />
-          
           </div>
-          <div className='tobarIconItem'>
+          <div className="tobarIconItem">
             <MdNotifications />
-           
           </div>
         </div>
-        <img src='/assets/mario.jpeg' alt='' className='topbarImg' />
+        <img src="/assets/mario.jpeg" alt="" className="topbarImg" />
       </div>
     </div>
-  )
+  );
 }

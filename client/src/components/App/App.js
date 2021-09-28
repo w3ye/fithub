@@ -33,26 +33,39 @@ function App() {
     checkRefreshToken();
     console.log(user);
   }, []);
+  console.log("USER:", user);
+  console.log("TOKEN:", token);
 
   return (
-    // <UserContext.Provider value={[user, setUser]}>
-    //   <Topbar setMain={setMain} setUser={setUser} user={user} />
-    //   {main === "dashboard" && (
-    //     <Dashboard
-    //       setMain={setMain}
-    //       setUser={setUser}
-    //       user={user}
-    //       token={token}
-    //       setToken={setToken}
-    //     />
-    //   )}
-    //   {main === "login" && (
-    //     <Login path="login" onChange={setToken} setMain={setMain} />
-    //   )}
-    //   {main === "register" && <Register onChange={setUser} setMain={setMain} />}
-    // </UserContext.Provider>
-
-    <Home />
+    <UserContext.Provider value={[user, setUser]}>
+      <>
+        {main === "dashboard" && (
+          <>
+            <Topbar setMain={setMain} setUser={setUser} user={user} />
+            <Dashboard
+              setMain={setMain}
+              setUser={setUser}
+              user={user}
+              token={token}
+              setToken={setToken}
+            />
+          </>
+        )}
+        {main === "login" && (
+          <>
+            <Topbar setMain={setMain} setUser={setUser} user={user} />
+            <Login path="login" onChange={setToken} setMain={setMain} />
+          </>
+        )}
+        {main === "register" && (
+          <>
+            <Topbar setMain={setMain} setUser={setUser} user={user} />
+            <Register onChange={setUser} setMain={setMain} />
+          </>
+        )}
+        {main === "home" && <Home user={user} token={token} />}
+      </>
+    </UserContext.Provider>
   );
 }
 

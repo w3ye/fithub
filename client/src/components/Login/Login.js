@@ -27,9 +27,8 @@ export default function Login(props) {
     ).json();
 
     if (result.accessToken) {
-      setUser({
-        accessToken: result.accessToken,
-      });
+      setUser({ ...user, accessToken: result.accessToken });
+      setMain("home");
     } else {
       return result.error;
     }
