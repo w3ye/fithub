@@ -10,9 +10,9 @@ import Home from "../home/index";
 export const TokenUserContext = React.createContext({});
 
 function App() {
-  const [main, setMain] = useState("dashboard");
   const [token, setToken] = useState();
   const [user, setUser] = useState({});
+  const [main, setMain] = useState(token ? "home" : "dashboard");
 
   useEffect(() => {
     async function checkRefreshToken() {
@@ -29,9 +29,7 @@ function App() {
     }
 
     if (token) checkRefreshToken();
-
-    console.log(token);
-  }, []);
+  }, [token]);
 
   return (
     <TokenUserContext.Provider

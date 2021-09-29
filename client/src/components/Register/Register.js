@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import "./Register.css";
 import { registerUser } from "../../helpers/registerHelpers";
 import { TokenUserContext } from "../App/App";
@@ -81,12 +81,12 @@ export default function Register(props) {
     return;
   }
 
-  // useEffect(() => {
-  //   console.log("token", token);
-  // }, [token]);
-  // useEffect(() => {
-  //   console.log("user", user);
-  // }, [user]);
+  useEffect(() => {
+    console.log("token", token);
+  }, [token]);
+  useEffect(() => {
+    console.log("user", user);
+  }, [user]);
 
   return (
     <div className="register-wrapper">
