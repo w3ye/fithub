@@ -1,6 +1,6 @@
 import "./leftbar.scss";
 import { GiMuscleUp } from "react-icons/gi";
-import { FaUserFriends, FaHome } from "react-icons/fa";
+import { FaUserFriends, FaHome, FaUser } from "react-icons/fa";
 
 export default function Leftbar(props) {
   const { setPanels } = props;
@@ -32,8 +32,17 @@ export default function Leftbar(props) {
               setPanels("friends");
             }}
           >
-            <FaUserFriends className="leftbarIcon" />
+            <FaUser className="leftbarIcon" />
             <span className="leftbarListItemText">Friends</span>
+          </li>
+          <li
+            className="leftbarListItem"
+            onClick={() => {
+              setPanels("groups");
+            }}
+          >
+            <FaUserFriends className="leftbarIcon" />
+            <span className="leftbarListItemText">Groups</span>
           </li>
         </ul>
       </div>

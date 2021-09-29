@@ -5,6 +5,7 @@ import Leftbar from "./LeftPanel/Leftbar";
 import Center from "./Center/Center";
 import CenterWorkouts from "./Center/CenterWorkouts";
 import CenterFriends from "./Center/CenterFriends";
+import CenterGroups from "./Center/CenterGroups";
 import Rightbar from "./RightPanel/Rightbar";
 import RightbarWorkouts from "./RightPanel/RightbarWorkouts";
 import RightbarFriends from "./RightPanel/RightbarFriends";
@@ -31,6 +32,8 @@ export default function Home(props) {
         {panels === "workouts" && <RightbarWorkouts />}
         {panels === "friends" && <CenterFriends />}
         {panels === "friends" && <RightbarFriends />}
+        {panels === "groups" && <CenterGroups />}
+        {panels === "groups" && <RightbarFriends />}
       </div>
     </>
   );
