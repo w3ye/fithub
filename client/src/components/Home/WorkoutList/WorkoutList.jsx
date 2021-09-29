@@ -1,9 +1,18 @@
 import WorkoutListItem from './WorkoutListItem'
-import useState from 'react'
+import { useState, useContext } from 'react'
+import { TokenUserContext } from '../../App/App'
 
 export default function WorkoutList (props) {
-  // const [name, setName] = useState('')
+  const [name, setName] = useState('')
   const { workout, setWorkout } = props
+  const { userState } = useContext(TokenUserContext)
+  const [user] = userState
+
+  const handleSave = event => {
+    event.preventDefault()
+    const workoutObj = { userid: user.user.id, title: name, exercises: workout }
+    console.log('obj', workoutObj)
+  }
 
   return (
     <>
@@ -11,8 +20,8 @@ export default function WorkoutList (props) {
       <form autoComplete='off'>
         <input
           className='workout-name'
-          // value={name}
-          // onChange={event => setName(event.target.value)}
+          value={name}
+          onChange={event => setName(event.target.value)}
           type='text'
           placeholder='New workout name'
         />
@@ -28,7 +37,9 @@ export default function WorkoutList (props) {
           setWorkout={setWorkout}
         />
       ))}
-      <button>Save Workout</button>
+      <button onClick={handleSave} className='save'>
+        Save Workout
+      </button>
     </>
   )
 }

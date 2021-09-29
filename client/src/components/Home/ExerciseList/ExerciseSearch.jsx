@@ -35,7 +35,7 @@ export default function ExerciseSearch (props) {
 
   const slicedResponseData = responseData => {
     if (responseData.length >= 12) {
-      return responseData.slice(0, 11)
+      return responseData.slice(0, 12)
     } else return responseData
   }
 
