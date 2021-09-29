@@ -1,4 +1,4 @@
-import "./Dashboard.css";
+import "./Dashboard.scss";
 
 export default function Dashboard(props) {
   const { setMain } = props;

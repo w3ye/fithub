@@ -1,4 +1,4 @@
-import "./leftbar.css";
+import "./leftbar.scss";
 import { GiMuscleUp } from "react-icons/gi";
 import { FaUserFriends, FaHome } from "react-icons/fa";
 
