@@ -20,6 +20,7 @@ export default function WorkoutList(props) {
       .post("/api/workouts", {
         userId: user.user.id,
         title: name,
+        groups: user.groups,
         exercises: workout,
       })
       .then((result) => {
