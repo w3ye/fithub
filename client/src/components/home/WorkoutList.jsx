@@ -1,27 +1,25 @@
-import { useState } from 'react'
 import WorkoutListItem from './WorkoutListItem'
+import useState from 'react'
 
 export default function WorkoutList (props) {
-  console.log('Workout List props', props)
+  // const [name, setName] = useState('')
   const { workout, setWorkout } = props
-  const [change, setChange] = useState([])
-
-  const handleInput = event => {
-    setChange(event.target.value)
-    console.log('change', change)
-    // setWorkout([...workout, { ...change, set: 1, reps: 10 }])
-    console.log('handleChange', event.target.value)
-  }
-
-  const handleReps = event => {
-    event.preventDefault()
-    setWorkout([...workout, { reps: event.target.value }])
-  }
 
   return (
     <>
       <h1>New Workout</h1>
-      <div>{workout.length === 0 && <div> Workout is empty </div>}</div>
+      <form autoComplete='off'>
+        <input
+          className='workout-name'
+          // value={name}
+          // onChange={event => setName(event.target.value)}
+          type='text'
+          placeholder='New workout name'
+        />
+      </form>
+      <div>
+        {workout.length === 0 && <div> Please add some exercises! </div>}
+      </div>
       {workout.map(exercise => (
         <WorkoutListItem
           key={exercise.id}
@@ -30,6 +28,7 @@ export default function WorkoutList (props) {
           setWorkout={setWorkout}
         />
       ))}
+      <button>Save Workout</button>
     </>
   )
 }

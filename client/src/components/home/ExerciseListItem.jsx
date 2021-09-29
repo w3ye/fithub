@@ -23,7 +23,7 @@ export default function ExerciseListItem (props) {
         <Col>
           <Card>
             <Card.Img variant='top' src={gifUrl} />
-            <Card.Body key={id}>
+            <Card.Body>
               <Card.Title>Name: {capitalizeWords(name)}</Card.Title>
               <ListGroup className='list-group-flush'>
                 <ListGroupItem>

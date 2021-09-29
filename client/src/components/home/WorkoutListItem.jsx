@@ -1,9 +1,6 @@
 import { useState, useRef } from 'react'
 
 export default function WorkoutListItem (props) {
-  const [name, setName] = useState('')
-  const [error, setError] = useState('')
-  console.log('workoutlistitemprops:', props)
   const { workout, setWorkout, exercise } = props
   const setRef = useRef()
   const repsRef = useRef()
@@ -27,16 +24,6 @@ export default function WorkoutListItem (props) {
     })
   }
 
-  // function validate () {
-  //   if (name === '') {
-  //     setError('Workout cannot be blank')
-  //     return
-  //   } else {
-  //     setError('')
-  //     props.onSave(name, interviewer)
-  //   }
-  // }
-
   return (
     <div key={exercise.id} className='row'>
       <div> {exercise.name}</div>
@@ -55,16 +42,6 @@ export default function WorkoutListItem (props) {
       <button type='button' onClick={handleReps}>
         Change Reps
       </button>
-      <form autoComplete='off'>
-        <input
-          className='workout-name'
-          value={name}
-          onChange={event => setName(event.target.value)}
-          type='text'
-          placeholder='New workout name'
-        />
-      </form>
-      <button>Save Workout</button>
       <br />
     </div>
   )
