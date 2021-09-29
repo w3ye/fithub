@@ -1,3 +1,4 @@
-.rightbar{ 
-  flex: 3
+.rightbar {
+  flex: 3;
+  background-color: lightgreen;
 }
