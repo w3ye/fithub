@@ -20,7 +20,7 @@ export default function CenterFriends() {
     ));
   console.log("Current User:", user);
   return (
-    <div className="center friendContainer">
+    <div className="center container">
       <h2>
         {user.user ? user.user.first_name : ""}{" "}
         {user.user ? user.user.last_name : ""}'s Friends

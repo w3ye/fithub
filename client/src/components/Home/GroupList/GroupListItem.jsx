@@ -6,7 +6,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import ListGroupItem from "react-bootstrap/ListGroupItem";
 
 export default function GroupListItem(props) {
-  const { friend_first_name, friend_last_name, friend_email } = props;
+  const { title } = props;
 
   return (
     // <li className='exercise'>
@@ -21,15 +21,13 @@ export default function GroupListItem(props) {
           <Card className="groupCard">
             <Card.Img
               variant="top"
-              src="https://i.pinimg.com/originals/3f/94/70/3f9470b34a8e3f526dbdb022f9f19cf7.jpg"
+              src="https://theairtravelgroup.com/wp-content/uploads/group-icon-768x768.png"
               className="groupImage"
             />
             <Card.Body>
-              <Card.Title>
-                Name: {friend_first_name} {friend_last_name}
-              </Card.Title>
+              <Card.Title>{title}</Card.Title>
               <ListGroup className="list-group-flush">
-                <ListGroupItem>Email: {friend_email}</ListGroupItem>
+                <ListGroupItem></ListGroupItem>
               </ListGroup>
             </Card.Body>
           </Card>

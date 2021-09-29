@@ -9,6 +9,7 @@ import CenterGroups from "./Center/CenterGroups";
 import Rightbar from "./RightPanel/Rightbar";
 import RightbarWorkouts from "./RightPanel/RightbarWorkouts";
 import RightbarFriends from "./RightPanel/RightbarFriends";
+import RightbarGroups from "./RightPanel/RightbarGroups";
 import "./index.scss";
 
 export default function Home(props) {
@@ -33,7 +34,7 @@ export default function Home(props) {
         {panels === "friends" && <CenterFriends />}
         {panels === "friends" && <RightbarFriends />}
         {panels === "groups" && <CenterGroups />}
-        {panels === "groups" && <RightbarFriends />}
+        {panels === "groups" && <RightbarGroups />}
       </div>
     </>
   );

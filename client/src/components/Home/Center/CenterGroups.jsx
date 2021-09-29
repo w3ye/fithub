@@ -10,17 +10,12 @@ export default function CenterGroups() {
 
   const parsedGroups =
     user.user &&
-    user.groups.map((friend) => (
-      <GroupListItem
-        key={friend.id}
-        friend_first_name={friend.friend_first_name}
-        friend_last_name={friend.friend_last_name}
-        friend_email={friend.friend_email}
-      />
+    user.groups.map((group) => (
+      <GroupListItem key={group.id} title={group.title} />
     ));
   console.log(user);
   return (
-    <div className="center groupContainer">
+    <div className="center container">
       <h2>
         {user.user ? user.user.first_name : ""}{" "}
         {user.user ? user.user.last_name : ""}'s Groups
