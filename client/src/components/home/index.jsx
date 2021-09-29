@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-import Topbar from "./Topbar";
+import Topbar from "../topbar/Topbar";
 import Leftbar from "./Leftbar";
-import Center from "./Center";
+import Center from "./Center/Center";
 import CenterWorkouts from "./CenterWorkouts";
 import CenterFriends from "./CenterFriends";
-import Rightbar from "./Rightbar";
+import Rightbar from "./RightBar/Rightbar";
 import RightbarWorkouts from "./RightbarWorkouts";
 import RightbarFriends from "./RightbarFriends";
 import "./index.scss";
