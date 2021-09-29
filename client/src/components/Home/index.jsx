@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 
+<<<<<<< HEAD
 import Topbar from "../topbar/Topbar";
 import Leftbar from "./LeftPanel/Leftbar";
 import Center from "./Center/Center";
@@ -17,26 +18,49 @@ export default function Home(props) {
   const [panels, setPanels] = useState("home");
   const [workout, setWorkout] = useState([]);
   const [selected, setSelected] = useState({});
+=======
+import Topbar from '../topbar/Topbar'
+import Leftbar from './LeftPanel/Leftbar'
+import Center from './Center/Center'
+import CenterWorkouts from './Center/CenterWorkouts'
+import CenterFriends from './Center/CenterFriends'
+import Rightbar from './RightPanel/Rightbar'
+import RightbarWorkouts from './RightPanel/RightbarWorkouts'
+import RightbarFriends from './RightPanel/RightbarFriends'
+import './index.scss'
 
-  const onAdd = (exercise) => {
-    setWorkout([...workout, { ...exercise, set: 1, reps: 10 }]);
-  };
+export default function Home (props) {
+  const { setMain } = props
+  const [panels, setPanels] = useState('home')
+  const [workout, setWorkout] = useState([])
+>>>>>>> dev
+
+  const onAdd = exercise => {
+    setWorkout([...workout, { ...exercise, set: '1', reps: '10' }])
+  }
   return (
     <>
       <Topbar setMain={setMain} />
-      <div className="homeContainer">
+      <div className='homeContainer'>
         <Leftbar setPanels={setPanels} />
-        {panels === "home" && <Center onAdd={onAdd} />}
-        {panels === "home" && (
+        {panels === 'home' && <Center onAdd={onAdd} />}
+        {panels === 'home' && (
           <Rightbar workout={workout} setWorkout={setWorkout} />
         )}
+<<<<<<< HEAD
         {panels === "workouts" && <CenterWorkouts />}
         {panels === "workouts" && <RightbarWorkouts />}
         {panels === "friends" && <CenterFriends />}
         {panels === "friends" && <RightbarFriends />}
         {panels === "groups" && <CenterGroups setSelected={setSelected} />}
         {panels === "groups" && <RightbarGroups group={selected} />}
+=======
+        {panels === 'workouts' && <CenterWorkouts />}
+        {panels === 'workouts' && <RightbarWorkouts />}
+        {panels === 'friends' && <CenterFriends />}
+        {panels === 'friends' && <RightbarFriends />}
+>>>>>>> dev
       </div>
     </>
-  );
+  )
 }
