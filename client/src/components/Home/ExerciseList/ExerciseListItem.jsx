@@ -19,26 +19,24 @@ export default function ExerciseListItem (props) {
 
   return (
     <Row xs={1} md={2} className='g-4'>
-      {Array.from({ length: 1 }).map((_, idx) => (
-        <Col>
-          <Card>
-            <Card.Img variant='top' src={gifUrl} />
-            <Card.Body>
-              <Card.Title>Name: {capitalizeWords(name)}</Card.Title>
-              <ListGroup className='list-group-flush'>
-                <ListGroupItem>
-                  Equipment: {capitalizeWords(equipment)}
-                </ListGroupItem>
-                <ListGroupItem>
-                  Body Part: {capitalizeWords(bodyPart)}
-                </ListGroupItem>
-                <ListGroupItem>Target: {capitalizeWords(target)}</ListGroupItem>
-              </ListGroup>
-              <button onClick={() => onAdd(exercise)}>Add to Workout</button>
-            </Card.Body>
-          </Card>
-        </Col>
-      ))}
+      <Col>
+        <Card>
+          <Card.Img variant='top' src={gifUrl} />
+          <Card.Body>
+            <Card.Title>Name: {capitalizeWords(name)}</Card.Title>
+            <ListGroup className='list-group-flush'>
+              <ListGroupItem>
+                Equipment: {capitalizeWords(equipment)}
+              </ListGroupItem>
+              <ListGroupItem>
+                Body Part: {capitalizeWords(bodyPart)}
+              </ListGroupItem>
+              <ListGroupItem>Target: {capitalizeWords(target)}</ListGroupItem>
+            </ListGroup>
+            <button onClick={() => onAdd(exercise)}>Add to Workout</button>
+          </Card.Body>
+        </Card>
+      </Col>
     </Row>
   )
 }
