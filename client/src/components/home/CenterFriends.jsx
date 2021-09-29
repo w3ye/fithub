@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import "./center.css";
+import "./center.scss";
 import { TokenUserContext } from "../App/App";
 import FriendListItem from "./FriendListItem";
 

@@ -1,4 +1,4 @@
-import "./topbar.css";
+import "./topbar.scss";
 import { MdSearch, MdChat, MdNotifications, MdCancel } from "react-icons/md";
 
 export default function Topbar(props) {

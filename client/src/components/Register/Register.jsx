@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from "react";
-import "./Register.css";
+import "./Register.scss";
 import { registerUser } from "../../helpers/registerHelpers";
 import { TokenUserContext } from "../App/App";
 import axios from "axios";

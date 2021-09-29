@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import "./topbar.css";
+import "./topbar.scss";
 import { MdSearch } from "react-icons/md";
 import { TokenUserContext } from "../App/App";
 import axios from "axios";

@@ -1,4 +1,4 @@
-import "./exerciseSearch.css";
+import "./exerciseSearch.scss";
 import axios from "axios";
 import { useState } from "react";
 import ExerciseListItem from "./ExerciseListItem";

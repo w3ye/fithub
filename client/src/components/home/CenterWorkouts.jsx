@@ -1,4 +1,4 @@
-import "./center.css";
+import "./center.scss";
 
 export default function CenterWorkouts() {
   return (

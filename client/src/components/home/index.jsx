@@ -8,7 +8,7 @@ import CenterFriends from "./CenterFriends";
 import Rightbar from "./Rightbar";
 import RightbarWorkouts from "./RightbarWorkouts";
 import RightbarFriends from "./RightbarFriends";
-import "./index.css";
+import "./index.scss";
 
 export default function Home(props) {
   const { setMain } = props;
