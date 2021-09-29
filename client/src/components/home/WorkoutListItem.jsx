@@ -24,6 +24,11 @@ export default function WorkoutListItem (props) {
     })
   }
 
+  const onRemove = exercise => {
+    const exist = workout.find(x => x.id === exercise.id)
+    setWorkout(workout.filter(x => x.id !== exercise.id))
+  }
+
   return (
     <div key={exercise.id} className='row'>
       <div> {exercise.name}</div>
@@ -41,6 +46,10 @@ export default function WorkoutListItem (props) {
       <br />
       <button type='button' onClick={handleReps}>
         Change Reps
+      </button>
+      <br />
+      <button onClick={() => onRemove(exercise)} className='remove'>
+        Remove
       </button>
       <br />
     </div>
