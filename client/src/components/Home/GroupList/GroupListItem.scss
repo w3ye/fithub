@@ -2,10 +2,6 @@
   text-align: center;
   border: blue 2px dotted;
 }
-.groupCardSelected {
-  text-align: center;
-  border: red 3px solid;
-}
 
 .groupCard:hover {
   font-weight: bold;
@@ -21,8 +17,8 @@
   padding: 0;
 }
 
-.thisClass {
+.selected {
   background-color: coral;
   color: white;
-  font-size: 25px;
+  font-weight: bold;
 }

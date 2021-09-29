@@ -9,13 +9,13 @@ export default function GroupListItem(props) {
   const { group, selectGroup } = props;
 
   function removeSelectedClass() {
-    const selected = document.getElementsByClassName("selected");
-    while (selected.length) selected[0].classList.remove("selected");
+    const classes = document.getElementsByClassName("selected");
+    while (classes.length) classes[0].classList.remove("selected");
   }
 
   function toggleSelected() {
     const element = document.getElementById(group.group_id);
-    element.classList.toggle("thisClass");
+    element.classList.toggle("selected");
   }
 
   return (
