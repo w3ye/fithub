@@ -1,0 +1,24 @@
+.groupCard {
+  text-align: center;
+  border: blue 2px dotted;
+}
+
+.groupCard:hover {
+  font-weight: bold;
+  cursor: pointer;
+  background-color: lightgray;
+}
+
+.groupImage {
+  width: 100px;
+}
+
+.groupsContainer {
+  padding: 0;
+}
+
+.selected {
+  background-color: coral;
+  color: white;
+  font-weight: bold;
+}
