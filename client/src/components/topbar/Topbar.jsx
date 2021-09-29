@@ -3,6 +3,7 @@ import "./topbar.scss";
 import { MdSearch } from "react-icons/md";
 import { TokenUserContext } from "../App/App";
 import axios from "axios";
+import User from "./User";
 
 export default function Topbar(props) {
   const { setMain } = props;
@@ -71,7 +72,14 @@ export default function Topbar(props) {
           </div> */}
           <button onClick={logout}>Logout</button>
         </div>
-        <img src="/assets/mario.jpeg" alt="" className="topbarImg" />
+        <img
+          type="button"
+          src="/assets/mario.jpeg"
+          alt=""
+          className="topbarImg btn btn-primary"
+          data-toggle="modal"
+          data-target="#exampleModal"
+        />
       </div>
     </div>
   );
