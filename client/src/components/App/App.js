@@ -25,7 +25,6 @@ function App() {
           },
         })
       ).json();
-      console.log("REZZY:", result.accessToken);
       setToken(result.accessToken);
     }
 

@@ -6,6 +6,7 @@ import "./index.css";
 
 export default function Home(props) {
   const { setMain } = props;
+
   return (
     <>
       <Topbar setMain={setMain} />
