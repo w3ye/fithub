@@ -1,17 +1,27 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./center.scss";
 import { TokenUserContext } from "../../App/App";
 import GroupListItem from "../GroupList/GroupListItem";
 
-export default function CenterGroups() {
+export default function CenterGroups(props) {
+  const { setSelected } = props;
   const { tokenState, userState } = useContext(TokenUserContext);
   const [token, setToken] = tokenState;
   const [user, setUser] = userState;
 
+  const selectGroup = function (group) {
+    setSelected(group);
+  };
+
   const parsedGroups =
     user.user &&
     user.groups.map((group) => (
-      <GroupListItem key={group.id} title={group.title} />
+      <GroupListItem
+        key={group.id}
+        group={group}
+        title={group.title}
+        selectGroup={selectGroup}
+      />
     ));
   console.log(user);
   return (

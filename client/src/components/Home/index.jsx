@@ -16,6 +16,7 @@ export default function Home(props) {
   const { setMain } = props;
   const [panels, setPanels] = useState("home");
   const [workout, setWorkout] = useState([]);
+  const [selected, setSelected] = useState({});
 
   const onAdd = (exercise) => {
     setWorkout([...workout, { ...exercise, set: 1, reps: 10 }]);
@@ -33,8 +34,8 @@ export default function Home(props) {
         {panels === "workouts" && <RightbarWorkouts />}
         {panels === "friends" && <CenterFriends />}
         {panels === "friends" && <RightbarFriends />}
-        {panels === "groups" && <CenterGroups />}
-        {panels === "groups" && <RightbarGroups />}
+        {panels === "groups" && <CenterGroups setSelected={setSelected} />}
+        {panels === "groups" && <RightbarGroups group={selected} />}
       </div>
     </>
   );
