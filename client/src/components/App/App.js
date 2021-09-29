@@ -29,8 +29,6 @@ function App() {
     }
 
     if (token) checkRefreshToken();
-
-    console.log("TOKEN:", token);
   }, [token]);
 
   return (
