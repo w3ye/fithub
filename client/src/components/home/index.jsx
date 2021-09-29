@@ -12,7 +12,11 @@ import "./index.css";
 
 export default function Home(props) {
   const { setMain } = props;
+<<<<<<< HEAD
   const [panels, setPanels] = useState("home");
+=======
+
+>>>>>>> bugfix/token
   return (
     <>
       <Topbar setMain={setMain} />
