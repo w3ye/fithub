@@ -20,8 +20,11 @@ export default function CenterFriends() {
     ));
   console.log("Current User:", user);
   return (
-    <div className="center">
-      <h2>{user.user ? user.user.first_name : ""}'s Friends</h2>
+    <div className="center friendContainer">
+      <h2>
+        {user.user ? user.user.first_name : ""}{" "}
+        {user.user ? user.user.last_name : ""}'s Friends
+      </h2>
       <ul className="friendsContainer">{user.user ? parsedFriends : ""}</ul>
     </div>
   );

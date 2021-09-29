@@ -3,6 +3,12 @@
   border: blue 2px dotted;
 }
 
+.friendCard:hover {
+  font-weight: bold;
+  cursor: pointer;
+  background-color: lightgray;
+}
+
 .friendImage {
   width: 100px;
 }
