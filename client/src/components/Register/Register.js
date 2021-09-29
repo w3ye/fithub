@@ -29,7 +29,6 @@ export default function Register(props) {
       })
       .then((result) => {
         setUser(result.data);
-        console.log("KYLE:", result.data);
       })
       .catch((err) => {
         return err;
