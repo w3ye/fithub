@@ -28,11 +28,22 @@ module.exports = (db) => {
       .query(query)
       .then((result) => result.rows)
       .catch((err) => err);
-    console.log(exercises);
+  };
+
+  const findWorkoutsByUserId = (userId) => {
+    const query = {
+      text: "SELECT * FROM workouts where user_id = $1",
+      values: [userId],
+    };
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
   };
 
   return {
     getWorkouts,
     newWorkout,
+    findWorkoutsByUserId,
   };
 };

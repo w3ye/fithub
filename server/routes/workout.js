@@ -12,11 +12,18 @@ module.exports = (db) => {
     const workout = req.body;
     db.newWorkout(workout)
       .then((result) => {
-        console.log(result);
+        res.json({ success: true });
       })
       .catch((err) => {
-        console.log(err);
+        res.json({ error: err.message });
       });
+  });
+
+  router.get("/:user_id", (req, res) => {
+    const userId = req.params.user_id;
+    db.findWorkoutsByUserId(userId)
+      .then((result) => res.json(result))
+      .catch((err) => res.json({ error: err.message }));
   });
 
   return router;
