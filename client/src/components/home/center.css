@@ -1,3 +1,5 @@
 .center {
-  flex: 5
+  flex: 5;
+  border: red dotted 2px;
+  height: 500px;
 }
