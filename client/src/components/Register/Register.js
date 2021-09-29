@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import "./Register.css";
 import { registerUser } from "../../helpers/registerHelpers";
+import { TokenUserContext } from "../App/App";
+import axios from "axios";
 
-// TODO if register success redirect to homepage
 // TODO display error message to user
 
 export default function Register(props) {
@@ -14,23 +15,78 @@ export default function Register(props) {
     email: "",
     password: "",
   });
+  const { tokenState, userState } = useContext(TokenUserContext);
+  const [token, setToken] = tokenState;
+  const [user, setUser] = userState;
 
-  function submit() {
+  function fetchProtected(token) {
+    axios
+      .get("/api/protected", {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+      })
+      .then((result) => {
+        setUser(result.data);
+      })
+      .catch((err) => {
+        return err;
+      });
+  }
+
+  function fetchToken() {
+    let email = state.email;
+    let password = confirmPassword;
+    fetch("/api/users/login", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
+      .then((result) => {
+        return result.json();
+      })
+      .then((result) => {
+        if (result.accessToken) {
+          setToken(result.accessToken);
+          fetchProtected(result.accessToken);
+          setMain("home");
+        } else throw new Error(result.error);
+      })
+      .catch((err) => err);
+  }
+
+  function submitRegister() {
     if (state.password === confirmPassword) {
       registerUser({
         firstName: state.firstName,
         lastName: state.lastName,
         email: state.email,
         password: state.password,
-      });
-      // * automatically login
-      // * redirect
-      console.log("success");
-      return;
+      })
+        .then((res) => {
+          fetchToken();
+        })
+        .then(() => {
+          console.log("success");
+        });
     }
     console.log("err");
     return;
   }
+
+  useEffect(() => {
+    console.log("token", token);
+  }, [token]);
+  useEffect(() => {
+    console.log("user", user);
+  }, [user]);
 
   return (
     <div className="register-wrapper">
@@ -96,7 +152,7 @@ export default function Register(props) {
           />
         </label>
         <div>
-          <button type="submit" onClick={submit}>
+          <button type="submit" onClick={submitRegister}>
             Submit
           </button>
           <br />

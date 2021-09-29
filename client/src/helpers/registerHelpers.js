@@ -14,7 +14,7 @@ export function registerUser(user) {
       password: user.password,
     })
     .then((result) => {
-      console.log(result);
+      return result;
     })
     .catch((err) => {});
 }

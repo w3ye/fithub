@@ -5,13 +5,14 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import Topbar from "../topbar/Topbar";
 import Dashboard from "../Dashboard/Dashboard";
+import Home from "../home/index";
 
 export const TokenUserContext = React.createContext({});
 
 function App() {
-  const [main, setMain] = useState("dashboard");
   const [token, setToken] = useState();
   const [user, setUser] = useState({});
+  const [main, setMain] = useState(token ? "home" : "dashboard");
 
   useEffect(() => {
     async function checkRefreshToken() {
@@ -28,18 +29,32 @@ function App() {
     }
 
     if (token) checkRefreshToken();
-
-    console.log(token);
-  }, []);
+  }, [token]);
 
   return (
     <TokenUserContext.Provider
       value={{ tokenState: [token, setToken], userState: [user, setUser] }}
     >
-      <Topbar setMain={setMain} />
-      {main === "dashboard" && <Dashboard setMain={setMain} />}
-      {main === "login" && <Login path="login" setMain={setMain} />}
-      {main === "register" && <Register setMain={setMain} />}
+      {main === "dashboard" && (
+        <>
+          <Topbar setMain={setMain} />
+          <Dashboard setMain={setMain} />
+        </>
+      )}
+      {main === "login" && (
+        <>
+          <Topbar setMain={setMain} />
+          <Login path="login" setMain={setMain} />
+        </>
+      )}
+
+      {main === "register" && (
+        <>
+          <Topbar setMain={setMain} />
+          <Register setMain={setMain} />
+        </>
+      )}
+      {main === "home" && <Home setMain={setMain} />}
     </TokenUserContext.Provider>
   );
 }
