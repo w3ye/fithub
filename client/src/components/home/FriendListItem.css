@@ -1,0 +1,12 @@
+.friendCard {
+  text-align: center;
+  border: blue 2px dotted;
+}
+
+.friendImage {
+  width: 100px;
+}
+
+.friendsContainer {
+  padding: 0;
+}
