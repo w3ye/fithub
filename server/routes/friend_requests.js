@@ -1,11 +1,11 @@
-// const express = require("express");
-// const router = express.Router();
+const express = require("express");
+const router = express.Router();
 
-// module.exports = ({ getFriendRequests }) => {
-//   router.get("/", (req, res) => {
-//     getFriendRequests()
-//       .then((friend_requests) => res.json(friend_requests))
-//       .catch((err) => res.json({ error: err.message }));
-//   });
-//   return router;
-// };
+module.exports = ({ getRequestsById }) => {
+  router.get("/:id", (req, res) => {
+    getRequestsById(req.params.id)
+      .then((friend_requests) => res.json(friend_requests))
+      .catch((err) => res.json({ error: err.message }));
+  });
+  return router;
+};

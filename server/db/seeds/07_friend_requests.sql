@@ -1,2 +1,2 @@
-INSERT INTO friend_requests(sender_id, reciever_email, is_resolved, sent_at)
-VALUES (01, 'donkey@nintendo.com', false, now());
+INSERT INTO friend_requests(sender_id, reciever_id, message)
+VALUES (1, 5, 'Hi there, please add me!'), (6, 2, 'Be my friend, please!');

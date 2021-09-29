@@ -1,15 +1,15 @@
-// module.exports = (db) => {
-//   const getFriendRequests = () => {
-//     const query = {
-//       text: "SELECT * FROM friend_requests",
-//     };
-//     return db
-//       .query(query)
-//       .then((result) => result.rows)
-//       .catch((err) => err);
-//   };
+module.exports = (db) => {
+  const getRequestsById = (id) => {
+    const query = {
+      text: "SELECT * FROM friend_requests WHERE reciever_id = $1",
+    };
+    return db
+      .query(query, [id])
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
 
-//   return {
-//     getFriendRequests,
-//   };
-// };
+  return {
+    getRequestsById,
+  };
+};
