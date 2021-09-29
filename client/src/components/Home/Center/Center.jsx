@@ -1,5 +1,5 @@
 import "./center.scss";
-import ExerciseSearch from "./ExerciseSearch";
+import ExerciseSearch from "../ExerciseList/ExerciseSearch";
 
 export default function Center(props) {
   const { onAdd } = props;

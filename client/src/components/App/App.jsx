@@ -5,7 +5,7 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import Topbar from "../topbar/Topbar";
 import Dashboard from "../Dashboard/Dashboard";
-import Home from "../home/index";
+import Home from "../Home";
 
 export const TokenUserContext = React.createContext({});
 

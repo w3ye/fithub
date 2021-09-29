@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
 import Topbar from "../topbar/Topbar";
-import Leftbar from "./Leftbar";
+import Leftbar from "./LeftPanel/Leftbar";
 import Center from "./Center/Center";
-import CenterWorkouts from "./CenterWorkouts";
-import CenterFriends from "./CenterFriends";
-import Rightbar from "./RightBar/Rightbar";
-import RightbarWorkouts from "./RightbarWorkouts";
-import RightbarFriends from "./RightbarFriends";
+import CenterWorkouts from "./Center/CenterWorkouts";
+import CenterFriends from "./Center/CenterFriends";
+import Rightbar from "./RightPanel/Rightbar";
+import RightbarWorkouts from "./RightPanel/RightbarWorkouts";
+import RightbarFriends from "./RightPanel/RightbarFriends";
 import "./index.scss";
 
 export default function Home(props) {

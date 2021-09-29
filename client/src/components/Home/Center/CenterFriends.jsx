@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import "./center.scss";
-import { TokenUserContext } from "../App/App";
-import FriendListItem from "./FriendListItem";
+import { TokenUserContext } from "../../App/App";
+import FriendListItem from "../FriendList/FriendListItem";
 
 export default function CenterFriends() {
   const { tokenState, userState } = useContext(TokenUserContext);

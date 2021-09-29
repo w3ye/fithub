@@ -1,4 +1,4 @@
-import WorkoutList from "../WorkoutList";
+import WorkoutList from "../WorkoutList/WorkoutList";
 import "./rightbar.scss";
 
 export default function Rightbar(props) {
