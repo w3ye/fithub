@@ -3,6 +3,7 @@ const dbUserHelpers = require("./helpers/dbUserHelpers")(db);
 const dbGroupHelpers = require("./helpers/dbGroupHelpers")(db);
 const dbFriendHelpers = require("./helpers/dbFriendHelpers")(db);
 const dbExerciseHelpers = require("./helpers/dbExerciseHelpers")(db);
+const dbWorkoutHelpers = require("./helpers/dbWorkoutHelpers")(db);
 const dbProtectedHelpers = require("./helpers/dbProtectedHelpers");
 var express = require("express");
 var path = require("path");
@@ -16,6 +17,7 @@ var protectedRouter = require("./routes/protected");
 var groupsRouter = require("./routes/group");
 var friendsRouter = require("./routes/friends");
 var exercisesRouter = require("./routes/exercises");
+var workoutRouter = require("./routes/workout");
 
 var app = express();
 
@@ -30,6 +32,7 @@ app.use("/api/protected", protectedRouter(dbProtectedHelpers));
 app.use("/api/groups", groupsRouter(dbGroupHelpers));
 app.use("/api/friends", friendsRouter(dbFriendHelpers));
 app.use("/api/exercises", exercisesRouter(dbExerciseHelpers));
+app.use("/api/workouts", workoutRouter(dbWorkoutHelpers));
 
 app.use("/", indexRouter);
 
