@@ -13,13 +13,20 @@ import "./index.css";
 export default function Home(props) {
   const { setMain } = props;
   const [panels, setPanels] = useState("home");
+  const [workout, setWorkout] = useState([]);
+
+  const onAdd = (exercise) => {
+    setWorkout([...workout, { ...exercise, set: 1, reps: 10 }]);
+  };
   return (
     <>
       <Topbar setMain={setMain} />
       <div className="homeContainer">
         <Leftbar setPanels={setPanels} />
-        {panels === "home" && <Center />}
-        {panels === "home" && <Rightbar />}
+        {panels === "home" && <Center onAdd={onAdd} />}
+        {panels === "home" && (
+          <Rightbar workout={workout} setWorkout={setWorkout} />
+        )}
         {panels === "workouts" && <CenterWorkouts />}
         {panels === "workouts" && <RightbarWorkouts />}
         {panels === "friends" && <CenterFriends />}
