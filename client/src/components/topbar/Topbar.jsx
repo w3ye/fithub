@@ -1,18 +1,28 @@
+import React, { useContext } from "react";
 import "./topbar.scss";
-import { MdSearch, MdChat, MdNotifications, MdCancel } from "react-icons/md";
+import { MdSearch } from "react-icons/md";
+import { TokenUserContext } from "../App/App";
+import axios from "axios";
 
 export default function Topbar(props) {
-  const { token, setUser, user } = props;
+  const { setMain } = props;
+
+  const { tokenState, userState } = useContext(TokenUserContext);
+  const [token, setToken] = tokenState;
+  const [user, setUser] = userState;
 
   async function logout() {
-    const result = await (
-      await fetch("/api/users/logout", {
-        method: "POST",
+    axios
+      .post("/api/users/logout", {
         credentials: "include",
       })
-    ).json();
-    setUser({});
-    console.log(result);
+      .then((result) => {
+        setToken("");
+        setUser({});
+        setMain("dashboard");
+        return result.data;
+      })
+      .catch((err) => err);
   }
 
   if (!token) {
@@ -24,6 +34,7 @@ export default function Topbar(props) {
       </div>
     );
   }
+
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
@@ -41,22 +52,24 @@ export default function Topbar(props) {
       </div>
       <div className="topbarRight">
         <div className="topbarLinks">
-          <p id="user-login-name">
-            Logged in as {user.first_name} {user.last_name}
+          {/* <span className='topbarLink'>Homepage</span>
+          <span className='topbarLink'>Workouts</span> */}
+          <p>
+            Logged in as {user.user ? user.user.first_name + " " : ""}
+            {user.user ? user.user.last_name : ""}
           </p>
-          <span className="topbarLink">Homepage</span>
-          <span className="topbarLink">Workouts</span>
         </div>
         <div className="topbarIcons">
-          <div className="topbarIconItem" onClick={logout}>
-            <MdCancel />
+          {/* <div className="topbarIconItem">
+            <MdPerson />
           </div>
           <div className="tobarIconItem">
             <MdChat />
           </div>
           <div className="tobarIconItem">
             <MdNotifications />
-          </div>
+          </div> */}
+          <button onClick={logout}>Logout</button>
         </div>
         <img src="/assets/mario.jpeg" alt="" className="topbarImg" />
       </div>
