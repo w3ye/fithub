@@ -1,10 +1,11 @@
-import "./center.css";
-import ExerciseSearch from "./ExerciseSearch";
+import './center.css'
+import ExerciseSearch from './ExerciseSearch'
 
-export default function Center() {
+export default function Center (props) {
+  const { onAdd } = props
   return (
-    <div className="center">
-      <ExerciseSearch />
+    <div className='center'>
+      <ExerciseSearch onAdd={onAdd} />
     </div>
-  );
+  )
 }

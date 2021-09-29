@@ -1,9 +1,12 @@
-import "./rightbar.css"
+import WorkoutList from './WorkoutList'
+import './rightbar.css'
 
-export default function Rightbar() {
+export default function Rightbar (props) {
+  const { workout, setWorkout } = props
+
   return (
-    <div className="rightbar">
-      rightbar
+    <div className='rightbar'>
+      <WorkoutList workout={workout} setWorkout={setWorkout} />
     </div>
   )
 }

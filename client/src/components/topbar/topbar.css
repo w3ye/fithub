@@ -47,6 +47,7 @@
 }
 
 .topbarRight {
+  font-size: 12px;
   flex: 4;
   background-color: green;
   display: flex;
