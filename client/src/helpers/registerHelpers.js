@@ -16,5 +16,5 @@ export function registerUser(user) {
     .then((result) => {
       return result;
     })
-    .catch((err) => {});
+    .catch((err) => err);
 }

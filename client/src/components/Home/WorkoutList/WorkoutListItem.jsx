@@ -28,7 +28,6 @@ export default function WorkoutListItem (props) {
 
   const onRemove = exercise => {
     setWorkout(workout.filter(x => x.id !== exercise.id))
-    // console.log('in remove', workout)
   }
 
   return (
