@@ -1,9 +1,12 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 export default function WorkoutListItem (props) {
   const { workout, setWorkout, exercise } = props
   const setRef = useRef()
   const repsRef = useRef()
+  useEffect(() => {
+    console.log('in UseEffect', workout)
+  }, [workout])
 
   const handleSets = event => {
     event.preventDefault()
@@ -12,7 +15,6 @@ export default function WorkoutListItem (props) {
       existingExercise.set = setRef.current.value
       return prevWorkout
     })
-    console.log(workout)
   }
 
   const handleReps = event => {
@@ -25,8 +27,8 @@ export default function WorkoutListItem (props) {
   }
 
   const onRemove = exercise => {
-    const exist = workout.find(x => x.id === exercise.id)
     setWorkout(workout.filter(x => x.id !== exercise.id))
+    // console.log('in remove', workout)
   }
 
   return (
