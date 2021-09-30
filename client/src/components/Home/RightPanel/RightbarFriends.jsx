@@ -62,15 +62,19 @@ export default function RightbarFriends() {
       });
   }
 
-  function sendFriendRequest(sender_id, reciever_id, message) {
-    axios
-      .post(`/api/friend_requests`, { sender_id, reciever_id, message })
-      .then((result) => {
-        console.log("postie result", result);
-      })
-      .catch((err) => {
-        return err;
-      });
+  function sendFriendRequest(sender_id, email, message) {
+    axios.get(`/api/users/${email}`).then((res) => {
+      const reciever_id = res.data.id;
+      console.log("rec", reciever_id);
+      axios
+        .post(`/api/friend_requests`, { sender_id, reciever_id, message })
+        .then((result) => {
+          console.log("postie result", result);
+        })
+        .catch((err) => {
+          return err;
+        });
+    });
   }
 
   useEffect(() => {
@@ -118,7 +122,7 @@ export default function RightbarFriends() {
           />
           <button
             onClick={() => {
-              sendFriendRequest(user.user.id, 4, "Hi there");
+              sendFriendRequest(user.user.id, "peach@nintendo.com", "Hi there");
             }}
           >
             Send Friend Request
