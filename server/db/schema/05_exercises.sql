@@ -1,0 +1,5 @@
+DROP TABLE IF EXISTS exercises CASCADE;
+CREATE TABLE exercises(
+  id SERIAL PRIMARY KEY NOT NULL,
+  info jsonb NOT NULL
+);

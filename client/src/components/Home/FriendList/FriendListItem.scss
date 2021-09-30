@@ -1,0 +1,24 @@
+.friendCard {
+  text-align: center;
+  border: blue 2px dotted;
+  width: 50%;
+}
+
+.friendCard:hover {
+  font-weight: bold;
+  cursor: pointer;
+  background-color: lightgray;
+}
+
+.friendImage {
+  width: 60px;
+  padding: 5px;
+}
+
+.friendsContainer {
+  padding: 5px;
+}
+
+.cardEmail {
+  padding: 5px;
+}

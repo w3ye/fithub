@@ -1,0 +1,14 @@
+.center {
+  flex: 5;
+  border: red dotted 2px;
+  min-height: 575px;
+}
+
+.container {
+  text-align: center;
+}
+
+.friendsContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
