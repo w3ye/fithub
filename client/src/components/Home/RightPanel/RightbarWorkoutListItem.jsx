@@ -7,7 +7,7 @@ import WorkoutListItemDescription from './WorkoutListItemDescription'
 
 export default function RightbarWorkoutListItem (props) {
   console.log('props in WorkoutList item', props)
-  const { id, title, user_id, group_ids, exercise } = props
+  const { id, title, user_id, group_ids, exercises } = props
   // const values = [true, 'sm-down', 'md-down', 'lg-down', 'xl-down', 'xxl-down']
   const [fullscreen, setFullscreen] = useState(true)
   const [show, setShow] = useState(false)
@@ -24,7 +24,7 @@ export default function RightbarWorkoutListItem (props) {
 
   useEffect(() => {
     let interval = null
-    setTime(exercise[index].reps * 1000)
+    setTime(exercises[index].reps * 1000)
     if (countdown) {
       interval = setInterval(() => {
         setTime(prevTime => prevTime - 1000)
@@ -33,22 +33,22 @@ export default function RightbarWorkoutListItem (props) {
       clearInterval(interval)
     }
     return () => clearInterval(interval)
-  }, [countdown, exercise, index])
+  }, [countdown, exercises, index])
 
   useEffect(() => {
     const timeout = setTimeout(() => {
       console.log('index', index)
-      console.log('exercise.length', exercise.length)
+      console.log('exercise.length', exercises.length)
       if (index > -1) setIndex(prev => prev + 1)
-    }, 1000 * exercise[index].reps)
-    let endTimeout = exercise.length - 1
+    }, 1000 * exercises[index].reps)
+    let endTimeout = exercises.length - 1
     if (index === endTimeout) {
       clearTimeout(timeout)
     }
     return () => clearTimeout(timeout)
   })
-  console.log('index', index)
-  console.log('exercise', exercise[index])
+  // console.log('index', index)
+  // console.log('exercise', exercise[index])
 
   return (
     <>
@@ -57,7 +57,7 @@ export default function RightbarWorkoutListItem (props) {
         <Card.Body>
           <Card.Title>{title.toUpperCase()}</Card.Title>
           <Card.Text>
-            {exercise.map(item => (
+            {exercises.map(item => (
               <WorkoutListItemDescription
                 key={item.id}
                 name={item.name}
@@ -79,12 +79,12 @@ export default function RightbarWorkoutListItem (props) {
           <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {exercise[index].name}
-          {exercise.length && (
-            <img src={exercise[index].gifUrl} alt={exercise[index].name} />
+          {exercises[index].name}
+          {exercises.length && (
+            <img src={exercises[index].gifUrl} alt={exercises[index].name} />
           )}
-          <div>Set: {exercise[index].set}</div>
-          <div>Reps: {exercise[index].reps}</div>
+          <div>Set: {exercises[index].set}</div>
+          <div>Reps: {exercises[index].reps}</div>
           <div>Reps left: {time / 1000}</div>
           <Button className='me-2' onClick={() => setCountdown(true)}>
             Start

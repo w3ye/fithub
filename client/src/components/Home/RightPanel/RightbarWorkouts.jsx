@@ -31,7 +31,7 @@ export default function RightbarWorkouts (props) {
         id={workout.id}
         title={workout.title}
         group_ids={workout.group_ids}
-        exercise={workout.exercise}
+        exercises={workout.exercises}
       />
     ))
 
