@@ -19,6 +19,7 @@ export default function RightbarWorkoutListItem (props) {
   function handleShow (breakpoint) {
     setFullscreen(breakpoint)
     setShow(true)
+    setCountdown(true)
   }
 
   useEffect(() => {
@@ -32,7 +33,7 @@ export default function RightbarWorkoutListItem (props) {
       clearInterval(interval)
     }
     return () => clearInterval(interval)
-  }, [countdown])
+  }, [countdown, exercise, index])
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -82,8 +83,9 @@ export default function RightbarWorkoutListItem (props) {
           {exercise.length && (
             <img src={exercise[index].gifUrl} alt={exercise[index].name} />
           )}
-          <div>{exercise[index].reps}</div>
-          <div>{time / 1000}</div>
+          <div>Set: {exercise[index].set}</div>
+          <div>Reps: {exercise[index].reps}</div>
+          <div>Reps left: {time / 1000}</div>
           <Button className='me-2' onClick={() => setCountdown(true)}>
             Start
           </Button>
