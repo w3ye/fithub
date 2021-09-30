@@ -19,6 +19,17 @@ module.exports = (db) => {
       });
   });
 
+  // ! title will be changed to take value from req.body
+  router.post("/:user_id/:title", (req, res) => {
+    const { user_id, title } = req.params;
+    db.newGroup(user_id, title)
+      .then((groups) => {
+        res.json({ groups, success: true });
+      })
+      .catch((err) => res.json({ error: err.message }));
+  });
+
+  // ! add group could also get values from req.body
   router.post("/add_group/:group_id/:user_id", (req, res) => {
     const { group_id, user_id } = req.params;
     db.checkUserInGroup(group_id, user_id)
