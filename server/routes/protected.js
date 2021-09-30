@@ -1,9 +1,15 @@
 require("dotenv/config");
 const express = require("express");
+const { getWorkoutsByUserId } = require("../helpers/dbProtectedHelpers");
 const { isAuth } = require("../isAuth");
 const router = express.Router();
 
-module.exports = ({ getUserById, getUserGroups, getFriendsByUserId }) => {
+module.exports = ({
+  getUserById,
+  getUserGroups,
+  getFriendsByUserId,
+  getWorkoutsByUserId,
+}) => {
   router.get("/", async (req, res) => {
     try {
       const userId = isAuth(req);
@@ -13,6 +19,7 @@ module.exports = ({ getUserById, getUserGroups, getFriendsByUserId }) => {
           user: rest,
           groups: await getUserGroups(userId),
           friends: await getFriendsByUserId(userId),
+          workouts: await getWorkoutsByUserId(userId),
         });
       }
     } catch (err) {

@@ -21,7 +21,7 @@ module.exports = (db) => {
 
   router.get("/:user_id", (req, res) => {
     const userId = req.params.user_id;
-    db.findWorkoutsByUserId(userId)
+    db.getWorkoutsByUserId(userId)
       .then((result) => res.json(result))
       .catch((err) => res.json({ error: err.message }));
   });
