@@ -17,7 +17,7 @@ module.exports = (db) => {
     });
     const query = {
       text: `
-        INSERT INTO workouts (title, user_id, group_ids, exercise)
+        INSERT INTO workouts (title, user_id, group_ids, exercises)
         VALUES
         ($1, $2, $3, $4)
         RETURNING *;
@@ -32,7 +32,14 @@ module.exports = (db) => {
 
   const getWorkoutsByUserId = (userId) => {
     const query = {
-      text: "SELECT * FROM workouts where user_id = $1",
+      text: `
+        SELECT 
+        id,
+        title,
+        group_ids,
+        exercises
+        FROM workouts 
+        where user_id = $1`,
       values: [userId],
     };
     return db
@@ -44,6 +51,6 @@ module.exports = (db) => {
   return {
     getWorkouts,
     newWorkout,
-    findWorkoutsByUserId: getWorkoutsByUserId,
+    getWorkoutsByUserId,
   };
 };
