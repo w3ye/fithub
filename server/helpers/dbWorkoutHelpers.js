@@ -30,7 +30,7 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
-  const findWorkoutsByUserId = (userId) => {
+  const getWorkoutsByUserId = (userId) => {
     const query = {
       text: "SELECT * FROM workouts where user_id = $1",
       values: [userId],
@@ -44,6 +44,6 @@ module.exports = (db) => {
   return {
     getWorkouts,
     newWorkout,
-    findWorkoutsByUserId,
+    findWorkoutsByUserId: getWorkoutsByUserId,
   };
 };
