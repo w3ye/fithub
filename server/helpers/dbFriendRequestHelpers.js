@@ -41,7 +41,8 @@ module.exports = (db) => {
     const query = {
       text: `UPDATE friend_requests
       SET pending = false
-      WHERE id = $1`,
+      WHERE id = $1
+      RETURNING *`,
       values: [id],
     };
     return db
@@ -53,5 +54,6 @@ module.exports = (db) => {
   return {
     getRequestsById,
     newRequest,
+    acceptRequest,
   };
 };

@@ -8,9 +8,9 @@ module.exports = (db) => {
       .catch((err) => res.json({ error: err.message }));
   });
 
-  router.post("/", (req, res) => {
-    const id = req.body;
-    db.acceptRequest(id)
+  router.put("/:request_id", (req, res) => {
+    const request_id = req.params.request_id;
+    db.acceptRequest(request_id)
       .then((result) => {
         res.json({ success: true });
       })

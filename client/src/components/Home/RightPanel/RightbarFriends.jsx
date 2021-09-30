@@ -24,20 +24,20 @@ export default function RightbarFriends() {
       });
   }
 
-  function acceptFRequest(id) {
-    axios
-      .post(`/api/frequests/${id}`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((err) => {
-        return err;
-      });
-  }
+  // function acceptFRequest(id) {
+  //   axios
+  //     .post(`/api/frequests/${id}`, {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     })
+  //     .then((result) => {
+  //       console.log(result);
+  //     })
+  //     .catch((err) => {
+  //       return err;
+  //     });
+  // }
 
   useEffect(() => {
     fetchFRequests(user.user ? user.user.id : "");
@@ -52,9 +52,9 @@ export default function RightbarFriends() {
       <div className="friendRequestItem">
         <h5>{req.sender_first_name + " " + req.sender_last_name}</h5>
         <button
-          onClick={() => {
-            acceptFRequest(req.id);
-          }}
+        // onClick={() => {
+        //   acceptFRequest(req.id);
+        // }}
         >
           ✔
         </button>

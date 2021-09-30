@@ -35,7 +35,7 @@ app.use("/api/protected", protectedRouter(dbProtectedHelpers));
 app.use("/api/groups", groupsRouter(dbGroupHelpers));
 app.use("/api/friends", friendsRouter(dbFriendHelpers));
 app.use("/api/exercises", exercisesRouter(dbExerciseHelpers));
-app.use("/api/frequests", friendRequestRouter(dbFriendRequestHelpers));
+app.use("/api/friend_requests", friendRequestRouter(dbFriendRequestHelpers));
 
 app.use("/api/workouts", workoutRouter(dbWorkoutHelpers));
 
