@@ -12,7 +12,7 @@ module.exports = (db) => {
     const request_id = req.params.request_id;
     db.acceptRequest(request_id)
       .then((result) => {
-        res.json({ success: true });
+        res.json(result);
       })
       .catch((err) => {
         res.json({ error: err.message });

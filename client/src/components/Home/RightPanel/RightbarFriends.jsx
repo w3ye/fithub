@@ -39,7 +39,7 @@ export default function RightbarFriends() {
     axios
       .put(`/api/friend_requests/${request_id}`)
       .then((result) => {
-        console.log(result);
+        fetchFRequests(user.user.id);
       })
       .catch((err) => {
         return err;
@@ -47,14 +47,14 @@ export default function RightbarFriends() {
   }
 
   useEffect(() => {
-    fetchFRequests(user.user ? user.user.id : "");
+    fetchFRequests(user.user ? user.user.id : 0);
   }, []);
 
   useEffect(() => {
     console.log(request);
   }, [request]);
 
-  const parsedRequests = request.map((req) => {
+  let parsedRequests = request.map((req) => {
     return (
       <div className="friendRequestItem">
         <h5>{req.sender_first_name + " " + req.sender_last_name}</h5>
