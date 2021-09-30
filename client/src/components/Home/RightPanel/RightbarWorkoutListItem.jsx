@@ -14,6 +14,7 @@ export default function RightbarWorkoutListItem (props) {
   const [time, setTime] = useState(5000)
   const [countdown, setCountdown] = useState(false)
   const [index, setIndex] = useState(0)
+  const [reps, setReps] = useState('')
 
   function handleShow (breakpoint) {
     setFullscreen(breakpoint)
@@ -22,6 +23,7 @@ export default function RightbarWorkoutListItem (props) {
 
   useEffect(() => {
     let interval = null
+    setTime(exercise[index].reps * 1000)
     if (countdown) {
       interval = setInterval(() => {
         setTime(prevTime => prevTime - 1000)
@@ -32,36 +34,20 @@ export default function RightbarWorkoutListItem (props) {
     return () => clearInterval(interval)
   }, [countdown])
 
-  //loop through the array of exercises,
-  // set a timer for each image based on the reps and sets
   useEffect(() => {
-    // function getGif () {
-    //   exercise.forEach((element, index) => {
-    //     setTimeout(() => {
-    //       console.log(element.gifUrl)
-    //       // ;<GifListItem
-    //       //   key={index}
-    //       //   gif={element.gifUrl}
-    //       //   name={element.name}
-    //       //   reps={element.reps}
-    //       //   sets={element.sets}
-    //       // />
-    //     }, 1000 * index)
-    //   })
     const timeout = setTimeout(() => {
       console.log('index', index)
+      console.log('exercise.length', exercise.length)
       if (index > -1) setIndex(prev => prev + 1)
-    }, 5000)
+    }, 1000 * exercise[index].reps)
     let endTimeout = exercise.length - 1
     if (index === endTimeout) {
       clearTimeout(timeout)
     }
     return () => clearTimeout(timeout)
-    // }
   })
   console.log('index', index)
   console.log('exercise', exercise[index])
-  // getGif()
 
   return (
     <>
@@ -92,8 +78,11 @@ export default function RightbarWorkoutListItem (props) {
           <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {title}
-          <img src={exercise[index].gifUrl} alt={exercise[index].name} />
+          {exercise[index].name}
+          {exercise.length && (
+            <img src={exercise[index].gifUrl} alt={exercise[index].name} />
+          )}
+          <div>{exercise[index].reps}</div>
           <div>{time / 1000}</div>
           <Button className='me-2' onClick={() => setCountdown(true)}>
             Start
@@ -112,8 +101,3 @@ export default function RightbarWorkoutListItem (props) {
     </>
   )
 }
-
-// render(<RightbarWorkoutListItem />)
-// useEffect(() => {
-//   console.log('in UseEffect', title)
-// }, [title])

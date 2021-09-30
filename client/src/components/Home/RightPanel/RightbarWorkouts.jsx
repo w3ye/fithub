@@ -15,6 +15,7 @@ export default function RightbarWorkouts (props) {
     axios
       .request(`/api/workouts/${user.user.id}`)
       .then(response => {
+        console.log('response.data---', response.data)
         setResponseData(response.data)
       })
       .catch(error => {
