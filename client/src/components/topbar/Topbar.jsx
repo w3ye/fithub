@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import "./topbar.scss";
-import { MdSearch, MdNotifications, MdPerson, MdChat } from "react-icons/md";
+import { MdNotifications } from "react-icons/md";
 import { TokenUserContext } from "../App/App";
 import axios from "axios";
 import User from "./User";
@@ -61,12 +61,12 @@ export default function Topbar(props) {
         </p> */}
         {/* </div> */}
         {/* <div className="topbarIcons"> */}
-        <div className="topbarIconItem">
+        {/* <div className="topbarIconItem">
           <MdPerson />
         </div>
         <div className="tobarIconItem">
           <MdChat />
-        </div>
+        </div> */}
         <div className="tobarIconItem">
           <MdNotifications />
         </div>
