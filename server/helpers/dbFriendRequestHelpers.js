@@ -1,7 +1,7 @@
 module.exports = (db) => {
   const getRequestsById = (id) => {
     const query = {
-      text: "SELECT * FROM friend_requests WHERE reciever_id = $1",
+      text: "SELECT * FROM friend_requests WHERE reciever_id = $1 AND pending",
     };
     return db
       .query(query, [id])
