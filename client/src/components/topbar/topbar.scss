@@ -3,6 +3,7 @@
   width: 100%;
   background-color: orange;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   position: sticky;
   top: 0;
@@ -15,8 +16,7 @@
 }
 
 .topbarLeft {
-  flex: 3;
-  border: red solid;
+  padding-left: 15px;
 }
 
 .topbarCenter {
@@ -47,13 +47,9 @@
 }
 
 .topbarRight {
-  font-size: 12px;
-  flex: 4;
-  background-color: green;
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  color: white;
+  padding-right: 25px;
 }
 
 .topbarLink {
