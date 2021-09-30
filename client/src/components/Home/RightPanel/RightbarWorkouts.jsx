@@ -1,5 +1,43 @@
-import "./rightbar.scss";
+import './rightbar.scss'
+import { useContext, useEffect, useState } from 'react'
+import { TokenUserContext } from '../../App/App'
+import axios from 'axios'
+import RightbarWorkoutListItem from './RightbarWorkoutListItem'
 
-export default function RightbarWorkouts() {
-  return <div className="rightbar">rightbar workouts</div>;
+export default function RightbarWorkouts (props) {
+  const [responseData, setResponseData] = useState(null)
+  const { userState } = useContext(TokenUserContext)
+  const [user] = userState
+
+  console.log('user in rightbarworouts', user)
+
+  useEffect(() => {
+    axios
+      .request(`/api/workouts/${user.user.id}`)
+      .then(response => {
+        setResponseData(response.data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }, [])
+
+  const parsedResponse =
+    responseData &&
+    responseData.map(workout => (
+      <RightbarWorkoutListItem
+        key={workout.id}
+        id={workout.id}
+        title={workout.title}
+        group_ids={workout.group_ids}
+        exercise={workout.exercise}
+      />
+    ))
+
+  return (
+    <div className='rightbar'>
+      My workouts
+      <div>{parsedResponse}</div>
+    </div>
+  )
 }
