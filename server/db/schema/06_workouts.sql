@@ -4,5 +4,5 @@ CREATE TABLE workouts(
   title VARCHAR(255) NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   group_ids integer [],
-  exercise jsonb []
+  exercises jsonb []
 );
