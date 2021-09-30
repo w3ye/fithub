@@ -29,5 +29,6 @@ module.exports = (db) => {
         res.json({ error: err.message });
       });
   });
+
   return router;
 };
