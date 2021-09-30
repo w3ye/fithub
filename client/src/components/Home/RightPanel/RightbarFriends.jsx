@@ -62,6 +62,17 @@ export default function RightbarFriends() {
       });
   }
 
+  function sendFriendRequest(sender_id, reciever_id, message) {
+    axios
+      .post(`/api/friend_requests`, { sender_id, reciever_id, message })
+      .then((result) => {
+        console.log("postie result", result);
+      })
+      .catch((err) => {
+        return err;
+      });
+  }
+
   useEffect(() => {
     fetchFRequests(user.user ? user.user.id : 0);
     console.log("USER NOW:", user);
@@ -105,7 +116,13 @@ export default function RightbarFriends() {
             name="email"
             placeholder="Enter an email address"
           />
-          <button type="submit">Send Friend Request</button>
+          <button
+            onClick={() => {
+              sendFriendRequest(user.user.id, 4, "Hi there");
+            }}
+          >
+            Send Friend Request
+          </button>
           <h3>Friend Requests:</h3>
           <div>{request.length ? parsedRequests : []}</div>
         </div>
