@@ -30,6 +30,7 @@ export default function CenterGroups(props) {
         {user.user ? user.user.first_name : ""}{" "}
         {user.user ? user.user.last_name : ""}'s Groups
       </h2>
+      <button>Create New Group</button>
       <ul className="groupsContainer">{user.user ? parsedGroups : ""}</ul>
     </div>
   );

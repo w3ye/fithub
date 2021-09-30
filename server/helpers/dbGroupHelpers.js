@@ -11,6 +11,22 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const newGroup = (userId, title) => {
+    const query = {
+      text: `
+        INSERT INTO groups (owner_id, title)
+        VALUES ($1, $2)
+        RETURNING *;
+      `,
+      values: [userId, title],
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
   const getUserGroups = (id) => {
     const query = {
       text: `
@@ -72,5 +88,6 @@ module.exports = (db) => {
     getUserGroups,
     addUserToGroup,
     checkUserInGroup,
+    newGroup,
   };
 };
