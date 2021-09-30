@@ -9,6 +9,17 @@ module.exports = (db) => {
   });
 
   router.post("/", (req, res) => {
+    const id = req.body;
+    db.acceptRequest(id)
+      .then((result) => {
+        res.json({ success: true });
+      })
+      .catch((err) => {
+        res.json({ error: err.message });
+      });
+  });
+
+  router.post("/", (req, res) => {
     const request = req.body;
     db.newRequest(request)
       .then((result) => {
