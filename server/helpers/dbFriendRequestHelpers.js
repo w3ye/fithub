@@ -9,7 +9,25 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const newRequest = (request) => {
+    const { sender_id, reciever_id, message } = request;
+    const query = {
+      text: `
+        INSERT INTO friend_requests (sender_id, reciever_id, message )
+        VALUES
+        ($1, $2, $3)
+        RETURNING *;
+      `,
+      values: [sender_id, reciever_id, message],
+    };
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
   return {
     getRequestsById,
+    newRequest,
   };
 };
