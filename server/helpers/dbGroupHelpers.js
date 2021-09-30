@@ -1,3 +1,5 @@
+const group = require("../routes/group");
+
 module.exports = (db) => {
   const getGroups = () => {
     const query = {
@@ -29,8 +31,46 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const addUserToGroup = (groupId, userId) => {
+    const query = {
+      text: `
+        INSERT INTO group_members (group_id, user_id)
+        VALUES ($1, $2)
+        RETURNING *;`,
+      values: [groupId, userId],
+    };
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
+  /**
+   * Avoid duplicate records of user in the same group multiple times
+   * @param {*} groupId
+   * @param {*} userId
+   * @returns {Promise<boolean>} false if the user doesn't exist in group
+   */
+  const checkUserInGroup = (groupId, userId) => {
+    const query = {
+      text: `
+        SELECT * 
+        FROM group_members
+        WHERE group_id = $1 AND user_id = $2`,
+      values: [groupId, userId],
+    };
+    return db
+      .query(query)
+      .then((result) => {
+        return result.rows.length === 0 ? false : true;
+      })
+      .catch((err) => err);
+  };
+
   return {
     getGroups,
     getUserGroups,
+    addUserToGroup,
+    checkUserInGroup,
   };
 };
