@@ -75,6 +75,14 @@
   object-fit: cover;
 }
 
+.topbarImg:hover {
+  height: 34px;
+  width: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0px 0px 0 1px #cf8d00;
+}
+
 #user-login-name {
   font-size: 10px;
 }
