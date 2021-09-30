@@ -8,6 +8,8 @@ export default function RightbarFriends() {
   const [token, setToken] = tokenState;
   const [user, setUser] = userState;
   const [request, setRequest] = useState([]);
+  const [rec_email, setRec_Email] = useState("");
+  const [message, setMessage] = useState("");
 
   function fetchFRequests(id) {
     axios
@@ -42,9 +44,7 @@ export default function RightbarFriends() {
   function addNewFriend(sender_id, reciever_id) {
     axios
       .post(`/api/friends/add_friend/${sender_id}/${reciever_id}`)
-      .then((result) => {
-        console.log("result of add", result);
-      })
+      .then((result) => {})
       .catch((err) => {
         return err;
       });
@@ -65,7 +65,7 @@ export default function RightbarFriends() {
   function sendFriendRequest(sender_id, email, message) {
     axios.get(`/api/users/${email}`).then((res) => {
       const reciever_id = res.data.id;
-      console.log("rec", reciever_id);
+
       axios
         .post(`/api/friend_requests`, { sender_id, reciever_id, message })
         .then((result) => {
@@ -79,17 +79,16 @@ export default function RightbarFriends() {
 
   useEffect(() => {
     fetchFRequests(user.user ? user.user.id : 0);
-    console.log("USER NOW:", user);
   }, []);
 
-  useEffect(() => {
-    console.log(request);
-  }, [request]);
+  useEffect(() => {}, [request]);
 
   let parsedRequests = request.map((req) => {
     return (
       <div className="friendRequestItem">
         <h5>{req.sender_first_name + " " + req.sender_last_name}</h5>
+        <br />
+        <p>{req.message}</p>
         <button
           onClick={() => {
             addNewFriend(req.sender_id, req.reciever_id);
@@ -113,19 +112,29 @@ export default function RightbarFriends() {
     <>
       <div className="rightbar container">
         <div>
-          <label for="email">Make new friends:</label>
+          <label for="email">Send a Friend Request:</label>
           <br />
           <input
-            type="text"
-            name="email"
+            id="email-input"
+            type="email"
+            name="rec_email"
             placeholder="Enter an email address"
+            onChange={(event) => setRec_Email(event.target.value)}
           />
+          <input
+            id="message-input"
+            type="text"
+            name="message"
+            placeholder="message"
+            onChange={(event) => setMessage(event.target.value)}
+          />{" "}
+          <br />
           <button
             onClick={() => {
-              sendFriendRequest(user.user.id, "peach@nintendo.com", "Hi there");
+              sendFriendRequest(user.user.id, rec_email, message);
             }}
           >
-            Send Friend Request
+            Submit
           </button>
           <h3>Friend Requests:</h3>
           <div>{request.length ? parsedRequests : []}</div>
