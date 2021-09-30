@@ -21,7 +21,7 @@ export default function FriendListItem(props) {
           <Card className="friendCard">
             <Card.Img
               variant="top"
-              src="https://i.pinimg.com/originals/3f/94/70/3f9470b34a8e3f526dbdb022f9f19cf7.jpg"
+              src="https://www.pngkey.com/png/full/115-1150092_png-file-person-icon.png"
               className="friendImage"
             />
             <Card.Body>
