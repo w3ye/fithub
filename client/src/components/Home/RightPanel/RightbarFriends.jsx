@@ -24,11 +24,26 @@ export default function RightbarFriends() {
       });
   }
 
+  function fetchFriends(id) {
+    axios
+      .get(`/api/friends/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((result) => {
+        setUser({ ...user, friends: result.data });
+      })
+      .catch((err) => {
+        return err;
+      });
+  }
+
   function addNewFriend(sender_id, reciever_id) {
     axios
       .post(`/api/friends/add_friend/${sender_id}/${reciever_id}`)
       .then((result) => {
-        console.log(result);
+        console.log("result of add", result);
       })
       .catch((err) => {
         return err;
@@ -40,6 +55,7 @@ export default function RightbarFriends() {
       .put(`/api/friend_requests/${request_id}`)
       .then((result) => {
         fetchFRequests(user.user.id);
+        fetchFriends(user.user.id);
       })
       .catch((err) => {
         return err;
@@ -48,6 +64,7 @@ export default function RightbarFriends() {
 
   useEffect(() => {
     fetchFRequests(user.user ? user.user.id : 0);
+    console.log("USER NOW:", user);
   }, []);
 
   useEffect(() => {
@@ -61,6 +78,7 @@ export default function RightbarFriends() {
         <button
           onClick={() => {
             addNewFriend(req.sender_id, req.reciever_id);
+            resolveRequest(req.id);
           }}
         >
           ✔
