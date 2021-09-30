@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import "./center.scss";
 import { TokenUserContext } from "../../App/App";
 import GroupListItem from "../GroupList/GroupListItem";
+import CreateGroup from "./CreateGroup";
 
 export default function CenterGroups(props) {
   const { setSelected } = props;
@@ -30,7 +31,7 @@ export default function CenterGroups(props) {
         {user.user ? user.user.first_name : ""}{" "}
         {user.user ? user.user.last_name : ""}'s Groups
       </h2>
-      <button>Create New Group</button>
+      <CreateGroup />
       <ul className="groupsContainer">{user.user ? parsedGroups : ""}</ul>
     </div>
   );
