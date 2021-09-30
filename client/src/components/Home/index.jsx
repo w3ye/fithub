@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 
 import Topbar from "../topbar/Topbar";
 import Leftbar from "./LeftPanel/Leftbar";
@@ -18,25 +18,30 @@ export default function Home(props) {
   const [workout, setWorkout] = useState([]);
   const [selected, setSelected] = useState({});
 
-  const onAdd = (exercise) => {
-    setWorkout([...workout, { ...exercise, set: "1", reps: "10" }]);
-  };
+
+
+  const onAdd = exercise => {
+    setWorkout([...workout, { ...exercise, set: '1', reps: '10' }])
+  }
+
   return (
     <>
       <Topbar setMain={setMain} />
-      <div className="homeContainer">
+      <div className='homeContainer'>
         <Leftbar setPanels={setPanels} />
-        {panels === "home" && <Center onAdd={onAdd} />}
-        {panels === "home" && (
+        {panels === 'home' && <Center onAdd={onAdd} />}
+        {panels === 'home' && (
           <Rightbar workout={workout} setWorkout={setWorkout} />
         )}
+
         {panels === "workouts" && <CenterWorkouts />}
         {panels === "workouts" && <RightbarWorkouts />}
         {panels === "friends" && <CenterFriends />}
         {panels === "friends" && <RightbarFriends />}
         {panels === "groups" && <CenterGroups setSelected={setSelected} />}
         {panels === "groups" && <RightbarGroups group={selected} />}
+
       </div>
     </>
-  );
+  )
 }

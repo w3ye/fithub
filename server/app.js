@@ -36,6 +36,7 @@ app.use("/api/groups", groupsRouter(dbGroupHelpers));
 app.use("/api/friends", friendsRouter(dbFriendHelpers));
 app.use("/api/exercises", exercisesRouter(dbExerciseHelpers));
 app.use("/api/frequests", friendRequestRouter(dbFriendRequestHelpers));
+
 app.use("/api/workouts", workoutRouter(dbWorkoutHelpers));
 
 app.use("/", indexRouter);
