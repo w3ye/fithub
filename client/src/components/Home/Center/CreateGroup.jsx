@@ -3,6 +3,7 @@ import { TokenUserContext } from "../../App/App";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import axios from "axios";
 
 export default function CreateGroup() {
   const [show, setShow] = useState(false);
@@ -11,8 +12,20 @@ export default function CreateGroup() {
   const [token, setToken] = tokenState;
   const [user, setUser] = userState;
 
+  const [title, setTitle] = useState("");
+  const [url, setUrl] = useState("");
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  function groupSubmit() {
+    axios
+      .post("/api/groups/new_group", { userId: user.user.id, title })
+      .then((res) => {
+        return res;
+      })
+      .catch((err) => err);
+  }
 
   return (
     <>
@@ -33,10 +46,20 @@ export default function CreateGroup() {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form
+            onSubmit={(event) => {
+              event.preventDefault();
+            }}
+          >
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Group Name</Form.Label>
-              <Form.Control type="text" placeholder="New Group" />
+              <Form.Control
+                type="text"
+                placeholder="New Group"
+                onChange={(event) => {
+                  setTitle(event.target.value);
+                }}
+              />
               <Form.Text className="text-muted">
                 Only group members can see your group name.
               </Form.Text>
@@ -47,12 +70,15 @@ export default function CreateGroup() {
               <Form.Control
                 type="text"
                 placeholder="https://theairtravelgroup.com/wp-content/uploads/group-icon-768x768.png"
+                onChange={(event) => {
+                  setUrl(event.target.value);
+                }}
               />
               <Form.Text className="text-muted">
                 Or just stick witht he default look
               </Form.Text>
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" onClick={groupSubmit}>
               Create Group
             </Button>
             <br />
