@@ -22,6 +22,20 @@ export default function RightbarWorkoutListItem (props) {
     setCountdown(true)
   }
 
+  function previous () {
+    if (exercises.length < 2) {
+      return
+    }
+    setIndex(prev => prev - 1)
+  }
+
+  function next () {
+    if (exercises[index] === exercises.length - 1) {
+      return
+    }
+    setIndex(prev => prev + 1)
+  }
+
   useEffect(() => {
     let interval = null
     setTime(exercises[index].reps * 1000)
@@ -85,17 +99,13 @@ export default function RightbarWorkoutListItem (props) {
           )}
           <div>Set: {exercises[index].set}</div>
           <div>Reps: {exercises[index].reps}</div>
-          <div>Reps left: {time / 1000}</div>
-          <Button className='me-2' onClick={() => setCountdown(true)}>
-            Start
+          <Button className='me-2' onClick={() => previous()}>
+            Previous
           </Button>
-          <Button className='me-2' onClick={() => setCountdown(false)}>
-            Stop
+          <Button className='me-2' onClick={() => next()}>
+            Next
           </Button>
-          <Button className='me-2' onClick={() => setCountdown(true)}>
-            Resume
-          </Button>
-          <Button className='me-2' onClick={() => setTime(5000)}>
+          <Button className='me-2' onClick={() => setIndex(0)}>
             Restart
           </Button>
         </Modal.Body>
