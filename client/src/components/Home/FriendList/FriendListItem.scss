@@ -1,6 +1,7 @@
 .friendCard {
   text-align: center;
   border: blue 2px dotted;
+  width: 50%;
 }
 
 .friendCard:hover {
@@ -10,10 +11,14 @@
 }
 
 .friendImage {
-  width: 80px;
+  width: 60px;
   padding: 5px;
 }
 
 .friendsContainer {
-  padding: 0;
+  padding: 5px;
+}
+
+.cardEmail {
+  padding: 5px;
 }

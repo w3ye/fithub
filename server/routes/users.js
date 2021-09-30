@@ -30,6 +30,21 @@ module.exports = ({
       );
   });
 
+  router.get("/:email", (req, res) => {
+    const email = req.params.email;
+    getUserByEmail(email)
+      .then((result) => {
+        res.json({
+          id: result.id,
+        });
+      })
+      .catch((err) =>
+        res.json({
+          error: err.message,
+        })
+      );
+  });
+
   router.post("/", async (req, res) => {
     const { first_name, last_name, email, password } = req.body;
     try {

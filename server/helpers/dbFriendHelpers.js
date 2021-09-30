@@ -32,8 +32,20 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const addFriends = (sender, reciever) => {
+    const query = {
+      text: `INSERT INTO friends (user_id, friend_id) VALUES($1, $2) RETURNING *`,
+      values: [sender, reciever],
+    };
+    return db
+      .query(query)
+      .then((result) => result.rows[0])
+      .catch((err) => err);
+  };
+
   return {
     getFriends,
     getFriendsByUserId,
+    addFriends,
   };
 };

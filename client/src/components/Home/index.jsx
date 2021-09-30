@@ -18,7 +18,6 @@ export default function Home(props) {
   const [workout, setWorkout] = useState([]);
   const [selected, setSelected] = useState({});
 
-
   const onAdd = (exercise) => {
     setWorkout([...workout, { ...exercise, set: "1", reps: "10" }]);
   };
