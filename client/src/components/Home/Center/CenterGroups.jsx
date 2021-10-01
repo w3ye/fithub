@@ -20,9 +20,11 @@ export default function CenterGroups(props) {
     user.groups.map((group) => (
       <GroupListItem
         key={group.id}
+        group_id={group.group_id}
         group={group}
         title={group.title}
         selectGroup={selectGroup}
+        user={user}
       />
     ));
 

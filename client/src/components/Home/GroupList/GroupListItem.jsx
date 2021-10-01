@@ -1,12 +1,31 @@
+import { useState, useEffect } from "react";
+
 import "./GroupListItem.scss";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ListGroup from "react-bootstrap/ListGroup";
 import ListGroupItem from "react-bootstrap/ListGroupItem";
+import axios from "axios";
 
 export default function GroupListItem(props) {
-  const { group, selectGroup } = props;
+  const { group, selectGroup, user, group_id } = props;
+  const [totalMembers, setTotalMembers] = useState(0);
+
+  useEffect(() => {
+    getMembers(group_id);
+  }, []);
+
+  function getMembers(group_ID) {
+    axios
+      .post("/api/groups/members", { groupId: group_ID, userId: user.user.id })
+      .then((res) => {
+        setTotalMembers(res.data.length);
+      })
+      .catch((err) => {
+        return err;
+      });
+  }
 
   function removeSelectedClass() {
     const classes = document.getElementsByClassName("selected");
@@ -39,7 +58,7 @@ export default function GroupListItem(props) {
             <Card.Body>
               <Card.Title>{group.title}</Card.Title>
               <ListGroup className="list-group-flush">
-                <ListGroupItem></ListGroupItem>
+                <ListGroupItem>{totalMembers + 1} Members</ListGroupItem>
               </ListGroup>
             </Card.Body>
           </Card>
