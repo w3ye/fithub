@@ -1,15 +1,14 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import "./center.scss";
 import { TokenUserContext } from "../../App/App";
 import GroupListItem from "../GroupList/GroupListItem";
 import CreateGroup from "./CreateGroup";
-import axios from "axios";
 
 export default function CenterGroups(props) {
-  const { setGroup, group } = props;
-  const { tokenState, userState } = useContext(TokenUserContext);
-  const [token, setToken] = tokenState;
-  const [user, setUser] = userState;
+  const { setGroup } = props;
+  const { userState } = useContext(TokenUserContext);
+
+  const [user] = userState;
 
   const selectGroup = function (group) {
     setGroup(group);

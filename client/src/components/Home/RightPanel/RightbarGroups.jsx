@@ -5,15 +5,13 @@ import "./rightbar.scss";
 import axios from "axios";
 
 export default function RightbarGroups(props) {
-  const { tokenState, userState } = useContext(TokenUserContext);
-  const [token, setToken] = tokenState;
-  const [user, setUser] = userState;
+  const { userState } = useContext(TokenUserContext);
+  const [user] = userState;
   const { group, setPanels } = props;
   const [email, setEmail] = useState();
   const [members, setMembers] = useState([]);
 
   useEffect(() => {
-    console.log("Members", group, members);
     getMembers(group.group_id);
   }, [group]);
 

@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { TokenUserContext } from "../../App/App";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -8,8 +8,8 @@ import axios from "axios";
 export default function CreateGroup(props) {
   const [show, setShow] = useState(false);
 
-  const { tokenState, userState } = useContext(TokenUserContext);
-  const [token, setToken] = tokenState;
+  const { userState } = useContext(TokenUserContext);
+
   const [user, setUser] = userState;
 
   const [title, setTitle] = useState("");

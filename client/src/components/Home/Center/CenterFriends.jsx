@@ -4,9 +4,8 @@ import { TokenUserContext } from "../../App/App";
 import FriendListItem from "../FriendList/FriendListItem";
 
 export default function CenterFriends() {
-  const { tokenState, userState } = useContext(TokenUserContext);
-  const [token, setToken] = tokenState;
-  const [user, setUser] = userState;
+  const { userState } = useContext(TokenUserContext);
+  const [user] = userState;
 
   const parsedFriends =
     user.user &&

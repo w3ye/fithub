@@ -4,8 +4,8 @@ import { useEffect, useContext, useState } from "react";
 import { TokenUserContext } from "../../App/App";
 
 export default function RightbarFriends() {
-  const { tokenState, userState } = useContext(TokenUserContext);
-  const [token, setToken] = tokenState;
+  const { userState } = useContext(TokenUserContext);
+
   const [user, setUser] = userState;
   const [request, setRequest] = useState([]);
   const [rec_email, setRec_Email] = useState("");
@@ -69,7 +69,7 @@ export default function RightbarFriends() {
       axios
         .post(`/api/friend_requests`, { sender_id, reciever_id, message })
         .then((result) => {
-          console.log("postie result", result);
+          console.log("Result", result);
         })
         .catch((err) => {
           return err;
