@@ -26,5 +26,17 @@ module.exports = (db) => {
       .catch((err) => res.json({ error: err.message }));
   });
 
+  router.delete("/:workout_id", (req, res) => {
+    const workoutId = req.params.workout_id;
+    db.deleteWorkout(workoutId)
+      .then((result) => {
+        console.log(result);
+        res.json({ success: true });
+      })
+      .catch((err) => {
+        res.json({ error: err.message });
+      });
+  });
+
   return router;
 };

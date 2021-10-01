@@ -48,9 +48,22 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const deleteWorkout = (workoutId) => {
+    const query = {
+      text: "DELETE FROM workouts WHERE id = $1 RETURNING *;",
+      values: [workoutId],
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows[0])
+      .catch((err) => err);
+  };
+
   return {
     getWorkouts,
     newWorkout,
     getWorkoutsByUserId,
+    deleteWorkout,
   };
 };
