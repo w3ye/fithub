@@ -1,12 +1,11 @@
 import Modal from 'react-bootstrap/Modal'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 import './RightbarWorkoutListItem.scss'
 import WorkoutListItemDescription from './WorkoutListItemDescription'
 
 export default function RightbarWorkoutListItem (props) {
-  console.log('props in WorkoutList item', props)
   const { title, exercises } = props
   const [fullscreen, setFullscreen] = useState(true)
   const [show, setShow] = useState(false)
