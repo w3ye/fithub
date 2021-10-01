@@ -7,7 +7,8 @@ import WorkoutListItemDescription from "./WorkoutListItemDescription";
 import axios from "axios";
 
 export default function RightbarWorkoutListItem(props) {
-  const { title, exercises, id } = props;
+  console.log("in rightbarworkoutlistitem", props);
+  const { title, exercises, id, responseData, setResponseData } = props;
   const [fullscreen, setFullscreen] = useState(true);
   const [show, setShow] = useState(false);
   const [index, setIndex] = useState(0);
@@ -18,10 +19,13 @@ export default function RightbarWorkoutListItem(props) {
   }
 
   function handleDelete(id) {
+    const remainingWorkouts = responseData.filter(
+      (workout) => workout.id !== id
+    );
     return axios
       .delete(`/api/workouts/${id}`)
       .then((result) => {
-        console.log(result);
+        setResponseData(remainingWorkouts);
         return result;
       })
       .catch((err) => {
