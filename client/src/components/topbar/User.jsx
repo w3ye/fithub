@@ -7,9 +7,9 @@ export default function User(props) {
   const { logout } = props;
   const [show, setShow] = useState(false);
 
-  const { userState } = useContext(TokenUserContext);
-
-  const [user] = userState;
+  const { tokenState, userState } = useContext(TokenUserContext);
+  const [token, setToken] = tokenState;
+  const [user, setUser] = userState;
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
