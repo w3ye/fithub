@@ -111,5 +111,11 @@ module.exports = ({
     return res.send({ accessToken });
   });
 
+  router.post("/user_image", (req, res) => {
+    const { url, id } = req.body;
+    updateProfilePic(url, id);
+    return res.send({ msg: Success });
+  });
+
   return router;
 };
