@@ -1,11 +1,13 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { TokenUserContext } from "../../App/App";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 
-export default function CreateGroup() {
+export default function CreateGroup(props) {
+  const { fetchGroups } = props;
+
   const [show, setShow] = useState(false);
 
   const { tokenState, userState } = useContext(TokenUserContext);
@@ -26,7 +28,7 @@ export default function CreateGroup() {
       })
       .catch((err) => err);
   }
-
+  fetchGroups(user.user.id);
   return (
     <>
       <button
@@ -75,7 +77,7 @@ export default function CreateGroup() {
                 }}
               />
               <Form.Text className="text-muted">
-                Or just stick witht he default look
+                Or just stick with the default look
               </Form.Text>
             </Form.Group>
             <Button variant="primary" type="submit" onClick={groupSubmit}>

@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { TokenUserContext } from "../../App/App";
 import "./rightbar.scss";
 import axios from "axios";
 
 export default function RightbarGroups(props) {
+  const { tokenState, userState } = useContext(TokenUserContext);
+  const [token, setToken] = tokenState;
+  const [user, setUser] = userState;
   const { group } = props;
   const [email, setEmail] = useState();
 
   function addMember() {
-    console.log(group);
     axios
       .get(`/api/users/${email}`)
       .then((result) => {
