@@ -20,7 +20,11 @@ export default function User(props) {
         variant="primary"
         onClick={handleShow}
         type="button"
-        src="/assets/mario.jpeg"
+        src={
+          user.user
+            ? user.user.avatar_url
+            : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_640.png"
+        }
         alt=""
         className="topbarImg"
       />
@@ -28,7 +32,15 @@ export default function User(props) {
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>
-            <img src="/assets/mario.jpeg" alt="" className="topbarImg"></img>
+            <img
+              src={
+                user.user
+                  ? user.user.avatar_url
+                  : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_640.png"
+              }
+              alt=""
+              className="topbarImg"
+            ></img>
             <span>
               {user.user ? user.user.first_name + " " : ""}
               {user.user ? user.user.last_name : ""}
