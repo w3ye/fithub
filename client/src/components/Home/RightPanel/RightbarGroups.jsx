@@ -8,12 +8,12 @@ export default function RightbarGroups(props) {
   const { tokenState, userState } = useContext(TokenUserContext);
   const [token, setToken] = tokenState;
   const [user, setUser] = userState;
-  const { group } = props;
+  const { group, setPanels } = props;
   const [email, setEmail] = useState();
   const [members, setMembers] = useState([]);
 
   useEffect(() => {
-    console.log(members);
+    console.log("Members", group, members);
     getMembers(group.group_id);
   }, [group]);
 
@@ -41,7 +41,8 @@ export default function RightbarGroups(props) {
             userId: result.data.id,
           })
           .then((res) => {
-            console.log(res);
+            setPanels("home");
+            setPanels("groups");
           })
           .catch((err) => {
             return err;

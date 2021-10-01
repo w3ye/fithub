@@ -18,7 +18,6 @@ export default function CenterFriends() {
         friend_email={friend.friend_email}
       />
     ));
-  console.log("Current User:", user);
   return (
     <div className="center container">
       <h2>

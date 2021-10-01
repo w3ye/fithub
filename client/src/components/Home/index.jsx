@@ -39,7 +39,9 @@ export default function Home(props) {
         {panels === "groups" && (
           <CenterGroups setGroup={setGroup} group={group} />
         )}
-        {panels === "groups" && <RightbarGroups group={group} />}
+        {panels === "groups" && (
+          <RightbarGroups group={group} setPanels={setPanels} />
+        )}
       </div>
     </>
   );

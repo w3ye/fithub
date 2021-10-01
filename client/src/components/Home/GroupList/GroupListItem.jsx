@@ -16,6 +16,13 @@ export default function GroupListItem(props) {
     getMembers(group_id);
   }, []);
 
+  function depluralize(num, string) {
+    if (num > 1 || num === 0) {
+      return string + "s";
+    }
+    return string;
+  }
+
   function getMembers(group_ID) {
     axios
       .post("/api/groups/members", { groupId: group_ID, userId: user.user.id })
@@ -58,7 +65,9 @@ export default function GroupListItem(props) {
             <Card.Body>
               <Card.Title>{group.title}</Card.Title>
               <ListGroup className="list-group-flush">
-                <ListGroupItem>{totalMembers + 1} Members</ListGroupItem>
+                <ListGroupItem>
+                  {totalMembers + 1} {depluralize(totalMembers + 1, "Member")}
+                </ListGroupItem>
               </ListGroup>
             </Card.Body>
           </Card>

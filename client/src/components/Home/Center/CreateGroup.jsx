@@ -41,7 +41,7 @@ export default function CreateGroup(props) {
         return err;
       });
   }
-  // fetchGroups(user.user.id);
+
   return (
     <>
       <button
