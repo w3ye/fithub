@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { TokenUserContext } from "../App/App";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import axios from "axios";
 
 export default function User(props) {
   const { logout } = props;
@@ -13,6 +14,14 @@ export default function User(props) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  function updateImage() {
+    const id = user.user.id;
+    const url = document.getElementById("urlField").value;
+    axios.put("/api/users/user_image", { url: url, id: id }).then((res) => {
+      console.log(res);
+    });
+  }
 
   return (
     <>
@@ -48,7 +57,9 @@ export default function User(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Maybe in this section we can make the user photo changeable?
+          <h3>Update your avatar:</h3>
+          <input type="text" placeholder="Image URL" id="urlField"></input>
+          <button onClick={() => {}}>Submit</button>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
