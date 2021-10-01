@@ -28,13 +28,13 @@ export default function WorkoutList(props) {
         .post("/api/workouts", {
           userId: user.user.id,
           title: name,
-          groups: user.groups,
           exercises: workout,
         })
         .then((result) => {
           setName("");
           setWorkout([]);
           setError("");
+          return result;
         })
         .catch((err) => {
           return err;
