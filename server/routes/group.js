@@ -1,3 +1,4 @@
+const { raw } = require("express");
 const express = require("express");
 const router = express.Router();
 
@@ -19,7 +20,6 @@ module.exports = (db) => {
       });
   });
 
-  // ! title will be changed to take value from req.body
   router.post("/new_group", (req, res) => {
     const { userId, title } = req.body;
     db.newGroup(userId, title)
@@ -29,7 +29,6 @@ module.exports = (db) => {
       .catch((err) => res.json({ error: err.message }));
   });
 
-  // ! add group could also get values from req.body
   router.post("/add_group", (req, res) => {
     const { groupId, userId } = req.body;
     db.checkUserInGroup(groupId, userId)
@@ -47,6 +46,14 @@ module.exports = (db) => {
       .catch((err) => {
         res.json({ error: err.message });
       });
+  });
+
+  // get members of a group
+  router.post("/members", (req, res) => {
+    const { groupId, userId } = req.body;
+    db.getGroupMembers(groupId, userId)
+      .then((members) => res.json(members))
+      .catch((err) => res.json({ error: err.message }));
   });
 
   return router;
