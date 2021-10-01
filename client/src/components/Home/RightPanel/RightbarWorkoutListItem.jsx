@@ -1,30 +1,43 @@
-import Modal from 'react-bootstrap/Modal'
-import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
-import { useState } from 'react'
-import './RightbarWorkoutListItem.scss'
-import WorkoutListItemDescription from './WorkoutListItemDescription'
+import Modal from "react-bootstrap/Modal";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import { useState } from "react";
+import "./RightbarWorkoutListItem.scss";
+import WorkoutListItemDescription from "./WorkoutListItemDescription";
+import axios from "axios";
 
-export default function RightbarWorkoutListItem (props) {
-  const { title, exercises } = props
-  const [fullscreen, setFullscreen] = useState(true)
-  const [show, setShow] = useState(false)
-  const [index, setIndex] = useState(0)
+export default function RightbarWorkoutListItem(props) {
+  const { title, exercises, id } = props;
+  const [fullscreen, setFullscreen] = useState(true);
+  const [show, setShow] = useState(false);
+  const [index, setIndex] = useState(0);
 
-  function handleShow (breakpoint) {
-    setFullscreen(breakpoint)
-    setShow(true)
+  function handleShow(breakpoint) {
+    setFullscreen(breakpoint);
+    setShow(true);
   }
 
-  function previous () {
+  function handleDelete(id) {
+    return axios
+      .delete(`/api/workouts/${id}`)
+      .then((result) => {
+        console.log(result);
+        return result;
+      })
+      .catch((err) => {
+        return err;
+      });
+  }
+
+  function previous() {
     if (exercises.length < 2) {
-      return
+      return;
     }
-    setIndex(prev => prev - 1)
+    setIndex((prev) => prev - 1);
   }
 
-  function next () {
-    setIndex(prev => prev + 1)
+  function next() {
+    setIndex((prev) => prev + 1);
   }
 
   return (
@@ -34,7 +47,7 @@ export default function RightbarWorkoutListItem (props) {
         <Card.Body>
           <Card.Title>{title.toUpperCase()}</Card.Title>
           <Card.Text>
-            {exercises.map(item => (
+            {exercises.map((item) => (
               <WorkoutListItemDescription
                 key={item.id}
                 name={item.name}
@@ -43,8 +56,11 @@ export default function RightbarWorkoutListItem (props) {
               />
             ))}
           </Card.Text>
-          <Button variant='primary' onClick={() => handleShow(true)}>
+          <Button variant="primary" onClick={() => handleShow(true)}>
             Start Workout
+          </Button>
+          <Button variant="primary" onClick={() => handleDelete(id)}>
+            Delete
           </Button>
         </Card.Body>
       </Card>
@@ -64,26 +80,26 @@ export default function RightbarWorkoutListItem (props) {
             <>
               <div> You did it! </div>
               <img
-                src='https://media1.giphy.com/media/BqijAlej4RV7O/giphy.gif?cid=ecf05e47nf3oiylzaxxzlk98mzb6t8nskx84noqgwicheqhf&rid=giphy.gif&ct=g'
-                alt='mario-party'
+                src="https://media1.giphy.com/media/BqijAlej4RV7O/giphy.gif?cid=ecf05e47nf3oiylzaxxzlk98mzb6t8nskx84noqgwicheqhf&rid=giphy.gif&ct=g"
+                alt="mario-party"
               />
             </>
           )}
           {index > 0 && (
-            <Button className='me-2' onClick={() => previous()}>
+            <Button className="me-2" onClick={() => previous()}>
               Previous
             </Button>
           )}
           {exercises.length !== index && (
-            <Button className='me-2' onClick={() => next()}>
+            <Button className="me-2" onClick={() => next()}>
               Next
             </Button>
           )}
-          <Button className='me-2' onClick={() => setIndex(0)}>
+          <Button className="me-2" onClick={() => setIndex(0)}>
             Restart
           </Button>
         </Modal.Body>
       </Modal>
     </>
-  )
+  );
 }
