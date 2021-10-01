@@ -30,37 +30,34 @@ export default function RightbarWorkoutListItem (props) {
   }
 
   function next () {
-    if (exercises[index] === exercises.length - 1) {
-      return
-    }
     setIndex(prev => prev + 1)
   }
 
-  useEffect(() => {
-    let interval = null
-    setTime(exercises[index].reps * 1000)
-    if (countdown) {
-      interval = setInterval(() => {
-        setTime(prevTime => prevTime - 1000)
-      }, 1000)
-    } else {
-      clearInterval(interval)
-    }
-    return () => clearInterval(interval)
-  }, [countdown, exercises, index])
+  // useEffect(() => {
+  //   let interval = null
+  //   setTime(exercises[index].reps * 1000)
+  //   if (countdown) {
+  //     interval = setInterval(() => {
+  //       setTime(prevTime => prevTime - 1000)
+  //     }, 1000)
+  //   } else {
+  //     clearInterval(interval)
+  //   }
+  //   return () => clearInterval(interval)
+  // }, [countdown, exercises, index])
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      console.log('index', index)
-      console.log('exercise.length', exercises.length)
-      if (index > -1) setIndex(prev => prev + 1)
-    }, 1000 * exercises[index].reps)
-    let endTimeout = exercises.length - 1
-    if (index === endTimeout) {
-      clearTimeout(timeout)
-    }
-    return () => clearTimeout(timeout)
-  })
+  // useEffect(() => {
+  //   const timeout = setTimeout(() => {
+  //     console.log('index', index)
+  //     console.log('exercise.length', exercises.length)
+  //     if (index > -1) setIndex(prev => prev + 1)
+  //   }, 1000 * exercises[index].reps)
+  //   let endTimeout = exercises.length - 1
+  //   if (index === endTimeout) {
+  //     clearTimeout(timeout)
+  //   }
+  //   return () => clearTimeout(timeout)
+  // })
   // console.log('index', index)
   // console.log('exercise', exercise[index])
 
@@ -93,18 +90,32 @@ export default function RightbarWorkoutListItem (props) {
           <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {exercises[index].name}
-          {exercises.length && (
-            <img src={exercises[index].gifUrl} alt={exercises[index].name} />
+          {exercises.length !== index ? (
+            <>
+              {exercises[index].name}
+              <img src={exercises[index].gifUrl} alt={exercises[index].name} />
+              <div>Set: {exercises[index].set}</div>
+              <div>Reps: {exercises[index].reps}</div>
+            </>
+          ) : (
+            <>
+              <div> You did it! </div>
+              <img
+                src='https://media1.giphy.com/media/BqijAlej4RV7O/giphy.gif?cid=ecf05e47nf3oiylzaxxzlk98mzb6t8nskx84noqgwicheqhf&rid=giphy.gif&ct=g'
+                alt='mario-party'
+              />
+            </>
           )}
-          <div>Set: {exercises[index].set}</div>
-          <div>Reps: {exercises[index].reps}</div>
-          <Button className='me-2' onClick={() => previous()}>
-            Previous
-          </Button>
-          <Button className='me-2' onClick={() => next()}>
-            Next
-          </Button>
+          {index > 0 && (
+            <Button className='me-2' onClick={() => previous()}>
+              Previous
+            </Button>
+          )}
+          {exercises.length !== index && (
+            <Button className='me-2' onClick={() => next()}>
+              Next
+            </Button>
+          )}
           <Button className='me-2' onClick={() => setIndex(0)}>
             Restart
           </Button>
