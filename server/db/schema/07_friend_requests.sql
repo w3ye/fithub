@@ -5,5 +5,6 @@ CREATE TABLE friend_requests(
   reciever_id INTEGER REFERENCES users(id) NOT NULL,
   pending BOOLEAN DEFAULT true,
   message TEXT,
-  created TIMESTAMP DEFAULT current_timestamp
+  created TIMESTAMP DEFAULT current_timestamp,
+  sender_avatar VARCHAR(255)
 );

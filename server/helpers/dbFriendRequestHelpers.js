@@ -8,7 +8,8 @@ module.exports = (db) => {
       message,
       created,
       users.first_name AS sender_first_name,
-      users.last_name AS sender_last_name
+      users.last_name AS sender_last_name,
+      users.avatar_url AS sender_avatar
       FROM friend_requests
       JOIN users ON sender_id = users.id
       WHERE reciever_id = $1 AND pending;`,

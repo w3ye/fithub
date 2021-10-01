@@ -10,4 +10,8 @@
 .friendRequestItem {
   border: solid navy 1px;
   background-color: paleturquoise;
+  img {
+    width: 50px;
+    border-radius: 50%;
+  }
 }
