@@ -15,24 +15,6 @@ export default function CenterGroups(props) {
     setGroup(group);
   };
 
-  function fetchGroups(id) {
-    console.log(user);
-    axios
-      .get(`/api/groups/${id}`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((result) => {
-        // setUser({ ...user, groups: result.data });
-        console.log("RES", result.data);
-      })
-      .catch((err) => {
-        return err;
-      });
-  }
-  console.log("user.groups", user.groups);
-
   const parsedGroups =
     user.user &&
     user.groups.map((group) => (
@@ -50,7 +32,7 @@ export default function CenterGroups(props) {
         {user.user ? user.user.first_name : ""}{" "}
         {user.user ? user.user.last_name : ""}'s Groups
       </h2>
-      <CreateGroup fetchGroups={fetchGroups} />
+      <CreateGroup />
       <ul className="groupsContainer">{user.user ? parsedGroups : ""}</ul>
     </div>
   );

@@ -6,8 +6,6 @@ import Form from "react-bootstrap/Form";
 import axios from "axios";
 
 export default function CreateGroup(props) {
-  const { fetchGroups } = props;
-
   const [show, setShow] = useState(false);
 
   const { tokenState, userState } = useContext(TokenUserContext);
@@ -24,11 +22,26 @@ export default function CreateGroup(props) {
     axios
       .post("/api/groups/new_group", { userId: user.user.id, title })
       .then((res) => {
-        return res;
+        const newGroup = res.data.groups[0];
+        axios
+          .post("/api/groups/add_group", {
+            userId: newGroup.owner_id,
+            groupId: newGroup.id,
+          })
+          .then((result) => {
+            axios.get(`/api/groups/${user.user.id}`).then((res) => {
+              setUser({ ...user, groups: res.data });
+            });
+          })
+          .catch((err) => {
+            return err;
+          });
       })
-      .catch((err) => err);
+      .catch((err) => {
+        return err;
+      });
   }
-  fetchGroups(user.user.id);
+  // fetchGroups(user.user.id);
   return (
     <>
       <button
