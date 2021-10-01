@@ -9,15 +9,12 @@ export default function RightbarWorkouts(props) {
   const { userState } = useContext(TokenUserContext);
   const [user] = userState;
 
-  console.log("user in rightbarworouts", user);
-
   useEffect(() => {
     axios
       .request(`/api/workouts/${user.user.id}`)
       .then((response) => {
         setResponseData(response.data);
         return response;
-        g;
       })
       .catch((error) => {
         console.log(error);
