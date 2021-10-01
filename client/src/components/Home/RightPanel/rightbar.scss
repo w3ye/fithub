@@ -15,3 +15,14 @@
     border-radius: 50%;
   }
 }
+
+#memberList {
+  display: flex;
+  height: 30px;
+  justify-content: center;
+}
+
+.memberItem {
+  height: 100%;
+  padding: 1px;
+}

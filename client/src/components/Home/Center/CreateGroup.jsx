@@ -5,11 +5,11 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 
-export default function CreateGroup() {
+export default function CreateGroup(props) {
   const [show, setShow] = useState(false);
 
-  const { tokenState, userState } = useContext(TokenUserContext);
-  const [token, setToken] = tokenState;
+  const { userState } = useContext(TokenUserContext);
+
   const [user, setUser] = userState;
 
   const [title, setTitle] = useState("");
@@ -22,9 +22,24 @@ export default function CreateGroup() {
     axios
       .post("/api/groups/new_group", { userId: user.user.id, title })
       .then((res) => {
-        return res;
+        const newGroup = res.data.groups[0];
+        axios
+          .post("/api/groups/add_group", {
+            userId: newGroup.owner_id,
+            groupId: newGroup.id,
+          })
+          .then((result) => {
+            axios.get(`/api/groups/${user.user.id}`).then((res) => {
+              setUser({ ...user, groups: res.data });
+            });
+          })
+          .catch((err) => {
+            return err;
+          });
       })
-      .catch((err) => err);
+      .catch((err) => {
+        return err;
+      });
   }
 
   return (
@@ -75,7 +90,7 @@ export default function CreateGroup() {
                 }}
               />
               <Form.Text className="text-muted">
-                Or just stick witht he default look
+                Or just stick with the default look
               </Form.Text>
             </Form.Group>
             <Button variant="primary" type="submit" onClick={groupSubmit}>
