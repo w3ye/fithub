@@ -30,6 +30,24 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const updateWorkout = (workoutId, workout) => {
+    const { title, groups, exercises } = workout;
+    const groupIds = groups.map((element) => element.id);
+    const query = {
+      text: `
+        UPDATE workouts
+        SET title = $1, group_ids = $2, exercises = $3
+        WHERE id = $4
+        RETURNING *;
+      `,
+      values: [title, groupIds, exercises, workoutId],
+    };
+    return db
+      .query(query)
+      .then((result) => result.rows[0])
+      .catch((err) => err);
+  };
+
   const getWorkoutsByUserId = (userId) => {
     const query = {
       text: `
@@ -65,5 +83,6 @@ module.exports = (db) => {
     newWorkout,
     getWorkoutsByUserId,
     deleteWorkout,
+    updateWorkout,
   };
 };

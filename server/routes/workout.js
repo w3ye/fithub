@@ -30,8 +30,19 @@ module.exports = (db) => {
     const workoutId = req.params.workout_id;
     db.deleteWorkout(workoutId)
       .then((result) => {
-        console.log(result);
         res.json({ success: true });
+      })
+      .catch((err) => {
+        res.json({ error: err.message });
+      });
+  });
+
+  router.patch("/:workout_id", (req, res) => {
+    const workoutId = req.params.workout_id;
+    const workout = req.body;
+    db.updateWorkout(workoutId, workout)
+      .then((result) => {
+        res.json({ result, success: true });
       })
       .catch((err) => {
         res.json({ error: err.message });
