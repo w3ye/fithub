@@ -1,5 +1,6 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { TokenUserContext } from "../../App/App";
+import MemberListItem from "./MemberListItem";
 import "./rightbar.scss";
 import axios from "axios";
 
@@ -9,6 +10,26 @@ export default function RightbarGroups(props) {
   const [user, setUser] = userState;
   const { group } = props;
   const [email, setEmail] = useState();
+  const [members, setMembers] = useState([]);
+
+  useEffect(() => {
+    console.log(members);
+    getMembers(group.group_id);
+  }, [group]);
+
+  function getMembers(group_ID) {
+    axios
+      .post("/api/groups/members", { groupId: group_ID, userId: user.user.id })
+      .then((res) => {
+        setMembers(res.data);
+      })
+      .catch((err) => {
+        return err;
+      });
+  }
+
+  const parsedMembers =
+    user.user && members.map((memberObj) => <MemberListItem />);
 
   function addMember() {
     axios
@@ -37,6 +58,7 @@ export default function RightbarGroups(props) {
   return (
     <div className="rightbar container">
       <h2>{group.title}</h2>
+      <div id="memberList">{parsedMembers}</div>
       {group.title && <h5>Add New Member</h5>}
       {group.title && (
         <input
