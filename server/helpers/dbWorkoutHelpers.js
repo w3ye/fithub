@@ -11,22 +11,36 @@ module.exports = (db) => {
   };
 
   const newWorkout = (workout) => {
-    const { userId, title, groups, exercises } = workout;
-    const groupIds = groups.map((element) => {
-      return element.id;
-    });
+    const { userId, title, exercises } = workout;
     const query = {
       text: `
-        INSERT INTO workouts (title, user_id, group_ids, exercises)
+        INSERT INTO workouts (title, user_id, exercises)
         VALUES
-        ($1, $2, $3, $4)
+        ($1, $2, $3)
         RETURNING *;
       `,
-      values: [title, userId, groupIds, exercises],
+      values: [title, userId, exercises],
     };
     return db
       .query(query)
       .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
+  const updateWorkout = (workoutId, workout) => {
+    const { title, exercises } = workout;
+    const query = {
+      text: `
+        UPDATE workouts
+        SET title = $1, exercises = $2
+        WHERE id = $3
+        RETURNING *;
+      `,
+      values: [title, exercises, workoutId],
+    };
+    return db
+      .query(query)
+      .then((result) => result.rows[0])
       .catch((err) => err);
   };
 
@@ -36,7 +50,6 @@ module.exports = (db) => {
         SELECT 
         id,
         title,
-        group_ids,
         exercises
         FROM workouts 
         where user_id = $1`,
@@ -48,9 +61,23 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const deleteWorkout = (workoutId) => {
+    const query = {
+      text: "DELETE FROM workouts WHERE id = $1 RETURNING *;",
+      values: [workoutId],
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows[0])
+      .catch((err) => err);
+  };
+
   return {
     getWorkouts,
     newWorkout,
     getWorkoutsByUserId,
+    deleteWorkout,
+    updateWorkout,
   };
 };
