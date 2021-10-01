@@ -7,19 +7,14 @@ import WorkoutListItemDescription from './WorkoutListItemDescription'
 
 export default function RightbarWorkoutListItem (props) {
   console.log('props in WorkoutList item', props)
-  const { id, title, user_id, group_ids, exercises } = props
-  // const values = [true, 'sm-down', 'md-down', 'lg-down', 'xl-down', 'xxl-down']
+  const { title, exercises } = props
   const [fullscreen, setFullscreen] = useState(true)
   const [show, setShow] = useState(false)
-  const [time, setTime] = useState(5000)
-  const [countdown, setCountdown] = useState(false)
   const [index, setIndex] = useState(0)
-  const [reps, setReps] = useState('')
 
   function handleShow (breakpoint) {
     setFullscreen(breakpoint)
     setShow(true)
-    setCountdown(true)
   }
 
   function previous () {
@@ -32,34 +27,6 @@ export default function RightbarWorkoutListItem (props) {
   function next () {
     setIndex(prev => prev + 1)
   }
-
-  // useEffect(() => {
-  //   let interval = null
-  //   setTime(exercises[index].reps * 1000)
-  //   if (countdown) {
-  //     interval = setInterval(() => {
-  //       setTime(prevTime => prevTime - 1000)
-  //     }, 1000)
-  //   } else {
-  //     clearInterval(interval)
-  //   }
-  //   return () => clearInterval(interval)
-  // }, [countdown, exercises, index])
-
-  // useEffect(() => {
-  //   const timeout = setTimeout(() => {
-  //     console.log('index', index)
-  //     console.log('exercise.length', exercises.length)
-  //     if (index > -1) setIndex(prev => prev + 1)
-  //   }, 1000 * exercises[index].reps)
-  //   let endTimeout = exercises.length - 1
-  //   if (index === endTimeout) {
-  //     clearTimeout(timeout)
-  //   }
-  //   return () => clearTimeout(timeout)
-  // })
-  // console.log('index', index)
-  // console.log('exercise', exercise[index])
 
   return (
     <>
@@ -82,9 +49,6 @@ export default function RightbarWorkoutListItem (props) {
           </Button>
         </Card.Body>
       </Card>
-      {/* <Button key={id} className='me-2' onClick={() => handleShow(true)}>
-        {title.toUpperCase()}
-      </Button> */}
       <Modal show={show} fullscreen={fullscreen} onHide={() => setShow(false)}>
         <Modal.Header closeButton>
           <Modal.Title>{title}</Modal.Title>
