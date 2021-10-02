@@ -6,9 +6,10 @@ import axios from "axios";
 export default function WorkoutList(props) {
   const [error, setError] = useState("");
   const [name, setName] = useState("");
-  const { workout, setWorkout } = props;
+  const { workout, setWorkout, panels, setPanels, stateId } = props;
   const { userState } = useContext(TokenUserContext);
   const [user] = userState;
+  console.log("in WorkoutList", props);
 
   /**
    * Sends a post request to /api/workouts containing workout information
@@ -34,6 +35,7 @@ export default function WorkoutList(props) {
           setName("");
           setWorkout([]);
           setError("");
+          setPanels("workouts");
           return result;
         })
         .catch((err) => {
@@ -61,6 +63,9 @@ export default function WorkoutList(props) {
           exercise={exercise}
           workout={workout}
           setWorkout={setWorkout}
+          panels={panels}
+          setPanels={setPanels}
+          stateId={stateId}
         />
       ))}
       <button onClick={handleSave} className="save">

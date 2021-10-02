@@ -6,7 +6,6 @@ import "./RightbarWorkoutListItem.scss";
 import WorkoutListItemDescription from "./WorkoutListItemDescription";
 import axios from "axios";
 import ModalWorkout from "./ModalWorkout";
-import WorkoutList from "../WorkoutList/WorkoutList";
 
 export default function RightbarWorkoutListItem(props) {
   console.log("in rightbarworkoutlistitem", props);
@@ -16,10 +15,12 @@ export default function RightbarWorkoutListItem(props) {
     id,
     responseData,
     setResponseData,
-    group_ids,
+    setPanels,
+    setId,
   } = props;
   const [fullscreen, setFullscreen] = useState(true);
   const [show, setShow] = useState(false);
+  const [edit, setEdit] = useState("");
 
   function handleShow(breakpoint) {
     setFullscreen(breakpoint);
@@ -42,15 +43,9 @@ export default function RightbarWorkoutListItem(props) {
 
   function handleEdit(id) {
     console.log("this is edit", id);
-    return (
-      <WorkoutList
-        key={id}
-        id={id}
-        title={title}
-        exercises={exercises}
-        group_ids={group_ids}
-      />
-    );
+    setPanels("edit");
+    setId(id);
+    setEdit("Edit Workout");
   }
 
   function handleDelete(id) {
@@ -69,18 +64,7 @@ export default function RightbarWorkoutListItem(props) {
   }
 
   const showModal = (
-    <ModalWorkout
-      key={id}
-      id={id}
-      title={title}
-      exercises={exercises}
-      responseData={responseData}
-      setResponseData={setResponseData}
-      fullscreen={fullscreen}
-      setFullscreen={setFullscreen}
-      show={show}
-      setShow={setShow}
-    />
+    <ModalWorkout key={id} id={id} title={title} exercises={exercises} />
   );
 
   return (

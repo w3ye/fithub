@@ -11,12 +11,18 @@ import RightbarWorkouts from "./RightPanel/RightbarWorkouts";
 import RightbarFriends from "./RightPanel/RightbarFriends";
 import RightbarGroups from "./RightPanel/RightbarGroups";
 import "./index.scss";
+import WorkoutList from "./WorkoutList/WorkoutList";
 
 export default function Home(props) {
   const { setMain } = props;
   const [panels, setPanels] = useState("home");
   const [workout, setWorkout] = useState([]);
   const [selected, setSelected] = useState({});
+  const [stateId, setId] = useState("");
+
+  const onEdit = (id) => {
+    setWorkout([]);
+  };
 
   const onAdd = (exercise) => {
     setWorkout([...workout, { ...exercise, set: "1", reps: "10" }]);
@@ -27,17 +33,43 @@ export default function Home(props) {
       <Topbar setMain={setMain} />
       <div className="homeContainer">
         <Leftbar setPanels={setPanels} />
-        {panels === "home" && <Center onAdd={onAdd} />}
         {panels === "home" && (
-          <Rightbar workout={workout} setWorkout={setWorkout} />
+          <Center onAdd={onAdd} panels={panels} setPanels={setPanels} />
+        )}
+        {panels === "home" && (
+          <Rightbar
+            workout={workout}
+            setWorkout={setWorkout}
+            panels={panels}
+            setPanels={setPanels}
+            stateId={stateId}
+          />
         )}
 
-        {panels === "workouts" && <CenterWorkouts />}
-        {panels === "workouts" && <RightbarWorkouts />}
+        {panels === "workouts" && (
+          <CenterWorkouts panels={panels} setPanels={setPanels} />
+        )}
+        {panels === "workouts" && (
+          <RightbarWorkouts
+            panels={panels}
+            setPanels={setPanels}
+            setId={setId}
+          />
+        )}
         {panels === "friends" && <CenterFriends />}
         {panels === "friends" && <RightbarFriends />}
         {panels === "groups" && <CenterGroups setSelected={setSelected} />}
         {panels === "groups" && <RightbarGroups group={selected} />}
+        {panels === "edit" && <Center onAdd={onAdd} />}
+        {panels === "edit" && (
+          <Rightbar
+            workout={workout}
+            setWorkout={setWorkout}
+            stateId={stateId}
+            setId={setId}
+          />
+        )}
+        {panels === "edit" && <WorkoutList stateId={stateId} />}
       </div>
     </>
   );
