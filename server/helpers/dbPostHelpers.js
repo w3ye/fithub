@@ -41,10 +41,26 @@ module.exports = (db) => {
       });
   };
 
-  const updateComments = (comment_id, message) => {
+  const updateComments = (commentId, message) => {
     const query = {
       text: "UPDATE comments SET message = $1 WHERE id = $2 RETURNING *;",
-      values: [message, comment_id],
+      values: [message, commentId],
+    };
+
+    return db
+      .query(query)
+      .then((result) => {
+        return result.rows[0];
+      })
+      .catch((err) => {
+        return err;
+      });
+  };
+
+  const deleteComment = (commentId) => {
+    const query = {
+      text: "DELETE FROM comments WHERE id = $1",
+      values: [commentId],
     };
 
     return db
@@ -74,5 +90,6 @@ module.exports = (db) => {
     getLikesForWorkout,
     newComments,
     updateComments,
+    deleteComment,
   };
 };

@@ -28,7 +28,7 @@ module.exports = (db) => {
     const { workoutId, userId, message } = req.body;
     db.newComments(userId, workoutId, message)
       .then((result) => {
-        res.json({ result, success: true });
+        res.json({ success: true });
       })
       .catch((err) => {
         res.json({ error: err.message });
@@ -40,7 +40,18 @@ module.exports = (db) => {
     const { message } = req.body;
     db.updateComments(commentId, message)
       .then((result) => {
-        res.json({ result, success: true });
+        res.json({ success: true });
+      })
+      .catch((err) => {
+        res.json({ error: err.message });
+      });
+  });
+
+  router.delete("/comments/:comment_id", (req, res) => {
+    const commentId = req.params.comment_id;
+    db.deleteComment(commentId)
+      .then((result) => {
+        res.json({ success: true });
       })
       .catch((err) => {
         res.json({ error: err.message });
