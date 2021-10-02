@@ -57,11 +57,23 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const updateProfilePic = (url, id) => {
+    const query = {
+      text: "UPDATE users SET avatar_url = $1 WHERE id = $2 RETURNING *;",
+      values: [url, id],
+    };
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
   return {
     getUsers,
     getUserByEmail,
     addUser,
     updateRefreshToken,
     getUserById,
+    updateProfilePic,
   };
 };

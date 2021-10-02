@@ -18,7 +18,8 @@ module.exports = (db) => {
         friends.friend_id, 
         users.first_name AS friend_first_name, 
         users.last_name AS friend_last_name,
-        users.email AS friend_email
+        users.email AS friend_email,
+        users.avatar_url AS friend_avatar
         FROM users
         JOIN friends ON friends.friend_id = users.id
         WHERE friends.user_id = $1;

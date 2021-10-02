@@ -18,6 +18,7 @@ module.exports = ({
   addUser,
   updateRefreshToken,
   getUserById,
+  updateProfilePic,
 }) => {
   /* GET users listing. */
   router.get("/", (req, res) => {
@@ -109,6 +110,12 @@ module.exports = ({
     updateRefreshToken(user.id, refreshToken);
     sendRefreshToken(res, refreshToken);
     return res.send({ accessToken });
+  });
+
+  router.post("/user_image", async (req, res) => {
+    const { url, id } = req.body;
+    updateProfilePic(url, id);
+    return res.send({ msg: "Success" });
   });
 
   return router;

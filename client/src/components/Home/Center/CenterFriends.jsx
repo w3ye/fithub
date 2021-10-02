@@ -15,6 +15,7 @@ export default function CenterFriends() {
         friend_first_name={friend.friend_first_name}
         friend_last_name={friend.friend_last_name}
         friend_email={friend.friend_email}
+        friend_avatar={friend.friend_avatar}
       />
     ));
   return (

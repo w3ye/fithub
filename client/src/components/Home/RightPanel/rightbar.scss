@@ -10,6 +10,10 @@
 .friendRequestItem {
   border: solid navy 1px;
   background-color: paleturquoise;
+  img {
+    width: 50px;
+    border-radius: 50%;
+  }
 }
 
 #memberList {
@@ -19,6 +23,8 @@
 }
 
 .memberItem {
+  border-radius: 50%;
   height: 100%;
-  padding: 1px;
+  padding-right: 2px;
+  padding-left: 2px;
 }

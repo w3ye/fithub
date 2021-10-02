@@ -5,7 +5,8 @@ SELECT group_members.id,
   users.first_name,
   users.last_name,
   users.email,
-  groups.title
+  groups.title,
+  users.avatar_url
 FROM group_members
   JOIN users ON users.id = group_members.user_id
   JOIN groups ON groups.id = group_members.group_id;
