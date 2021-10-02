@@ -11,13 +11,11 @@ export default function WorkoutList(props) {
     setWorkout,
     panels,
     setPanels,
-    stateId,
     editWorkoutObj,
     setEditWorkoutObj,
   } = props;
   const { userState } = useContext(TokenUserContext);
   const [user] = userState;
-  const [currentWorkout, setCurrentWorkout] = useState(workout || []);
   console.log("in WorkoutList_______________", props);
 
   /**
@@ -33,6 +31,20 @@ export default function WorkoutList(props) {
     } else if (workout.length === 0) {
       setError("Please add some exercises");
       return;
+    }
+    if (panels === "edit") {
+      return axios
+        .patch(`/api/workouts/${editWorkoutObj.id}`, {
+          title: name,
+          exercises: workout,
+        })
+        .then((result) => {
+          setName("");
+          setWorkout([]);
+          setError("");
+          setPanels("workouts");
+          return result;
+        });
     } else {
       return axios
         .post("/api/workouts", {
@@ -96,7 +108,6 @@ export default function WorkoutList(props) {
           setWorkout={setWorkout}
           panels={panels}
           setPanels={setPanels}
-          stateId={stateId}
           editWorkoutObj={editWorkoutObj}
           setEditWorkoutObj={setEditWorkoutObj}
         />

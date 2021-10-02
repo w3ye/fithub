@@ -1,18 +1,9 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 
 export default function WorkoutListItem(props) {
-  const {
-    workout,
-    setWorkout,
-    exercise,
-    editWorkoutObj,
-    setEditWorkoutObj,
-  } = props;
+  const { workout, setWorkout, exercise } = props;
   const setRef = useRef();
   const repsRef = useRef();
-  useEffect(() => {
-    console.log("in UseEffect", workout);
-  }, [workout]);
 
   const handleSets = (event) => {
     event.preventDefault();
