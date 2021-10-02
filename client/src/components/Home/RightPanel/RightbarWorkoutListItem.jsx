@@ -8,7 +8,6 @@ import axios from "axios";
 import ModalWorkout from "./ModalWorkout";
 
 export default function RightbarWorkoutListItem(props) {
-  console.log("in rightbarworkoutlistitem", props);
   const {
     title,
     exercises,
@@ -16,18 +15,11 @@ export default function RightbarWorkoutListItem(props) {
     responseData,
     setResponseData,
     setPanels,
-    setId,
-    editWorkoutObj,
     setEditWorkoutObj,
-    workout,
     setWorkout,
   } = props;
   const [fullscreen, setFullscreen] = useState(true);
   const [show, setShow] = useState(false);
-
-  // useEffect(() => {
-  //   console.log("in UseEffect", editWorkoutData);
-  // }, [editWorkoutData]);
 
   function handleShow(breakpoint) {
     setFullscreen(breakpoint);
@@ -35,13 +27,11 @@ export default function RightbarWorkoutListItem(props) {
   }
 
   function handleEdit(id) {
-    console.log("this is edit", id);
     const editWorkout = responseData.find((x) => x.id === id);
-    console.log("edit workout", editWorkout);
+
     setPanels("edit");
     setEditWorkoutObj(editWorkout);
     setWorkout(editWorkout.exercises);
-    console.log("after SetEdit", editWorkoutObj);
   }
 
   function handleDelete(id) {

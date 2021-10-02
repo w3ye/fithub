@@ -6,17 +6,9 @@ import axios from "axios";
 export default function WorkoutList(props) {
   const [error, setError] = useState("");
   const [name, setName] = useState("");
-  const {
-    workout,
-    setWorkout,
-    panels,
-    setPanels,
-    editWorkoutObj,
-    setEditWorkoutObj,
-  } = props;
+  const { workout, setWorkout, panels, setPanels, editWorkoutObj } = props;
   const { userState } = useContext(TokenUserContext);
   const [user] = userState;
-  console.log("in WorkoutList_______________", props);
 
   /**
    * Sends a post request to /api/workouts containing workout information
@@ -99,17 +91,12 @@ export default function WorkoutList(props) {
           <section className="workout__validation">{error}</section>
         </>
       )}
-      {console.log("before map what is workout", workout)}
       {workout.map((exercise) => (
         <WorkoutListItem
           key={exercise.id}
           exercise={exercise}
           workout={workout}
           setWorkout={setWorkout}
-          panels={panels}
-          setPanels={setPanels}
-          editWorkoutObj={editWorkoutObj}
-          setEditWorkoutObj={setEditWorkoutObj}
         />
       ))}
       <button onClick={handleSave} className="save">
