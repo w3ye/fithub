@@ -19,6 +19,7 @@ export default function RightbarGroups(props) {
     axios
       .post("/api/groups/members", { groupId: group_ID, userId: user.user.id })
       .then((res) => {
+        console.log("Data", res.data);
         setMembers(res.data);
       })
       .catch((err) => {
@@ -27,7 +28,14 @@ export default function RightbarGroups(props) {
   }
 
   const parsedMembers =
-    user.user && members.map((memberObj) => <MemberListItem />);
+    user.user &&
+    members.map((memberObj) => (
+      <MemberListItem
+        key={memberObj.user_id}
+        avatar={memberObj.avatar_url}
+        name={memberObj.first_name + " " + memberObj.last_name}
+      />
+    ));
 
   function addMember() {
     axios
