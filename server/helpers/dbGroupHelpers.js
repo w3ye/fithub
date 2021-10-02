@@ -1,5 +1,3 @@
-const group = require("../routes/group");
-
 module.exports = (db) => {
   const getGroups = () => {
     const query = {
