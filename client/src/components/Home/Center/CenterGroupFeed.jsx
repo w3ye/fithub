@@ -6,7 +6,7 @@ import { TokenUserContext } from "../../App/App";
 import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 
-export default function CenterWorkouts() {
+export default function CenterGroupFeed() {
   const { userState } = useContext(TokenUserContext);
   const [user] = userState;
   console.log("what is user", user);
@@ -48,7 +48,7 @@ export default function CenterWorkouts() {
     <>
       <div className="center">
         <div className="feed">
-          This is the centerWorkouts
+          <Share />
           <div className="feedWrapper"></div>
         </div>
       </div>

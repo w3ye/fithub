@@ -10,6 +10,8 @@ import Rightbar from "./RightPanel/Rightbar";
 import RightbarWorkouts from "./RightPanel/RightbarWorkouts";
 import RightbarFriends from "./RightPanel/RightbarFriends";
 import RightbarGroups from "./RightPanel/RightbarGroups";
+import RightbarGroupFeed from "./RightPanel/RightbarGroupFeed";
+import CenterGroupFeed from "./Center/CenterGroupFeed";
 import "./index.scss";
 import axios from "axios";
 
@@ -77,6 +79,12 @@ export default function Home(props) {
         )}
         {panels === "groups" && (
           <RightbarGroups group={group} setPanels={setPanels} />
+        )}
+        {panels === "groupfeed" && (
+          <CenterGroupFeed setGroup={setGroup} group={group} />
+        )}
+        {panels === "groupfeed" && (
+          <RightbarGroupFeed group={group} setPanels={setPanels} />
         )}
       </div>
     </>
