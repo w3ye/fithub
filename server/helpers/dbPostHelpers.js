@@ -41,6 +41,22 @@ module.exports = (db) => {
       });
   };
 
+  const updateComments = (comment_id, message) => {
+    const query = {
+      text: "UPDATE comments SET message = $1 WHERE id = $2 RETURNING *;",
+      values: [message, comment_id],
+    };
+
+    return db
+      .query(query)
+      .then((result) => {
+        return result.rows[0];
+      })
+      .catch((err) => {
+        return err;
+      });
+  };
+
   const getLikesForWorkout = (workoutId) => {
     const query = {
       text: "SELECT * FROM likes WHERE workout_id = $1",
@@ -57,5 +73,6 @@ module.exports = (db) => {
     getCommentsForWorkout,
     getLikesForWorkout,
     newComments,
+    updateComments,
   };
 };

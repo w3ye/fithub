@@ -35,6 +35,18 @@ module.exports = (db) => {
       });
   });
 
+  router.patch("/comments/:comment_id", (req, res) => {
+    const commentId = req.params.comment_id;
+    const { message } = req.body;
+    db.updateComments(commentId, message)
+      .then((result) => {
+        res.json({ result, success: true });
+      })
+      .catch((err) => {
+        res.json({ error: err.message });
+      });
+  });
+
   router.get("/likes/:workout_id", (req, res) => {
     const workoutId = req.params.workout_id;
     db.getLikesForWorkout(workoutId)
