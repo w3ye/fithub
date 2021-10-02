@@ -86,8 +86,8 @@ export default function RightbarFriends() {
   let parsedRequests = request.map((req) => {
     return (
       <div className="friendRequestItem">
+        <img src={req.sender_avatar} alt="" />
         <h5>{req.sender_first_name + " " + req.sender_last_name}</h5>
-        <br />
         <p>{req.message}</p>
         <button
           onClick={() => {
