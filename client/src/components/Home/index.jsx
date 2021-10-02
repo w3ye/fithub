@@ -11,14 +11,12 @@ import RightbarWorkouts from "./RightPanel/RightbarWorkouts";
 import RightbarFriends from "./RightPanel/RightbarFriends";
 import RightbarGroups from "./RightPanel/RightbarGroups";
 import "./index.scss";
-import WorkoutList from "./WorkoutList/WorkoutList";
 import axios from "axios";
 
 export default function Home(props) {
   const { setMain } = props;
   const [panels, setPanels] = useState("home");
   const [workout, setWorkout] = useState([]);
-  const [selected, setSelected] = useState({});
   const [stateId, setId] = useState("");
   const [editWorkoutObj, setEditWorkoutObj] = useState("");
   const [group, setGroup] = useState({});
