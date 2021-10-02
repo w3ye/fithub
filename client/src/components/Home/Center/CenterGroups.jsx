@@ -1,16 +1,17 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import "./center.scss";
 import { TokenUserContext } from "../../App/App";
 import GroupListItem from "../GroupList/GroupListItem";
+import CreateGroup from "./CreateGroup";
 
 export default function CenterGroups(props) {
-  const { setSelected } = props;
-  const { tokenState, userState } = useContext(TokenUserContext);
-  const [token, setToken] = tokenState;
-  const [user, setUser] = userState;
+  const { setGroup } = props;
+  const { userState } = useContext(TokenUserContext);
+
+  const [user] = userState;
 
   const selectGroup = function (group) {
-    setSelected(group);
+    setGroup(group);
   };
 
   const parsedGroups =
@@ -18,18 +19,21 @@ export default function CenterGroups(props) {
     user.groups.map((group) => (
       <GroupListItem
         key={group.id}
+        group_id={group.group_id}
         group={group}
         title={group.title}
         selectGroup={selectGroup}
+        user={user}
       />
     ));
-  console.log(user);
+
   return (
     <div className="center container">
       <h2>
         {user.user ? user.user.first_name : ""}{" "}
         {user.user ? user.user.last_name : ""}'s Groups
       </h2>
+      <CreateGroup />
       <ul className="groupsContainer">{user.user ? parsedGroups : ""}</ul>
     </div>
   );

@@ -1,6 +1,21 @@
 .groupCard {
   text-align: center;
+  margin-top: 10px;
   border: blue 2px dotted;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px black solid;
+  border-radius: 5%;
+  .groupText {
+    width: 70%;
+  }
+  .groupImage {
+    width: 30%;
+    img {
+      width: 50%;
+    }
+  }
 }
 
 .groupCard:hover {
@@ -9,16 +24,11 @@
   background-color: lightgray;
 }
 
-.groupImage {
-  width: 100px;
-}
-
 .groupsContainer {
   padding: 0;
 }
 
 .selected {
   background-color: coral;
-  color: white;
   font-weight: bold;
 }
