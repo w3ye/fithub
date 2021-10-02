@@ -1,15 +1,24 @@
 import WorkoutListItem from "./WorkoutListItem";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { TokenUserContext } from "../../App/App";
 import axios from "axios";
 
 export default function WorkoutList(props) {
   const [error, setError] = useState("");
   const [name, setName] = useState("");
-  const { workout, setWorkout, panels, setPanels, stateId } = props;
+  const {
+    workout,
+    setWorkout,
+    panels,
+    setPanels,
+    stateId,
+    editWorkoutObj,
+    setEditWorkoutObj,
+  } = props;
   const { userState } = useContext(TokenUserContext);
   const [user] = userState;
-  console.log("in WorkoutList", props);
+  const [currentWorkout, setCurrentWorkout] = useState(workout || []);
+  console.log("in WorkoutList_______________", props);
 
   /**
    * Sends a post request to /api/workouts containing workout information
@@ -46,17 +55,39 @@ export default function WorkoutList(props) {
 
   return (
     <>
-      <h1>New Workout</h1>
-      <form autoComplete="off">
-        <input
-          className="workout-name"
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          type="text"
-          placeholder="New workout name"
-        />
-      </form>
-      <section className="workout__validation">{error}</section>
+      {panels === "edit" && (
+        <>
+          <h1>Edit Workout</h1>
+          <form autoComplete="off">
+            <h5>Name of Workout: </h5>
+            <input
+              className="workout-name"
+              defaultValue={editWorkoutObj.title}
+              onChange={(event) => setName(event.target.value)}
+              type="text"
+              placeholder="New workout name"
+            />
+          </form>
+        </>
+      )}
+
+      {panels === "home" && (
+        <>
+          <h1>New Workout</h1>
+          <form autoComplete="off">
+            <h5>Name of Workout: </h5>
+            <input
+              className="workout-name"
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+              type="text"
+              placeholder="New workout name"
+            />
+          </form>
+          <section className="workout__validation">{error}</section>
+        </>
+      )}
+      {console.log("before map what is workout", workout)}
       {workout.map((exercise) => (
         <WorkoutListItem
           key={exercise.id}
@@ -66,6 +97,8 @@ export default function WorkoutList(props) {
           panels={panels}
           setPanels={setPanels}
           stateId={stateId}
+          editWorkoutObj={editWorkoutObj}
+          setEditWorkoutObj={setEditWorkoutObj}
         />
       ))}
       <button onClick={handleSave} className="save">

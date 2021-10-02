@@ -1,7 +1,13 @@
 import { useRef, useEffect } from "react";
 
 export default function WorkoutListItem(props) {
-  const { workout, setWorkout, exercise } = props;
+  const {
+    workout,
+    setWorkout,
+    exercise,
+    editWorkoutObj,
+    setEditWorkoutObj,
+  } = props;
   const setRef = useRef();
   const repsRef = useRef();
   useEffect(() => {

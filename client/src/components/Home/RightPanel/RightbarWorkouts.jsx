@@ -9,7 +9,16 @@ export default function RightbarWorkouts(props) {
   const [responseData, setResponseData] = useState(null);
   const { userState } = useContext(TokenUserContext);
   const [user] = userState;
-  const { stateId, setId, panels, setPanels } = props;
+  const {
+    stateId,
+    setId,
+    panels,
+    setPanels,
+    editWorkoutObj,
+    setEditWorkoutObj,
+    workout,
+    setWorkout,
+  } = props;
 
   useEffect(() => {
     axios
@@ -25,19 +34,23 @@ export default function RightbarWorkouts(props) {
 
   const parsedResponse =
     responseData &&
-    responseData.map((workout) => (
+    responseData.map((workoutx) => (
       <RightbarWorkoutListItem
-        key={workout.id}
-        id={workout.id}
-        title={workout.title}
-        group_ids={workout.group_ids}
-        exercises={workout.exercises}
+        key={workoutx.id}
+        id={workoutx.id}
+        title={workoutx.title}
+        group_ids={workoutx.group_ids}
+        exercises={workoutx.exercises}
         responseData={responseData}
         setResponseData={setResponseData}
         panels={panels}
         setPanels={setPanels}
         setId={setId}
         stateId={stateId}
+        editWorkoutObj={editWorkoutObj}
+        setEditWorkoutObj={setEditWorkoutObj}
+        workout={workout}
+        setWorkout={setWorkout}
       />
     ));
 

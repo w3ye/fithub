@@ -3,7 +3,15 @@ import "./rightbar.scss";
 
 export default function Rightbar(props) {
   console.log("in Right bar", props);
-  const { workout, setWorkout, panels, setPanels, stateId } = props;
+  const {
+    workout,
+    setWorkout,
+    panels,
+    setPanels,
+    stateId,
+    editWorkoutObj,
+    setEditWorkoutObj,
+  } = props;
 
   return (
     <div className="rightbar">
@@ -13,6 +21,8 @@ export default function Rightbar(props) {
         panels={panels}
         setPanels={setPanels}
         stateId={stateId}
+        editWorkoutObj={editWorkoutObj}
+        setEditWorkoutObj={setEditWorkoutObj}
       />
     </div>
   );

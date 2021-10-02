@@ -1,7 +1,7 @@
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./RightbarWorkoutListItem.scss";
 import WorkoutListItemDescription from "./WorkoutListItemDescription";
 import axios from "axios";
@@ -17,35 +17,31 @@ export default function RightbarWorkoutListItem(props) {
     setResponseData,
     setPanels,
     setId,
+    editWorkoutObj,
+    setEditWorkoutObj,
+    workout,
+    setWorkout,
   } = props;
   const [fullscreen, setFullscreen] = useState(true);
   const [show, setShow] = useState(false);
-  const [edit, setEdit] = useState("");
+
+  // useEffect(() => {
+  //   console.log("in UseEffect", editWorkoutData);
+  // }, [editWorkoutData]);
 
   function handleShow(breakpoint) {
     setFullscreen(breakpoint);
     setShow(true);
-    return (
-      <ModalWorkout
-        key={id}
-        id={id}
-        title={title}
-        exercises={exercises}
-        responseData={responseData}
-        setResponseData={setResponseData}
-        fullscreen={fullscreen}
-        setFullscreen={setFullscreen}
-        show={show}
-        setShow={setShow}
-      />
-    );
   }
 
   function handleEdit(id) {
     console.log("this is edit", id);
+    const editWorkout = responseData.find((x) => x.id === id);
+    console.log("edit workout", editWorkout);
     setPanels("edit");
-    setId(id);
-    setEdit("Edit Workout");
+    setEditWorkoutObj(editWorkout);
+    setWorkout(editWorkout.exercises);
+    console.log("after SetEdit", editWorkoutObj);
   }
 
   function handleDelete(id) {

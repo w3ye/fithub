@@ -12,6 +12,7 @@ import RightbarFriends from "./RightPanel/RightbarFriends";
 import RightbarGroups from "./RightPanel/RightbarGroups";
 import "./index.scss";
 import WorkoutList from "./WorkoutList/WorkoutList";
+import axios from "axios";
 
 export default function Home(props) {
   const { setMain } = props;
@@ -19,10 +20,7 @@ export default function Home(props) {
   const [workout, setWorkout] = useState([]);
   const [selected, setSelected] = useState({});
   const [stateId, setId] = useState("");
-
-  const onEdit = (id) => {
-    setWorkout([]);
-  };
+  const [editWorkoutObj, setEditWorkoutObj] = useState("");
 
   const onAdd = (exercise) => {
     setWorkout([...workout, { ...exercise, set: "1", reps: "10" }]);
@@ -54,6 +52,10 @@ export default function Home(props) {
             panels={panels}
             setPanels={setPanels}
             setId={setId}
+            editWorkoutObj={editWorkoutObj}
+            setEditWorkoutObj={setEditWorkoutObj}
+            workout={workout}
+            setWorkout={setWorkout}
           />
         )}
         {panels === "friends" && <CenterFriends />}
@@ -67,9 +69,12 @@ export default function Home(props) {
             setWorkout={setWorkout}
             stateId={stateId}
             setId={setId}
+            editWorkoutObj={editWorkoutObj}
+            setEditWorkoutObj={setEditWorkoutObj}
+            panels={panels}
+            setPanels={setPanels}
           />
         )}
-        {panels === "edit" && <WorkoutList stateId={stateId} />}
       </div>
     </>
   );
