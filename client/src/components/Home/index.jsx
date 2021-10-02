@@ -71,6 +71,7 @@ export default function Home(props) {
             panels={panels}
             setPanels={setPanels}
           />
+        )}
         {panels === "groups" && (
           <CenterGroups setGroup={setGroup} group={group} />
         )}
