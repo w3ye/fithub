@@ -29,10 +29,7 @@ module.exports = (db) => {
     return db
       .query(query)
       .then((result) => {
-        if (result.rows.length !== 0) {
-          return true;
-        }
-        return false;
+        return result.rows.length === 0 ? false : true;
       })
       .catch((err) => err);
   };
