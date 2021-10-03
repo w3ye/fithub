@@ -1,54 +1,57 @@
 import "./center.scss";
 import Share from "./Share";
-import Post from "./Post";
+import Posts from "./Posts";
 import GroupButton from "./GroupButton";
 import { TokenUserContext } from "../../App/App";
 import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 
-export default function CenterGroupFeed() {
+export default function CenterGroupFeed(props) {
   const { userState } = useContext(TokenUserContext);
   const [user] = userState;
-  console.log("what is user", user);
+  const { setGroup, group } = props;
+  const [groupData, setGroupData] = useState("");
 
-  // const parsedGroups =
-  //   user.user &&
-  //   user.groups.map((group) => (
-  //     <GroupButton
-  //       key={group.id}
-  //       group_id={group.group_id}
-  //       group={group}
-  //       title={group.title}
-  //       selectGroup={selectGroup}
-  //       user={user}
-  //     />
-  //   ));
+  console.log("what is group and props in CenterGroupFeed", props);
+
+  useEffect(() => console.log("this is currently in groupData", groupData), [
+    groupData,
+  ]);
 
   useEffect(() => {
-    Promise.all([axios.get(`/api/posts/${user.groups[0].id}`)]).then((all) => {
-      const groupid = all[0].data;
-      console.log("groupId ----", groupid);
-    });
+    getWorkoutIds(group.id);
   }, []);
+
+  function getWorkoutIds(id) {
+    if (id) {
+      axios
+        .get(`/api/posts/${group.id}`)
+        .then((response) => {
+          setGroupData(response.data);
+          console.log("response.data", response.data);
+          console.log("groupData ----", groupData);
+        })
+        .catch((err) => {
+          return err;
+        });
+    }
+  }
 
   // show comments
   // show the post
 
-  // const parsedPosts =
-  //   user.workouts &&
-  //   user.workouts.map((workout) => (
-  //     <Post
-  //       key={workout.id}
-  //       id={workout.id}
-  //       title={workout.title}
-  //       exercises={workout.exercises}
-  //     />
-  //   ));
+  const parsedWorkoutId =
+    groupData &&
+    groupData.map((post) => (
+      <Posts key={post.id} workoutId={post.workout_id} />
+    ));
+
   return (
     <>
       <div className="center">
         <div className="feed">
           <Share />
+          {parsedWorkoutId}
           <div className="feedWrapper"></div>
         </div>
       </div>

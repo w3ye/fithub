@@ -84,7 +84,11 @@ export default function Home(props) {
           <CenterGroupFeed setGroup={setGroup} group={group} />
         )}
         {panels === "groupfeed" && (
-          <RightbarGroupFeed group={group} setPanels={setPanels} />
+          <RightbarGroupFeed
+            group={group}
+            setGroup={setGroup}
+            setPanels={setPanels}
+          />
         )}
       </div>
     </>

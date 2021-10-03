@@ -2,32 +2,33 @@ import { TokenUserContext } from "../../App/App";
 import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 
-export default function Post() {
+export default function Posts(props) {
   const { userState } = useContext(TokenUserContext);
   const [user] = userState;
-  console.log("what is user", user);
+  const { workoutId } = props;
+  const [post, setPost] = useState("");
+  console.log("what in POST", props);
 
   useEffect(() => {
-    Promise.all([axios.get(`/api/posts/comments/`)]);
+    axios
+      .get(`/api/posts/comments/${workoutId}`)
+      .then((response) => {
+        setPost(response.data);
+      })
+      .catch((err) => {
+        return err;
+      });
   }, []);
 
-  // const parsedPosts =
-  //   user.workouts &&
-  //   user.workouts.map((workout) => (
-  //     <PostItem
-  //       key={workout.id}
-  //       id={workout.id}
-  //       title={workout.title}
-  //       exercises={workout.exercises}
-  //     />
-  //   ));
+  // show comments
+  // show the post
 
   return (
     <div className="post">
       <div className="postWrapper">
         <div className="postTop">
-          <div className="postTopLeft">{user.workouts[0].id}</div>
-          <div className="postTopRight"></div>
+          <div className="postTopLeft">{workoutId}</div>
+          <div className="postTopRight">{post.message}</div>
           <div className="postCenter">
             <div className="postBottom"></div>
           </div>

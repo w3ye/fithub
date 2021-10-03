@@ -5,7 +5,7 @@ import GroupListItem from "../GroupList/GroupListItem";
 import CreateGroup from "./CreateGroup";
 
 export default function CenterGroups(props) {
-  const { setGroup } = props;
+  const { setGroup, group } = props;
   const { userState } = useContext(TokenUserContext);
 
   const [user] = userState;
