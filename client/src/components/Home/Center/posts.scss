@@ -1,0 +1,36 @@
+.post {
+  width: 90%;
+  margin-top: 10px;
+  margin-left: 5%;
+  border: purple solid 2px;
+  .postTop {
+    display: flex;
+    .postTopLeft {
+      text-align: center;
+      padding: 10%;
+      margin: 5%;
+      border: green 2px dotted;
+    }
+    .postTopRight {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      padding: 5%;
+      margin: 5%;
+      border: blue 2px dotted;
+      .like-button:hover {
+        color: blue;
+        cursor: pointer;
+      }
+    }
+  }
+  .postBottom {
+    width: 90%;
+    margin-top: 10px;
+    margin-left: 5%;
+    border: purple dotted 2px;
+  }
+  .liked {
+    color: rgb(4, 0, 255);
+  }
+}

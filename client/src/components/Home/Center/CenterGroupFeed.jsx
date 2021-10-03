@@ -26,8 +26,8 @@ export default function CenterGroupFeed(props) {
         .get(`/api/posts/${group.group_id}`)
         .then((response) => {
           setGroupData(response.data);
-          console.log("response.data", response.data);
-          console.log("groupData ----", groupData);
+          // console.log("response.data", response.data);
+          // console.log("groupData ----", groupData);
         })
         .catch((err) => {
           return err;
@@ -46,7 +46,7 @@ export default function CenterGroupFeed(props) {
       <div className="center">
         {/* {group.title} */}
         <div className="feed">
-          <Share />
+          {/* <Share /> */}
           {parsedWorkoutId}
           <div className="feedWrapper"></div>
         </div>
