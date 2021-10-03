@@ -1,13 +1,10 @@
 import React, { useContext } from "react";
-import "./center.scss";
 import { TokenUserContext } from "../../App/App";
-import GroupListItem from "../GroupList/GroupListItem";
-import CreateGroup from "./CreateGroup";
+import RightGroupFeedListItem from "./RightGroupFeedListItem";
 
-export default function CenterGroups(props) {
-  const { setGroup, group } = props;
+export default function RightbarGroupFeed(props) {
+  const { setGroup } = props;
   const { userState } = useContext(TokenUserContext);
-
   const [user] = userState;
 
   const selectGroup = function (group) {
@@ -17,7 +14,7 @@ export default function CenterGroups(props) {
   const parsedGroups =
     user.user &&
     user.groups.map((group) => (
-      <GroupListItem
+      <RightGroupFeedListItem
         key={group.id}
         group_id={group.group_id}
         group={group}
@@ -28,13 +25,15 @@ export default function CenterGroups(props) {
     ));
 
   return (
-    <div className="center container">
-      <h2>
-        {user.user ? user.user.first_name : ""}{" "}
-        {user.user ? user.user.last_name : ""}'s Groups
-      </h2>
-      <CreateGroup />
-      <ul className="groupsContainer">{user.user ? parsedGroups : ""}</ul>
-    </div>
+    <>
+      <div className="right container">
+        <div>This is the rightbarGroupFeed</div>
+        <h2>
+          {user.user ? user.user.first_name : ""}{" "}
+          {user.user ? user.user.last_name : ""}'s Groups
+        </h2>
+        <ul className="groupsContainer">{user.user ? parsedGroups : ""}</ul>
+      </div>
+    </>
   );
 }

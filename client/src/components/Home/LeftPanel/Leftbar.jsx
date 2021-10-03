@@ -44,6 +44,15 @@ export default function Leftbar(props) {
             <FaUserFriends className="leftbarIcon" />
             <span className="leftbarListItemText">Groups</span>
           </li>
+          <li
+            className="leftbarListItem"
+            onClick={() => {
+              setPanels("groupfeed");
+            }}
+          >
+            <FaHome className="leftbarIcon" />
+            <span className="leftbarListItemText">Group Feed</span>
+          </li>
         </ul>
       </div>
       leftbar
