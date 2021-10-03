@@ -45,11 +45,13 @@ export default function RightbarWorkoutListItem(props) {
     const listGroupId = user.groups.map((element) => element.group_id);
 
     for (const i of listGroupId) {
-      console.log("i", i);
       axios
         .post("api/posts/new", { workoutId: shareWorkout.id, groupId: i })
         .then((result) => {
-          console.log(result);
+          console.log("result...", result);
+          if (result.data.error) {
+            console.log(result.data.error);
+          }
         })
         .catch((err) => {
           return err;
