@@ -1,31 +1,57 @@
-import Modal from 'react-bootstrap/Modal'
-import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
-import { useState } from 'react'
-import './RightbarWorkoutListItem.scss'
-import WorkoutListItemDescription from './WorkoutListItemDescription'
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import { useState, useEffect } from "react";
+import "./RightbarWorkoutListItem.scss";
+import WorkoutListItemDescription from "./WorkoutListItemDescription";
+import axios from "axios";
+import ModalWorkout from "./ModalWorkout";
 
-export default function RightbarWorkoutListItem (props) {
-  const { title, exercises } = props
-  const [fullscreen, setFullscreen] = useState(true)
-  const [show, setShow] = useState(false)
-  const [index, setIndex] = useState(0)
+export default function RightbarWorkoutListItem(props) {
+  const {
+    title,
+    exercises,
+    id,
+    responseData,
+    setResponseData,
+    setPanels,
+    setEditWorkoutObj,
+    setWorkout,
+  } = props;
+  const [fullscreen, setFullscreen] = useState(true);
+  const [show, setShow] = useState(false);
 
-  function handleShow (breakpoint) {
-    setFullscreen(breakpoint)
-    setShow(true)
+  function handleShow(breakpoint) {
+    setFullscreen(breakpoint);
+    setShow(true);
   }
 
-  function previous () {
-    if (exercises.length < 2) {
-      return
-    }
-    setIndex(prev => prev - 1)
+  function handleEdit(id) {
+    const editWorkout = responseData.find((x) => x.id === id);
+
+    setPanels("edit");
+    setEditWorkoutObj(editWorkout);
+    setWorkout(editWorkout.exercises);
   }
 
-  function next () {
-    setIndex(prev => prev + 1)
+  function handleDelete(id) {
+    const remainingWorkouts = responseData.filter(
+      (workout) => workout.id !== id
+    );
+    return axios
+      .delete(`/api/workouts/${id}`)
+      .then((result) => {
+        setResponseData(remainingWorkouts);
+        return result;
+      })
+      .catch((err) => {
+        return err;
+      });
   }
+
+  const showModal = (
+    <ModalWorkout key={id} id={id} title={title} exercises={exercises} />
+  );
 
   return (
     <>
@@ -33,57 +59,32 @@ export default function RightbarWorkoutListItem (props) {
         <Card.Header>Featured</Card.Header>
         <Card.Body>
           <Card.Title>{title.toUpperCase()}</Card.Title>
-          <Card.Text>
-            {exercises.map(item => (
-              <WorkoutListItemDescription
-                key={item.id}
-                name={item.name}
-                set={item.set}
-                reps={item.reps}
-              />
-            ))}
-          </Card.Text>
-          <Button variant='primary' onClick={() => handleShow(true)}>
+          {exercises.map((item) => (
+            <WorkoutListItemDescription
+              key={item.id}
+              name={item.name}
+              set={item.set}
+              reps={item.reps}
+            />
+          ))}
+          <Button variant="primary" onClick={() => handleShow(true)}>
             Start Workout
           </Button>
-        </Card.Body>
-      </Card>
-      <Modal show={show} fullscreen={fullscreen} onHide={() => setShow(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>{title}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {exercises.length !== index ? (
-            <>
-              {exercises[index].name}
-              <img src={exercises[index].gifUrl} alt={exercises[index].name} />
-              <div>Set: {exercises[index].set}</div>
-              <div>Reps: {exercises[index].reps}</div>
-            </>
-          ) : (
-            <>
-              <div> You did it! </div>
-              <img
-                src='https://media1.giphy.com/media/BqijAlej4RV7O/giphy.gif?cid=ecf05e47nf3oiylzaxxzlk98mzb6t8nskx84noqgwicheqhf&rid=giphy.gif&ct=g'
-                alt='mario-party'
-              />
-            </>
-          )}
-          {index > 0 && (
-            <Button className='me-2' onClick={() => previous()}>
-              Previous
-            </Button>
-          )}
-          {exercises.length !== index && (
-            <Button className='me-2' onClick={() => next()}>
-              Next
-            </Button>
-          )}
-          <Button className='me-2' onClick={() => setIndex(0)}>
-            Restart
+          <Button variant="primary" onClick={() => handleEdit(id)}>
+            Edit
           </Button>
-        </Modal.Body>
-      </Modal>
+          <Button variant="primary" onClick={() => handleDelete(id)}>
+            Delete
+          </Button>
+        </Card.Body>
+        <Modal
+          show={show}
+          fullscreen={fullscreen}
+          onHide={() => setShow(false)}
+        >
+          {showModal}
+        </Modal>
+      </Card>
     </>
-  )
+  );
 }

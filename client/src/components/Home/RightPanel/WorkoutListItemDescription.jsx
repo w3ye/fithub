@@ -1,14 +1,13 @@
-import Card from 'react-bootstrap/esm/Card'
-import './WorkoutListItemDescription.scss'
+import "./WorkoutListItemDescription.scss";
 
-export default function WorkoutListItemDescription (props) {
-  const { name, set, reps } = props
+export default function WorkoutListItemDescription(props) {
+  const { name, set, reps } = props;
   return (
-    <p>
+    <div>
       {name}
       <div>
         Set: {set} Reps: {reps}
       </div>
-    </p>
-  )
+    </div>
+  );
 }

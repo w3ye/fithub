@@ -1,12 +1,12 @@
 import WorkoutListItem from "./WorkoutListItem";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { TokenUserContext } from "../../App/App";
 import axios from "axios";
 
 export default function WorkoutList(props) {
   const [error, setError] = useState("");
   const [name, setName] = useState("");
-  const { workout, setWorkout } = props;
+  const { workout, setWorkout, panels, setPanels, editWorkoutObj } = props;
   const { userState } = useContext(TokenUserContext);
   const [user] = userState;
 
@@ -23,6 +23,20 @@ export default function WorkoutList(props) {
     } else if (workout.length === 0) {
       setError("Please add some exercises");
       return;
+    }
+    if (panels === "edit") {
+      return axios
+        .patch(`/api/workouts/${editWorkoutObj.id}`, {
+          title: name,
+          exercises: workout,
+        })
+        .then((result) => {
+          setName("");
+          setWorkout([]);
+          setError("");
+          setPanels("workouts");
+          return result;
+        });
     } else {
       return axios
         .post("/api/workouts", {
@@ -31,6 +45,10 @@ export default function WorkoutList(props) {
           exercises: workout,
         })
         .then((result) => {
+          setName("");
+          setWorkout([]);
+          setError("");
+          setPanels("workouts");
           return result;
         })
         .catch((err) => {
@@ -41,17 +59,38 @@ export default function WorkoutList(props) {
 
   return (
     <>
-      <h1>New Workout</h1>
-      <form autoComplete="off">
-        <input
-          className="workout-name"
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          type="text"
-          placeholder="New workout name"
-        />
-      </form>
-      <section className="workout__validation">{error}</section>
+      {panels === "edit" && (
+        <>
+          <h1>Edit Workout</h1>
+          <form autoComplete="off">
+            <h5>Name of Workout: </h5>
+            <input
+              className="workout-name"
+              defaultValue={editWorkoutObj.title}
+              onChange={(event) => setName(event.target.value)}
+              type="text"
+              placeholder="New workout name"
+            />
+          </form>
+        </>
+      )}
+
+      {panels === "home" && (
+        <>
+          <h1>New Workout</h1>
+          <form autoComplete="off">
+            <h5>Name of Workout: </h5>
+            <input
+              className="workout-name"
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+              type="text"
+              placeholder="New workout name"
+            />
+          </form>
+          <section className="workout__validation">{error}</section>
+        </>
+      )}
       {workout.map((exercise) => (
         <WorkoutListItem
           key={exercise.id}
