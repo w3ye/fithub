@@ -1,4 +1,39 @@
 module.exports = (db) => {
+  const newPost = (workoutId, groupId) => {
+    const query = {
+      text: "INSERT INTO workout_groups (workout_id, group_id) VALUES ($1, $2)RETURNING *;",
+      values: [workoutId, groupId],
+    };
+
+    return db
+      .query(query)
+      .then((result) => {
+        return result.rows[0];
+      })
+      .catch((err) => {
+        return err;
+      });
+  };
+
+  /**
+   * Avoid duplicate posts in workout_groups
+   * @param {*} workoutId
+   * @param {*} groupId
+   * @returns {Promise<boolean>} - true if the post exists
+   */
+  const postExist = (workoutId, groupId) => {
+    const query = {
+      text: "SELECT * FROM workout_groups WHERE workout_id = $1, group_id = $2",
+      values: [workoutId, groupId],
+    };
+    return db
+      .query(query)
+      .then((result) => {
+        return result.rows.length === 0 ? false : true;
+      })
+      .catch((err) => err);
+  };
+
   const getGroupWorkouts = (groupId) => {
     const query = {
       text: "SELECT * FROM workout_groups WHERE group_id = $1",
@@ -119,5 +154,7 @@ module.exports = (db) => {
     deleteComment,
     newLikes,
     deleteLike,
+    newPost,
+    postExist,
   };
 };
