@@ -12,6 +12,7 @@ export default function Posts(props) {
   const { workoutId } = props;
   const [post, setPost] = useState("");
   const [likes, setLikes] = useState("");
+  const [comment, setComment] = useState("");
   console.log("what in POST", props);
 
   // useEffect(() => {
@@ -33,6 +34,7 @@ export default function Posts(props) {
     ]).then((all) => {
       // console.log("in the promise", all[1].data);
       setPost(all[0].data);
+      console.log("post", post);
       setLikes(all[1].data);
       const starterLikes = all[1].data;
       starterLikes.forEach((like) => {
@@ -93,26 +95,43 @@ export default function Posts(props) {
     post.map((comment) => (
       <PostMessage
         key={comment.id}
+        comment_id={comment.id}
         userId={comment.user_id}
         message={comment.message}
         avatar={comment.avatar_url}
         first_name={comment.first_name}
         last_name={comment.last_name}
+        setPost={setPost}
+        workoutId={workoutId}
       />
     ));
 
-  console.log(post);
+  function postComment(message) {
+    axios
+      .post("/api/posts/comments/new", {
+        userId: user.user.id,
+        workoutId: workoutId,
+        message: message,
+      })
+      .then((res) => {
+        axios.get(`api/posts/comments/${workoutId}`).then((result) => {
+          setPost(result.data);
+        });
+      })
+      .then(() => {
+        const commentInput = document.getElementById("commentInput");
+        commentInput.value = "";
+      });
+  }
 
-  const postLikes =
-    likes && likes.map((x) => <PostLike key={x.id} userId={x.user_id} />);
+  // const postLikes =
+  //   likes && likes.map((x) => <PostLike key={x.id} userId={x.user_id} />);
 
   return (
     <div className="post">
       <div className="postWrapper">
         <div className="postTop">
-          <div className="postTopLeft">
-            {workoutId} This is a shared workout
-          </div>
+          <div className="postTopLeft">Workout #{workoutId}</div>
           <div className="postTopRight" id={workoutId}>
             <p>{likes.length}</p>
             <div
@@ -127,9 +146,19 @@ export default function Posts(props) {
         </div>
         <div className="postBottom">
           <div className="commentInput">
-            <img alt="" src={user.user.avatar_url} />
-            <input type="text" />
-            <button>Comment</button>
+            <img alt="" src={user.user ? user.user.avatar_url : ""} />
+            <input
+              id="commentInput"
+              type="text"
+              onChange={(event) => setComment(event.target.value)}
+            />
+            <button
+              onClick={() => {
+                postComment(comment);
+              }}
+            >
+              Comment
+            </button>
           </div>
           <div>{comments}</div>
         </div>

@@ -5,6 +5,7 @@
   border: purple solid 2px;
   .postTop {
     display: flex;
+    justify-content: space-between;
     .postTopLeft {
       text-align: center;
       padding: 10%;
@@ -39,11 +40,24 @@
     }
     .postComment {
       background-color: lightgray;
-      margin-top: 10px;
+      margin-top: 5px;
+      margin-bottom: 5px;
       display: flex;
       flex-direction: column;
+      .flex-bar {
+        display: flex;
+        justify-content: space-between;
+      }
+      .delete-button {
+        margin-right: 10px;
+      }
+      .delete-button:hover {
+        color: red;
+        cursor: pointer;
+      }
       .userBar {
         display: flex;
+        padding: 5px;
         img {
           width: 30px;
           height: 30px;
