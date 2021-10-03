@@ -1,6 +1,6 @@
 import { TokenUserContext } from "../../App/App";
 import { useContext, useState, useEffect } from "react";
-import { AiFillLike } from "react-icons/ai";
+import { GiStrong } from "react-icons/gi";
 import "./posts.scss";
 import PostMessage from "./PostMessage";
 import PostLike from "./PostLike";
@@ -107,21 +107,23 @@ export default function Posts(props) {
     ));
 
   function postComment(message) {
-    axios
-      .post("/api/posts/comments/new", {
-        userId: user.user.id,
-        workoutId: workoutId,
-        message: message,
-      })
-      .then((res) => {
-        axios.get(`api/posts/comments/${workoutId}`).then((result) => {
-          setPost(result.data);
+    const commentInput = document.getElementById("commentInput");
+    if (commentInput.value.length) {
+      axios
+        .post("/api/posts/comments/new", {
+          userId: user.user.id,
+          workoutId: workoutId,
+          message: message,
+        })
+        .then((res) => {
+          axios.get(`api/posts/comments/${workoutId}`).then((result) => {
+            setPost(result.data);
+          });
+        })
+        .then(() => {
+          commentInput.value = "";
         });
-      })
-      .then(() => {
-        const commentInput = document.getElementById("commentInput");
-        commentInput.value = "";
-      });
+    }
   }
 
   // const postLikes =
@@ -132,15 +134,16 @@ export default function Posts(props) {
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">Workout #{workoutId}</div>
-          <div className="postTopRight" id={workoutId}>
+          <div
+            className="postTopRight"
+            id={workoutId}
+            onClick={() => {
+              toggleLike();
+            }}
+          >
             <p>{likes.length}</p>
-            <div
-              className="like-button"
-              onClick={() => {
-                toggleLike();
-              }}
-            >
-              <AiFillLike />
+            <div className="like-icon">
+              <GiStrong />
             </div>
           </div>
         </div>

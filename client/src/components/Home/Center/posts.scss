@@ -6,6 +6,7 @@
   .postTop {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     .postTopLeft {
       text-align: center;
       padding: 10%;
@@ -14,15 +15,21 @@
     }
     .postTopRight {
       display: flex;
+      border: solid black 2px;
+      border-radius: 30%;
+      height: 50px;
       align-items: center;
-      text-align: center;
-      padding: 5%;
+      justify-content: space-between;
+      width: 60px;
       margin: 5%;
-      border: blue 2px dotted;
-      .like-button:hover {
-        color: blue;
-        cursor: pointer;
+      p,
+      .like-icon {
+        margin: auto;
       }
+    }
+    .postTopRight:hover {
+      background-color: lightgray;
+      cursor: pointer;
     }
   }
   .postBottom {
@@ -39,6 +46,8 @@
       border-radius: 50%;
     }
     .postComment {
+      border-radius: 30px;
+      padding: 10px;
       background-color: lightgray;
       margin-top: 5px;
       margin-bottom: 5px;
