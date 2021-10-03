@@ -1,4 +1,20 @@
 module.exports = (db) => {
+  const newPost = (workoutId, groupId) => {
+    const query = {
+      text: "INSERT INTO workout_groups (workout_id, group_id) VALUES ($1, $2)RETURNING *;",
+      values: [workoutId, groupId],
+    };
+
+    return db
+      .query(query)
+      .then((result) => {
+        return result.rows[0];
+      })
+      .catch((err) => {
+        return err;
+      });
+  };
+
   const getGroupWorkouts = (groupId) => {
     const query = {
       text: "SELECT * FROM workout_groups WHERE group_id = $1",
@@ -119,5 +135,6 @@ module.exports = (db) => {
     deleteComment,
     newLikes,
     deleteLike,
+    newPost,
   };
 };

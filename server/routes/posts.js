@@ -2,6 +2,17 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (db) => {
+  router.post("/new", (req, res) => {
+    const { workoutId, groupId } = req.body;
+    db.newPost(workoutId, groupId)
+      .then((result) => {
+        res.json({ success: true });
+      })
+      .catch((err) => {
+        res.json({ error: err.message });
+      });
+  });
+
   router.get("/:group_id", (req, res) => {
     const groupId = req.params.group_id;
     db.getGroupWorkouts(groupId)
