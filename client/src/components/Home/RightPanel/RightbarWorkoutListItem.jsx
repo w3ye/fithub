@@ -49,9 +49,9 @@ export default function RightbarWorkoutListItem(props) {
         .post("api/posts/new", { workoutId: shareWorkout.id, groupId: i })
         .then((result) => {
           console.log("result...", result);
-          if (result.data.error) {
-            console.log(result.data.error);
-          }
+          // if (result.data.error) {
+          //   console.log(result.data.error);
+          // }
         })
         .catch((err) => {
           return err;
