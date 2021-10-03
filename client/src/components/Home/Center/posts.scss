@@ -29,6 +29,27 @@
     margin-top: 10px;
     margin-left: 5%;
     border: purple dotted 2px;
+    .commentInput {
+      padding: 10px;
+      border-bottom: solid black 2px;
+    }
+    img {
+      width: 30px;
+      border-radius: 50%;
+    }
+    .postComment {
+      background-color: lightgray;
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      .userBar {
+        display: flex;
+        img {
+          width: 30px;
+          height: 30px;
+        }
+      }
+    }
   }
   .liked {
     color: rgb(4, 0, 255);

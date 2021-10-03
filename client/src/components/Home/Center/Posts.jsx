@@ -34,7 +34,6 @@ export default function Posts(props) {
       // console.log("in the promise", all[1].data);
       setPost(all[0].data);
       setLikes(all[1].data);
-      console.log("ALL", all[1].data);
       const starterLikes = all[1].data;
       starterLikes.forEach((like) => {
         if (like.user_id === user.user.id) {
@@ -75,12 +74,9 @@ export default function Posts(props) {
         let liked = false;
         let currentLike;
         results.data.forEach((like) => {
-          console.log("Each Like", like);
           if (like.user_id === user.user.id) {
             currentLike = like;
             liked = true;
-            console.log("Current Like", currentLike);
-            console.log("Current Like ID", currentLike.id);
           }
         });
         liked ? removeLike(currentLike.id) : addLike();
@@ -99,8 +95,13 @@ export default function Posts(props) {
         key={comment.id}
         userId={comment.user_id}
         message={comment.message}
+        avatar={comment.avatar_url}
+        first_name={comment.first_name}
+        last_name={comment.last_name}
       />
     ));
+
+  console.log(post);
 
   const postLikes =
     likes && likes.map((x) => <PostLike key={x.id} userId={x.user_id} />);
@@ -124,7 +125,14 @@ export default function Posts(props) {
             </div>
           </div>
         </div>
-        <div className="postBottom">{comments}</div>
+        <div className="postBottom">
+          <div className="commentInput">
+            <img alt="" src={user.user.avatar_url} />
+            <input type="text" />
+            <button>Comment</button>
+          </div>
+          <div>{comments}</div>
+        </div>
       </div>
     </div>
   );
