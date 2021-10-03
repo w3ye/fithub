@@ -37,9 +37,6 @@ export default function CenterGroupFeed(props) {
     }
   }
 
-  // show comments
-  // show the post
-
   const parsedWorkoutId =
     groupData &&
     groupData.map((post) => (
