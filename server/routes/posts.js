@@ -68,5 +68,28 @@ module.exports = (db) => {
         res.json({ error: err.message });
       });
   });
+
+  router.post("/likes/new", (req, res) => {
+    const { workoutId, userId } = req.body;
+    db.newLikes(userId, workoutId)
+      .then((result) => {
+        res.json({ success: true });
+      })
+      .catch((err) => {
+        res.json({ error: err.message });
+      });
+  });
+
+  router.delete("/likes/:like_id", (req, res) => {
+    const likeId = req.params.like_id;
+    db.deleteLike(likeId)
+      .then((result) => {
+        res.json({ success: true });
+      })
+      .catch((err) => {
+        res.json({ error: err.message });
+      });
+  });
+
   return router;
 };

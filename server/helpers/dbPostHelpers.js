@@ -84,6 +84,32 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const newLikes = (userId, workoutId) => {
+    const query = {
+      text: `
+        INSERT INTO likes (user_id, workout_id)
+        VALUES ($1, $2)
+        RETURNING *
+      `,
+      values: [userId, workoutId],
+    };
+    return db
+      .query(query)
+      .then((result) => result.rows[0])
+      .catch((err) => err);
+  };
+
+  const deleteLike = (likeId) => {
+    const query = {
+      text: "DELETE FROM likes WHERE id = $1 RETURNING *;",
+      values: [likeId],
+    };
+    return db
+      .query(query)
+      .then((result) => result.rows[0])
+      .catch((err) => err);
+  };
+
   return {
     getGroupWorkouts,
     getCommentsForWorkout,
@@ -91,5 +117,7 @@ module.exports = (db) => {
     newComments,
     updateComments,
     deleteComment,
+    newLikes,
+    deleteLike,
   };
 };
