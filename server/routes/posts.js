@@ -3,7 +3,6 @@ const router = express.Router();
 
 module.exports = (db) => {
   router.post("/new", (req, res) => {
-    // check duplicates
     const { workoutId, groupId } = req.body;
     db.postExist(workoutId, groupId)
       .then((exist) => {
