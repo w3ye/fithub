@@ -12,20 +12,18 @@ export default function CenterGroupFeed(props) {
   const { setGroup, group } = props;
   const [groupData, setGroupData] = useState("");
 
-  console.log("what is group and props in CenterGroupFeed", props);
+  // console.log("what is group and props in CenterGroupFeed", props);
 
-  useEffect(() => console.log("this is currently in groupData", groupData), [
-    groupData,
-  ]);
+  useEffect(() => console.log(""), [groupData]);
 
   useEffect(() => {
-    getWorkoutIds(group.id);
-  }, []);
+    getWorkoutIds();
+  }, [group]);
 
-  function getWorkoutIds(id) {
-    if (id) {
+  function getWorkoutIds() {
+    if (group.group_id) {
       axios
-        .get(`/api/posts/${group.id}`)
+        .get(`/api/posts/${group.group_id}`)
         .then((response) => {
           setGroupData(response.data);
           console.log("response.data", response.data);
@@ -46,6 +44,7 @@ export default function CenterGroupFeed(props) {
   return (
     <>
       <div className="center">
+        {/* {group.title} */}
         <div className="feed">
           <Share />
           {parsedWorkoutId}
