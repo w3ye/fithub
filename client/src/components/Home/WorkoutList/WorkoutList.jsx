@@ -10,6 +10,12 @@ export default function WorkoutList(props) {
   const { userState } = useContext(TokenUserContext);
   const [user] = userState;
 
+  useEffect(() => {
+    if (panels === "edit") {
+      setName(editWorkoutObj.title);
+    }
+  }, []);
+
   /**
    * Sends a post request to /api/workouts containing workout information
    * @param {*} event
@@ -66,7 +72,7 @@ export default function WorkoutList(props) {
             <h5>Name of Workout: </h5>
             <input
               className="workout-name"
-              defaultValue={editWorkoutObj.title}
+              value={name}
               onChange={(event) => setName(event.target.value)}
               type="text"
               placeholder="New workout name"

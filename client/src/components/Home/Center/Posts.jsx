@@ -27,7 +27,7 @@ export default function Posts(props) {
     Promise.all([
       axios.get(`/api/posts/comments/${workoutId}`),
       axios.get(`api/posts/likes/${workoutId}`),
-      // axios.get(`api/workout`),
+      // axios.get(`api/workout/${workoutid}`),
     ]).then((all) => {
       console.log("in the promise", all[1].data);
       setPost(all[0].data);
