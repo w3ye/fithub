@@ -4,11 +4,12 @@ import { useEffect, useContext, useState } from "react";
 import { TokenUserContext } from "../../App/App";
 import { FcApprove, FcDisapprove } from "react-icons/fc";
 
-export default function RightbarFriends() {
+export default function RightbarFriends(props) {
+  const { request, setRequest } = props;
+
   const { userState } = useContext(TokenUserContext);
 
   const [user, setUser] = userState;
-  const [request, setRequest] = useState([]);
   const [rec_email, setRec_Email] = useState("");
   const [message, setMessage] = useState("");
 
@@ -129,9 +130,8 @@ export default function RightbarFriends() {
   return (
     <>
       <div className="rightbar container">
-        <div>
-          <label for="email">Send a Friend Request:</label>
-          <br />
+        <div class="requestForm">
+          <h4>Send a Friend Request:</h4>
           <input
             id="email-input"
             type="email"
@@ -145,8 +145,7 @@ export default function RightbarFriends() {
             name="message"
             placeholder="message"
             onChange={(event) => setMessage(event.target.value)}
-          />{" "}
-          <br />
+          />
           <button
             onClick={() => {
               sendFriendRequest(user.user.id, rec_email, message);
@@ -154,9 +153,9 @@ export default function RightbarFriends() {
           >
             Submit
           </button>
-          <h3>Friend Requests:</h3>
-          <div>{request.length ? parsedRequests : []}</div>
         </div>
+        <h3>Friend Requests:</h3>
+        <div>{request.length ? parsedRequests : []}</div>
       </div>
     </>
   );

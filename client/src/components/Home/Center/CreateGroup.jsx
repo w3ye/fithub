@@ -80,7 +80,7 @@ export default function CreateGroup(props) {
               </Form.Text>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
+            {/* <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Group Image URL</Form.Label>
               <Form.Control
                 type="text"
@@ -92,7 +92,7 @@ export default function CreateGroup(props) {
               <Form.Text className="text-muted">
                 Or just stick with the default look
               </Form.Text>
-            </Form.Group>
+            </Form.Group> */}
             <Button variant="primary" type="submit" onClick={groupSubmit}>
               Create Group
             </Button>

@@ -40,7 +40,7 @@
   }
 }
 .friendRequestItem:hover {
-  box-shadow: 5px 8px #888888;
+  box-shadow: 3px 3px #888888;
   cursor: pointer;
 }
 
@@ -60,4 +60,14 @@
 .friendsContainer .small-size {
   display: flex;
   flex-wrap: wrap;
+}
+
+.requestForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 160px;
+  .button {
+    width: 50%;
+  }
 }
