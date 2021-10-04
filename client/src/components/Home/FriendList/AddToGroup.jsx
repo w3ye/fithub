@@ -17,8 +17,6 @@ export default function AddtoGroup(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  console.log("GROUP", group);
-
   return (
     <>
       <MdGroupAdd
@@ -27,7 +25,7 @@ export default function AddtoGroup(props) {
         type="button"
         alt=""
         size={30}
-        class="addButton"
+        className="addButton"
       />
 
       <Modal show={show} onHide={handleClose}>

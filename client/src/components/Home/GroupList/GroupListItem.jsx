@@ -48,7 +48,6 @@ export default function GroupListItem(props) {
         selectGroup(group);
         removeSelectedClass();
         toggleSelected();
-        console.log("group", group);
       }}
     >
       <div className="groupImage">

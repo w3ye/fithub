@@ -17,8 +17,6 @@ export default function User(props) {
   function updateImage() {
     const id = user.user.id;
     const url = document.getElementById("urlField").value;
-    console.log("id", id);
-    console.log("url", url);
     axios
       .post("/api/users/user_image", { url: url, id: id })
       .then((res) => {
@@ -27,10 +25,6 @@ export default function User(props) {
       })
       .catch((err) => err);
   }
-
-  useEffect(() => {
-    console.log("NOW");
-  }, [user]);
 
   return (
     <>

@@ -17,8 +17,8 @@ export default function Workouts(props) {
         setResponseData(response.data);
         return response;
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((err) => {
+        return err;
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

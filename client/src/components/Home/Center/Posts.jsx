@@ -48,8 +48,9 @@ export default function Posts(props) {
         workoutId: workoutId,
       })
       .then((res) => {
-        console.log(res);
-      });
+        return res;
+      })
+      .catch((err) => err);
   }
 
   function removeLike(like_id) {
@@ -110,12 +111,12 @@ export default function Posts(props) {
           .then((result) => {
             setPost(result.data);
           })
-          .catch((err) => console.log(err));
+          .catch((err) => err);
       })
       .then(() => {
         commentInput.value = "";
       })
-      .catch((error) => console.log(error));
+      .catch((err) => err);
   }
 
   return (
@@ -148,7 +149,6 @@ export default function Posts(props) {
             />
             <button
               onClick={() => {
-                console.log("workout id", workoutId);
                 postComment(state.comment);
               }}
             >

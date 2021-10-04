@@ -20,14 +20,13 @@ export default function RightbarGroups(props) {
     axios
       .post("/api/groups/members", { groupId: group_ID, userId: user.user.id })
       .then((res) => {
-        console.log("Data", res.data);
         setMembers(res.data);
       })
       .catch((err) => {
         return err;
       });
   }
-  console.log("FRIENDS", user.friends);
+
   const parsedFriends =
     user.user &&
     user.friends.map((friend) => (

@@ -24,8 +24,6 @@ export default function RightbarWorkoutListItem(props) {
   const { userState } = useContext(TokenUserContext);
   const [user] = userState;
 
-  console.log("responseData in RightbarWorkoutList Item", responseData);
-
   function handleShow(breakpoint) {
     setFullscreen(breakpoint);
     setShow(true);

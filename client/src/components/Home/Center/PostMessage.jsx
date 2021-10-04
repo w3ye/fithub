@@ -29,7 +29,7 @@ export default function PostMessage(props) {
 
   return (
     <div className="postComment">
-      <div class="flex-bar">
+      <div className="flex-bar">
         <div className="userBar">
           <img alt="" src={avatar} />
           <p>

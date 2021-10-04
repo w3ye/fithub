@@ -31,8 +31,8 @@ export default function ExerciseSearch(props) {
         setResponseData(response.data);
         setSearch("");
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((err) => {
+        return err;
       });
   };
 
@@ -66,8 +66,8 @@ export default function ExerciseSearch(props) {
         .then((response) => {
           setResponseData(response.data);
         })
-        .catch((error) => {
-          console.log(error);
+        .catch((err) => {
+          return err;
         });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchPart]);
