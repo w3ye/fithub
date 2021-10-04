@@ -69,6 +69,7 @@ export default function ExerciseSearch(props) {
         .catch((error) => {
           console.log(error);
         });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchPart]);
 
   const searchByBodyWeight = (event) => {

@@ -30,6 +30,7 @@ export default function Posts(props) {
         }
       });
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function toggleSelected() {

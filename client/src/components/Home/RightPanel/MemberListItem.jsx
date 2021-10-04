@@ -1,6 +1,6 @@
 import "./rightbar.scss";
 
 export default function MemberListItem(props) {
-  const { name, avatar, key } = props;
+  const { avatar } = props;
   return <img className="memberItem" alt="" src={avatar} />;
 }
