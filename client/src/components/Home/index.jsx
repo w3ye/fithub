@@ -10,10 +10,8 @@ import Rightbar from "./RightPanel/Rightbar";
 import Workouts from "./RightPanel/Workouts";
 import RightbarFriends from "./RightPanel/RightbarFriends";
 import RightbarGroups from "./RightPanel/RightbarGroups";
-import RightbarGroupFeed from "./RightPanel/RightbarGroupFeed";
 import CenterGroupFeed from "./Center/CenterGroupFeed";
 import "./index.scss";
-import axios from "axios";
 
 export default function Home(props) {
   const { setMain } = props;

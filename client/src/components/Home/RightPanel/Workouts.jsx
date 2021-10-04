@@ -20,6 +20,7 @@ export default function Workouts(props) {
       .catch((error) => {
         console.log(error);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const parsedResponse =
