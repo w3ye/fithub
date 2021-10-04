@@ -10,6 +10,17 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const getWorkout = (workoutId) => {
+    const query = {
+      text: "SELECT * FROM workouts WHERE id = $1",
+      values: [workoutId],
+    };
+    return db
+      .query(query)
+      .then((result) => result.rows[0])
+      .catch((err) => err);
+  };
+
   const newWorkout = (workout) => {
     const { userId, title, exercises } = workout;
     const query = {
@@ -79,5 +90,6 @@ module.exports = (db) => {
     getWorkoutsByUserId,
     deleteWorkout,
     updateWorkout,
+    getWorkout,
   };
 };
