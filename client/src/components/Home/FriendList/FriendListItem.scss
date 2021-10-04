@@ -1,13 +1,31 @@
 .friendCard {
-  text-align: center;
-  border: blue 2px dotted;
-  width: 50%;
+  display: flex;
+  border: 2px black solid;
+  padding: 10px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px;
+  .addButton {
+    border-radius: 50%;
+  }
+  .addButton:hover {
+    cursor: pointer;
+    background-color: rgb(149, 255, 128);
+  }
+}
+.groupTab {
+  width: 45%;
+  height: 100px;
+}
+.friendTab {
+  width: 45%;
 }
 
 .friendCard:hover {
-  font-weight: bold;
+  box-shadow: 3px 3px #888888;
   cursor: pointer;
-  background-color: lightgray;
 }
 
 .friendImage {
@@ -20,6 +38,7 @@
   padding: 5px;
 }
 
-.cardEmail {
-  padding: 5px;
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
 }

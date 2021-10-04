@@ -8,12 +8,40 @@
 }
 
 .friendRequestItem {
-  border: solid navy 1px;
-  background-color: paleturquoise;
-  img {
-    width: 50px;
+  display: flex;
+  border: 2px black solid;
+  padding: 5px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  .friendButton {
+    width: 15%;
+  }
+  .friendButton:hover {
+    cursor: pointer;
+    background-color: salmon;
     border-radius: 50%;
   }
+  .green:hover {
+    background-color: rgb(149, 255, 128);
+  }
+  img {
+    border-radius: 50%;
+    width: 60px;
+  }
+  .infobox {
+    width: 60%;
+    p {
+      font-size: 14px;
+    }
+  }
+}
+.friendRequestItem:hover {
+  box-shadow: 3px 3px #888888;
+  cursor: pointer;
 }
 
 #memberList {
@@ -27,4 +55,19 @@
   height: 100%;
   padding-right: 2px;
   padding-left: 2px;
+}
+
+.friendsContainer .small-size {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.requestForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 160px;
+  .button {
+    width: 50%;
+  }
 }
