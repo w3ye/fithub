@@ -1,11 +1,12 @@
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import "./RightbarWorkoutListItem.scss";
 import WorkoutListItemDescription from "./WorkoutListItemDescription";
 import axios from "axios";
 import ModalWorkout from "./ModalWorkout";
+import { TokenUserContext } from "../../App/App";
 
 export default function RightbarWorkoutListItem(props) {
   const {
@@ -20,6 +21,10 @@ export default function RightbarWorkoutListItem(props) {
   } = props;
   const [fullscreen, setFullscreen] = useState(true);
   const [show, setShow] = useState(false);
+  const { userState } = useContext(TokenUserContext);
+  const [user] = userState;
+
+  console.log("responseData in RightbarWorkoutList Item", responseData);
 
   function handleShow(breakpoint) {
     setFullscreen(breakpoint);
@@ -32,6 +37,27 @@ export default function RightbarWorkoutListItem(props) {
     setPanels("edit");
     setEditWorkoutObj(editWorkout);
     setWorkout(editWorkout.exercises);
+  }
+
+  function handleShare(id) {
+    const shareWorkout = responseData.find((x) => x.id === id);
+
+    const listGroupId = user.groups.map((element) => element.group_id);
+
+    for (const i of listGroupId) {
+      axios
+        .post("api/posts/new", { workoutId: shareWorkout.id, groupId: i })
+        .then((result) => {
+          console.log("result...", result);
+          // if (result.data.error) {
+          //   console.log(result.data.error);
+          // }
+        })
+        .catch((err) => {
+          return err;
+        });
+    }
+    setPanels("groupfeed");
   }
 
   function handleDelete(id) {
@@ -72,6 +98,9 @@ export default function RightbarWorkoutListItem(props) {
           </Button>
           <Button variant="primary" onClick={() => handleEdit(id)}>
             Edit
+          </Button>
+          <Button variant="primary" onClick={() => handleShare(id)}>
+            Share
           </Button>
           <Button variant="primary" onClick={() => handleDelete(id)}>
             Delete

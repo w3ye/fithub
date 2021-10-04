@@ -4,7 +4,7 @@ import axios from "axios";
 export default function RightGroupFeedListItem(props) {
   const { group, selectGroup, user, group_id } = props;
   const [totalMembers, setTotalMembers] = useState(0);
-  console.log("props in RightGroupFeedListItem", props);
+
   useEffect(() => {
     getMembers(group_id);
   }, []);

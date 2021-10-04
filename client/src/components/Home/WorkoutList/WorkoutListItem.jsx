@@ -1,53 +1,70 @@
-import { useRef } from "react";
-
 export default function WorkoutListItem(props) {
   const { workout, setWorkout, exercise } = props;
-  const setRef = useRef();
-  const repsRef = useRef();
 
-  const handleSets = (event) => {
-    event.preventDefault();
-    setWorkout((prevWorkout) => {
-      let existingExercise = prevWorkout.find(
-        (exe) => exe.name === exercise.name
-      );
-      existingExercise.set = setRef.current.value;
-      return prevWorkout;
-    });
+  const onAddReps = (exercise) => {
+    const exist = workout.find((x) => x.id === exercise.id);
+    setWorkout(
+      workout.map((x) =>
+        x.id === exercise.id ? { ...exist, reps: exist.reps + 1 } : x
+      )
+    );
   };
 
-  const handleReps = (event) => {
-    event.preventDefault();
-    setWorkout((prevWorkout) => {
-      let existingExercise = prevWorkout.find(
-        (exe) => exe.name === exercise.name
+  const onMinusReps = (exercise) => {
+    const exist = workout.find((x) => x.id === exercise.id);
+    if (exist.reps > 1) {
+      setWorkout(
+        workout.map((x) =>
+          x.id === exercise.id ? { ...exist, reps: exist.reps - 1 } : x
+        )
       );
-      existingExercise.reps = repsRef.current.value;
-      return prevWorkout;
-    });
+    }
   };
 
   const onRemove = (exercise) => {
     setWorkout(workout.filter((x) => x.id !== exercise.id));
   };
 
+  const onAddSet = (exercise) => {
+    const exist = workout.find((x) => x.id === exercise.id);
+    setWorkout(
+      workout.map((x) =>
+        x.id === exercise.id ? { ...exist, set: exist.set + 1 } : x
+      )
+    );
+  };
+
+  const onMinusSet = (exercise) => {
+    const exist = workout.find((x) => x.id === exercise.id);
+    if (exist.set > 1) {
+      setWorkout(
+        workout.map((x) =>
+          x.id === exercise.id ? { ...exist, set: exist.set - 1 } : x
+        )
+      );
+    }
+  };
+
   return (
     <div key={exercise.id} className="row">
       <div> {exercise.name}</div>
       <label htmlFor="set">Set:</label>
-      <br />
-      <input ref={setRef} type="text" placeholder={exercise.set}></input>
-      <br />
-      <button type="button" onClick={handleSets}>
-        Change Sets
+      <button onClick={() => onAddSet(exercise)} className="add">
+        +
+      </button>
+      <div>{exercise.set}</div>
+      <button onClick={() => onMinusSet(exercise)} className="minus">
+        -
       </button>
       <br />
       <label htmlFor="reps">Reps:</label>
-      <br />
-      <input ref={repsRef} type="text" placeholder={exercise.reps}></input>
-      <br />
-      <button type="button" onClick={handleReps}>
-        Change Reps
+
+      <button onClick={() => onAddReps(exercise)} className="add">
+        +
+      </button>
+      <div>{exercise.reps}</div>
+      <button onClick={() => onMinusReps(exercise)} className="minus">
+        -
       </button>
       <br />
       <button onClick={() => onRemove(exercise)} className="remove">
