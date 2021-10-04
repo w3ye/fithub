@@ -1,6 +1,8 @@
 import { useState, useContext, useEffect } from "react";
 import { TokenUserContext } from "../../App/App";
 import MemberListItem from "./MemberListItem";
+import FriendListItem from "../FriendList/FriendListItem";
+import AddToGroup from "./AddToGroup";
 import "./rightbar.scss";
 import axios from "axios";
 
@@ -26,6 +28,18 @@ export default function RightbarGroups(props) {
         return err;
       });
   }
+
+  const parsedFriends =
+    user.user &&
+    user.friends.map((friend) => (
+      <FriendListItem
+        class="small-size"
+        key={friend.id}
+        friend_first_name={friend.friend_first_name}
+        friend_last_name={friend.friend_last_name}
+        friend_avatar={friend.friend_avatar}
+      />
+    ));
 
   const parsedMembers =
     user.user &&
@@ -68,13 +82,18 @@ export default function RightbarGroups(props) {
       <div id="memberList">{parsedMembers}</div>
       {group.title && <h5>Add New Member</h5>}
       {group.title && (
-        <input
-          type="email"
-          placeholder="User Email"
-          onChange={(event) => setEmail(event.target.value)}
-        />
+        <>
+          <AddToGroup />
+          <input
+            type="email"
+            placeholder="User Email"
+            onChange={(event) => setEmail(event.target.value)}
+          />
+        </>
       )}
+
       {group.title && <button onClick={addMember}>Add</button>}
+      <ul className="friendsContainer">{user.user ? parsedFriends : ""}</ul>
     </div>
   );
 }
