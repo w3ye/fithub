@@ -7,7 +7,7 @@ import CenterWorkouts from "./Center/CenterWorkouts";
 import CenterFriends from "./Center/CenterFriends";
 import CenterGroups from "./Center/CenterGroups";
 import Rightbar from "./RightPanel/Rightbar";
-import RightbarWorkouts from "./RightPanel/RightbarWorkouts";
+import Workouts from "./RightPanel/Workouts";
 import RightbarFriends from "./RightPanel/RightbarFriends";
 import RightbarGroups from "./RightPanel/RightbarGroups";
 import RightbarGroupFeed from "./RightPanel/RightbarGroupFeed";
@@ -49,7 +49,7 @@ export default function Home(props) {
           <CenterWorkouts panels={panels} setPanels={setPanels} />
         )}
         {panels === "workouts" && (
-          <RightbarWorkouts
+          <Workouts
             panels={panels}
             setPanels={setPanels}
             setId={setId}

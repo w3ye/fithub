@@ -7,7 +7,6 @@ import { useContext, useState } from "react";
 export default function Share() {
   const { userState } = useContext(TokenUserContext);
   const [user] = userState;
-  console.log("what is user", user);
 
   return (
     <div className="share">

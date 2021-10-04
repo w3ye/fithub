@@ -12,10 +12,6 @@ export default function CenterGroupFeed(props) {
   const { setGroup, group } = props;
   const [groupData, setGroupData] = useState("");
 
-  // console.log("what is group and props in CenterGroupFeed", props);
-
-  useEffect(() => console.log(""), [groupData]);
-
   useEffect(() => {
     getWorkoutIds();
   }, [group]);
@@ -26,8 +22,6 @@ export default function CenterGroupFeed(props) {
         .get(`/api/posts/${group.group_id}`)
         .then((response) => {
           setGroupData(response.data);
-          console.log("response.data", response.data);
-          console.log("groupData ----", groupData);
         })
         .catch((err) => {
           return err;
