@@ -2,7 +2,7 @@ import "./share.scss";
 import { MdPermMedia, MdLabel, MdInsertEmoticon } from "react-icons/md";
 import { AiFillHeart } from "react-icons/ai";
 import { TokenUserContext } from "../../App/App";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 export default function Share() {
   const { userState } = useContext(TokenUserContext);
