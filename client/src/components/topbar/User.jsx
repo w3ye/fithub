@@ -5,11 +5,10 @@ import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 
 export default function User(props) {
-  const { logout, setMain, setBar } = props;
+  const { logout } = props;
   const [show, setShow] = useState(false);
 
-  const { tokenState, userState } = useContext(TokenUserContext);
-  const [token, setToken] = tokenState;
+  const { userState } = useContext(TokenUserContext);
   const [user, setUser] = userState;
 
   const handleClose = () => setShow(false);
@@ -18,8 +17,6 @@ export default function User(props) {
   function updateImage() {
     const id = user.user.id;
     const url = document.getElementById("urlField").value;
-    console.log("id", id);
-    console.log("url", url);
     axios
       .post("/api/users/user_image", { url: url, id: id })
       .then((res) => {
@@ -28,10 +25,6 @@ export default function User(props) {
       })
       .catch((err) => err);
   }
-
-  useEffect(() => {
-    console.log("NOW");
-  }, [user]);
 
   return (
     <>
@@ -75,9 +68,6 @@ export default function User(props) {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          {/* <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button> */}
           <Button onClick={logout}>Logout</Button>
         </Modal.Footer>
       </Modal>

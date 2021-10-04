@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { TokenUserContext } from "../../App/App";
-// import User from "../../topbar/User";
 import axios from "axios";
 import { AiFillDelete } from "react-icons/ai";
 
@@ -15,9 +14,8 @@ export default function PostMessage(props) {
     setPost,
     workoutId,
   } = props;
-  const { tokenState, userState } = useContext(TokenUserContext);
-  const [token, setToken] = tokenState;
-  const [user, setUser] = userState;
+  const { userState } = useContext(TokenUserContext);
+  const [user] = userState;
 
   function deleteComment() {
     if (user.user.id === userId) {
@@ -26,13 +24,12 @@ export default function PostMessage(props) {
           setPost(result.data);
         });
       });
-    } else {
     }
   }
 
   return (
     <div className="postComment">
-      <div class="flex-bar">
+      <div className="flex-bar">
         <div className="userBar">
           <img alt="" src={avatar} />
           <p>

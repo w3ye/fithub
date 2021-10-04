@@ -4,7 +4,7 @@ import RightGroupFeedListItem from "./RightGroupFeedListItem";
 import "./rightbar.scss";
 
 export default function RightbarGroupFeed(props) {
-  const { group, setGroup } = props;
+  const { setGroup } = props;
   const { userState } = useContext(TokenUserContext);
   const [user] = userState;
 

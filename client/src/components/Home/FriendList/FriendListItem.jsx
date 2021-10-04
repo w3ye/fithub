@@ -16,12 +16,9 @@ export default function FriendListItem(props) {
 
   function addMember(emailA) {
     const email = emailA;
-    console.log("EMAIL", email);
     axios
       .get(`/api/users/${email}`)
       .then((result) => {
-        console.log("RESULT IS", result);
-
         axios
           .post(`/api/groups/add_group`, {
             groupId: group.group_id,

@@ -7,6 +7,7 @@ export default function RightGroupFeedListItem(props) {
 
   useEffect(() => {
     getMembers(group_id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function depluralize(num, string) {

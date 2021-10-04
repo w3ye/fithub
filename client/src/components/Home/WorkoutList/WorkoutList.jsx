@@ -14,6 +14,7 @@ export default function WorkoutList(props) {
     if (panels === "edit") {
       setName(editWorkoutObj.title);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   /**

@@ -13,20 +13,20 @@ export default function RightbarGroups(props) {
 
   useEffect(() => {
     getMembers(group.group_id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [group]);
 
   function getMembers(group_ID) {
     axios
       .post("/api/groups/members", { groupId: group_ID, userId: user.user.id })
       .then((res) => {
-        console.log("Data", res.data);
         setMembers(res.data);
       })
       .catch((err) => {
         return err;
       });
   }
-  console.log("FRIENDS", user.friends);
+
   const parsedFriends =
     user.user &&
     user.friends.map((friend) => (
@@ -53,28 +53,6 @@ export default function RightbarGroups(props) {
         name={memberObj.first_name + " " + memberObj.last_name}
       />
     ));
-
-  // function addMember() {
-  //   axios
-  //     .get(`/api/users/${email}`)
-  //     .then((result) => {
-  //       axios
-  //         .post(`/api/groups/add_group`, {
-  //           groupId: group.group_id,
-  //           userId: result.data.id,
-  //         })
-  //         .then((res) => {
-  //           setPanels("home");
-  //           setPanels("groups");
-  //         })
-  //         .catch((err) => {
-  //           return err;
-  //         });
-  //     })
-  //     .catch((err) => {
-  //       return err;
-  //     });
-  // }
 
   if (!group.title) {
     return <></>;
