@@ -5,11 +5,10 @@ import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 
 export default function User(props) {
-  const { logout, setMain, setBar } = props;
+  const { logout } = props;
   const [show, setShow] = useState(false);
 
-  const { tokenState, userState } = useContext(TokenUserContext);
-  const [token, setToken] = tokenState;
+  const { userState } = useContext(TokenUserContext);
   const [user, setUser] = userState;
 
   const handleClose = () => setShow(false);
@@ -75,9 +74,6 @@ export default function User(props) {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          {/* <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button> */}
           <Button onClick={logout}>Logout</Button>
         </Modal.Footer>
       </Modal>
