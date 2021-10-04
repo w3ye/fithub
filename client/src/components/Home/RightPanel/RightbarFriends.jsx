@@ -81,6 +81,7 @@ export default function RightbarFriends(props) {
 
   useEffect(() => {
     fetchFRequests(user.user ? user.user.id : 0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {}, [request]);
