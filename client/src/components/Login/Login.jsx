@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import "./Login.scss";
 import { TokenUserContext } from "../App/App";
 import axios from "axios";
