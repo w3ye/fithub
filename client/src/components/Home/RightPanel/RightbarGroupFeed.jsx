@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { TokenUserContext } from "../../App/App";
 import RightGroupFeedListItem from "./RightGroupFeedListItem";
+import "./rightbar.scss";
 
 export default function RightbarGroupFeed(props) {
-  const { setGroup } = props;
+  const { group, setGroup } = props;
   const { userState } = useContext(TokenUserContext);
   const [user] = userState;
 

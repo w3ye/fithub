@@ -6,7 +6,7 @@ import axios from "axios";
 export default function CenterWorkouts() {
   const { userState } = useContext(TokenUserContext);
   const [user] = userState;
-  console.log("what is user", user);
+  // console.log("what is user", user);
 
   return (
     <>
