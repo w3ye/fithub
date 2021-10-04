@@ -6,7 +6,7 @@ import axios from "axios";
 import User from "./User";
 
 export default function Topbar(props) {
-  const { setMain } = props;
+  const { setMain, request } = props;
 
   const { tokenState, userState } = useContext(TokenUserContext);
   const [token, setToken] = tokenState;
@@ -67,9 +67,11 @@ export default function Topbar(props) {
         <div className="tobarIconItem">
           <MdChat />
         </div> */}
-        <div className="tobarIconItem">
-          <MdNotifications />
-        </div>
+        {/* {request.length && (
+          <div className="tobarIconItem">
+            <MdNotifications />
+          </div>
+        )} */}
         <User logout={logout} />
       </div>
       {/* </div> */}
