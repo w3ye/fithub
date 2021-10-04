@@ -1,7 +1,7 @@
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import "./RightbarWorkoutListItem.scss";
 import WorkoutListItemDescription from "./WorkoutListItemDescription";
 import axios from "axios";
@@ -48,10 +48,7 @@ export default function RightbarWorkoutListItem(props) {
       axios
         .post("api/posts/new", { workoutId: shareWorkout.id, groupId: i })
         .then((result) => {
-          console.log("result...", result);
-          // if (result.data.error) {
-          //   console.log(result.data.error);
-          // }
+          return result;
         })
         .catch((err) => {
           return err;
