@@ -31,8 +31,8 @@ export default function ExerciseSearch(props) {
         setResponseData(response.data);
         setSearch("");
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((err) => {
+        return err;
       });
   };
 
@@ -66,9 +66,10 @@ export default function ExerciseSearch(props) {
         .then((response) => {
           setResponseData(response.data);
         })
-        .catch((error) => {
-          console.log(error);
+        .catch((err) => {
+          return err;
         });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchPart]);
 
   const searchByBodyWeight = (event) => {
@@ -122,7 +123,6 @@ export default function ExerciseSearch(props) {
             Search
           </button>
         </form>
-        <ul>{parsedResponse}</ul>
         <div id="exerciseStorage"></div>
       </div>
       <div>
@@ -155,6 +155,7 @@ export default function ExerciseSearch(props) {
           Body Weight
         </button>
       </div>
+      <ul>{parsedResponse}</ul>
     </>
   );
 }

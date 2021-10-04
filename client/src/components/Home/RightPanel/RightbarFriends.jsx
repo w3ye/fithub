@@ -71,7 +71,7 @@ export default function RightbarFriends(props) {
       axios
         .post(`/api/friend_requests`, { sender_id, reciever_id, message })
         .then((result) => {
-          console.log("Result", result);
+          return result;
         })
         .catch((err) => {
           return err;
@@ -81,6 +81,7 @@ export default function RightbarFriends(props) {
 
   useEffect(() => {
     fetchFRequests(user.user ? user.user.id : 0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {}, [request]);
@@ -130,7 +131,7 @@ export default function RightbarFriends(props) {
   return (
     <>
       <div className="rightbar container">
-        <div class="requestForm">
+        <div className="requestForm">
           <h4>Send a Friend Request:</h4>
           <input
             id="email-input"

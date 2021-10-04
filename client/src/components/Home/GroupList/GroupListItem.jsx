@@ -1,11 +1,6 @@
 import { useState, useEffect } from "react";
 
 import "./GroupListItem.scss";
-import Card from "react-bootstrap/Card";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import ListGroup from "react-bootstrap/ListGroup";
-import ListGroupItem from "react-bootstrap/ListGroupItem";
 import axios from "axios";
 
 export default function GroupListItem(props) {
@@ -14,6 +9,7 @@ export default function GroupListItem(props) {
 
   useEffect(() => {
     getMembers(group_id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function depluralize(num, string) {
@@ -52,7 +48,6 @@ export default function GroupListItem(props) {
         selectGroup(group);
         removeSelectedClass();
         toggleSelected();
-        console.log("group", group);
       }}
     >
       <div className="groupImage">

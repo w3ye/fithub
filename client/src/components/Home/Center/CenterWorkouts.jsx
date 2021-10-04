@@ -1,13 +1,6 @@
 import "./center.scss";
-import { TokenUserContext } from "../../App/App";
-import { useContext, useState, useEffect } from "react";
-import axios from "axios";
 
-export default function RightWorkouts() {
-  const { userState } = useContext(TokenUserContext);
-  const [user] = userState;
-  // console.log("what is user", user);
-
+export default function CenterWorkouts() {
   return (
     <>
       <div className="center">
