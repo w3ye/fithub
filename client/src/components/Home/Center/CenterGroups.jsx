@@ -7,7 +7,6 @@ import CreateGroup from "./CreateGroup";
 export default function CenterGroups(props) {
   const { setGroup, panels } = props;
   const { userState } = useContext(TokenUserContext);
-
   const [user] = userState;
 
   const selectGroup = (group) => {

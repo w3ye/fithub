@@ -82,6 +82,7 @@ export default function CreateGroup(props) {
               </Form.Text>
             </Form.Group>
 
+            {/* For group pic */}
             {/* <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Group Image URL</Form.Label>
               <Form.Control
