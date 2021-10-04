@@ -1,8 +1,10 @@
+@use "../../App/utilities/colors" as c;
+
 .post {
   width: 90%;
   margin-top: 10px;
   margin-left: 5%;
-  border: purple solid 2px;
+  border: c.$secondary solid 2px;
   .postTop {
     display: flex;
     justify-content: space-between;
@@ -11,11 +13,11 @@
       text-align: center;
       padding: 10%;
       margin: 5%;
-      border: green 2px dotted;
+      border: c.$dark 2px dotted;
     }
     .postTopRight {
       display: flex;
-      border: solid black 2px;
+      border: solid c.$dark 2px;
       border-radius: 30%;
       height: 50px;
       align-items: center;
@@ -28,7 +30,7 @@
       }
     }
     .postTopRight:hover {
-      background-color: lightgray;
+      background-color: c.$someLight;
       cursor: pointer;
     }
   }
@@ -36,10 +38,10 @@
     width: 90%;
     margin-top: 10px;
     margin-left: 5%;
-    border: purple dotted 2px;
+    border: c.$secondary dotted 2px;
     .commentInput {
       padding: 10px;
-      border-bottom: solid black 2px;
+      border-bottom: solid c.$dark 2px;
     }
     img {
       width: 30px;
@@ -48,7 +50,7 @@
     .postComment {
       border-radius: 30px;
       padding: 10px;
-      background-color: lightgray;
+      background-color: c.$someLight;
       margin-top: 5px;
       margin-bottom: 5px;
       display: flex;
@@ -61,7 +63,7 @@
         margin-right: 10px;
       }
       .delete-button:hover {
-        color: red;
+        color: c.$primary;
         cursor: pointer;
       }
       .userBar {
@@ -75,6 +77,7 @@
     }
   }
   .liked {
-    color: rgb(4, 0, 255);
+    color: c.$veryLight;
+    background-color: c.$primary;
   }
 }
