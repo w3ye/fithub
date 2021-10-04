@@ -13,7 +13,6 @@ export default function Posts(props) {
   const [post, setPost] = useState("");
   const [likes, setLikes] = useState("");
   const [comment, setComment] = useState("");
-  console.log("what in POST", props);
 
   // useEffect(() => {
   //   axios
@@ -34,7 +33,6 @@ export default function Posts(props) {
     ]).then((all) => {
       // console.log("in the promise", all[1].data);
       setPost(all[0].data);
-      console.log("post", post);
       setLikes(all[1].data);
       const starterLikes = all[1].data;
       starterLikes.forEach((like) => {
@@ -108,22 +106,24 @@ export default function Posts(props) {
 
   function postComment(message) {
     const commentInput = document.getElementById("commentInput");
-    if (commentInput.value.length) {
-      axios
-        .post("/api/posts/comments/new", {
-          userId: user.user.id,
-          workoutId: workoutId,
-          message: message,
-        })
-        .then((res) => {
-          axios.get(`api/posts/comments/${workoutId}`).then((result) => {
+    axios
+      .post("/api/posts/comments/new", {
+        userId: user.user.id,
+        workoutId: workoutId,
+        message: message,
+      })
+      .then((res) => {
+        axios
+          .get(`api/posts/comments/${workoutId}`)
+          .then((result) => {
             setPost(result.data);
-          });
-        })
-        .then(() => {
-          commentInput.value = "";
-        });
-    }
+          })
+          .catch((err) => console.log(err));
+      })
+      .then(() => {
+        commentInput.value = "";
+      })
+      .catch((error) => console.log(error));
   }
 
   // const postLikes =
@@ -157,6 +157,7 @@ export default function Posts(props) {
             />
             <button
               onClick={() => {
+                console.log("workout id", workoutId);
                 postComment(comment);
               }}
             >

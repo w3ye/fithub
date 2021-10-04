@@ -22,8 +22,7 @@ export default function PostMessage(props) {
   function deleteComment() {
     if (user.user.id === userId) {
       axios.delete(`/api/posts/comments/${comment_id}`).then((res) => {
-        console.log(res);
-        axios.get(`api/posts/comments/${workoutId}`).then((result) => {
+        axios.get(`/api/posts/comments/${workoutId}`).then((result) => {
           setPost(result.data);
         });
       });
