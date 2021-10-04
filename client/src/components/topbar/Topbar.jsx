@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
+import { TokenUserContext } from "../App/App";
 import "./topbar.scss";
 import { MdNotifications } from "react-icons/md";
-import { TokenUserContext } from "../App/App";
 import axios from "axios";
 import User from "./User";
 

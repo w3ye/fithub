@@ -47,7 +47,7 @@ module.exports = (db) => {
 
   const getCommentsForWorkout = (workoutId) => {
     const query = {
-      text: "SELECT * FROM comments WHERE workout_id = $1",
+      text: "SELECT * FROM user_comments WHERE workout_id = $1",
       values: [workoutId],
     };
     return db

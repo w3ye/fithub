@@ -40,18 +40,19 @@ export default function GroupListItem(props) {
   }
 
   function toggleSelected() {
-    const element = document.getElementById(group.group_id);
+    const element = document.getElementById("G" + group.group_id);
     element.classList.toggle("selected");
   }
 
   return (
     <div
-      id={group.group_id}
+      id={"G" + group.group_id}
       className="groupCard"
       onClick={() => {
         selectGroup(group);
         removeSelectedClass();
         toggleSelected();
+        console.log("group", group);
       }}
     >
       <div className="groupImage">

@@ -37,10 +37,10 @@ export default function CenterGroupFeed(props) {
 
   return (
     <>
-      <div className="center">
+      <div className="center group-feed">
         {/* {group.title} */}
         <div className="feed">
-          <Share />
+          {/* <Share /> */}
           {parsedWorkoutId}
           <div className="feedWrapper"></div>
         </div>

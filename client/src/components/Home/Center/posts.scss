@@ -1,0 +1,80 @@
+.post {
+  width: 90%;
+  margin-top: 10px;
+  margin-left: 5%;
+  border: purple solid 2px;
+  .postTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .postTopLeft {
+      text-align: center;
+      padding: 10%;
+      margin: 5%;
+      border: green 2px dotted;
+    }
+    .postTopRight {
+      display: flex;
+      border: solid black 2px;
+      border-radius: 30%;
+      height: 50px;
+      align-items: center;
+      justify-content: space-between;
+      width: 60px;
+      margin: 5%;
+      p,
+      .like-icon {
+        margin: auto;
+      }
+    }
+    .postTopRight:hover {
+      background-color: lightgray;
+      cursor: pointer;
+    }
+  }
+  .postBottom {
+    width: 90%;
+    margin-top: 10px;
+    margin-left: 5%;
+    border: purple dotted 2px;
+    .commentInput {
+      padding: 10px;
+      border-bottom: solid black 2px;
+    }
+    img {
+      width: 30px;
+      border-radius: 50%;
+    }
+    .postComment {
+      border-radius: 30px;
+      padding: 10px;
+      background-color: lightgray;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      display: flex;
+      flex-direction: column;
+      .flex-bar {
+        display: flex;
+        justify-content: space-between;
+      }
+      .delete-button {
+        margin-right: 10px;
+      }
+      .delete-button:hover {
+        color: red;
+        cursor: pointer;
+      }
+      .userBar {
+        display: flex;
+        padding: 5px;
+        img {
+          width: 30px;
+          height: 30px;
+        }
+      }
+    }
+  }
+  .liked {
+    color: rgb(4, 0, 255);
+  }
+}
