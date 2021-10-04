@@ -2,6 +2,7 @@ import "./rightbar.scss";
 import axios from "axios";
 import { useEffect, useContext, useState } from "react";
 import { TokenUserContext } from "../../App/App";
+import { FcApprove, FcDisapprove } from "react-icons/fc";
 
 export default function RightbarFriends() {
   const { userState } = useContext(TokenUserContext);
@@ -86,24 +87,41 @@ export default function RightbarFriends() {
   let parsedRequests = request.map((req) => {
     return (
       <div className="friendRequestItem">
+        <FcApprove
+          size={50}
+          className="friendButton green"
+          onClick={() => {
+            addNewFriend(req.sender_id, req.reciever_id);
+            resolveRequest(req.id);
+          }}
+        />
         <img src={req.sender_avatar} alt="" />
-        <h5>{req.sender_first_name + " " + req.sender_last_name}</h5>
-        <p>{req.message}</p>
-        <button
+        <div className="infobox">
+          <h6>{req.sender_first_name + " " + req.sender_last_name}</h6>
+          <p>{req.message}</p>
+        </div>
+        {/* <button
           onClick={() => {
             addNewFriend(req.sender_id, req.reciever_id);
             resolveRequest(req.id);
           }}
         >
           ✔
-        </button>
-        <button
+        </button> */}
+        <FcDisapprove
+          size={50}
+          className="friendButton"
+          onClick={() => {
+            resolveRequest(req.id);
+          }}
+        />
+        {/* <button 
           onClick={() => {
             resolveRequest(req.id);
           }}
         >
           X
-        </button>
+        </button> */}
       </div>
     );
   });
