@@ -1,13 +1,21 @@
 import WorkoutListItem from "./WorkoutListItem";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { TokenUserContext } from "../../App/App";
 import axios from "axios";
 
 export default function WorkoutList(props) {
+  const [error, setError] = useState("");
   const [name, setName] = useState("");
-  const { workout, setWorkout } = props;
+  const { workout, setWorkout, panels, setPanels, editWorkoutObj } = props;
   const { userState } = useContext(TokenUserContext);
   const [user] = userState;
+
+  useEffect(() => {
+    if (panels === "edit") {
+      setName(editWorkoutObj.title);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   /**
    * Sends a post request to /api/workouts containing workout information
@@ -16,25 +24,53 @@ export default function WorkoutList(props) {
    */
   const handleSave = (event) => {
     event.preventDefault();
-    return axios
-      .post("/api/workouts", {
-        userId: user.user.id,
-        title: name,
-        groups: user.groups,
-        exercises: workout,
-      })
-      .then((result) => {
-        return result;
-      })
-      .catch((err) => {
-        return err;
-      });
+    if (name === "") {
+      setError("Workout name cannot be blank");
+      return;
+    } else if (workout.length === 0) {
+      setError("Please add some exercises");
+      return;
+    }
+    if (panels === "edit") {
+      return axios
+        .patch(`/api/workouts/${editWorkoutObj.id}`, {
+          title: name,
+          exercises: workout,
+        })
+        .then((result) => {
+          setName("");
+          setWorkout([]);
+          setError("");
+          setPanels("workouts");
+          return result;
+        });
+    } else {
+      return axios
+        .post("/api/workouts", {
+          userId: user.user.id,
+          title: name,
+          exercises: workout,
+        })
+        .then((result) => {
+          setName("");
+          setWorkout([]);
+          setError("");
+          setPanels("workouts");
+          return result;
+        })
+        .catch((err) => {
+          return err;
+        });
+    }
   };
 
   return (
     <>
-      <h1>New Workout</h1>
+      {panels === "edit" && <h1>Edit Workout</h1>}
+
+      {panels === "home" && <h1>New Workout</h1>}
       <form autoComplete="off">
+        <h5>Name of Workout: </h5>
         <input
           className="workout-name"
           value={name}
@@ -43,9 +79,8 @@ export default function WorkoutList(props) {
           placeholder="New workout name"
         />
       </form>
-      <div>
-        {workout.length === 0 && <div> Please add some exercises! </div>}
-      </div>
+      <section className="workout__validation">{error}</section>
+
       {workout.map((exercise) => (
         <WorkoutListItem
           key={exercise.id}

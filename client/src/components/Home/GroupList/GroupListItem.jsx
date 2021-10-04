@@ -1,11 +1,6 @@
 import { useState, useEffect } from "react";
 
 import "./GroupListItem.scss";
-import Card from "react-bootstrap/Card";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import ListGroup from "react-bootstrap/ListGroup";
-import ListGroupItem from "react-bootstrap/ListGroupItem";
 import axios from "axios";
 
 export default function GroupListItem(props) {
@@ -14,6 +9,7 @@ export default function GroupListItem(props) {
 
   useEffect(() => {
     getMembers(group_id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function depluralize(num, string) {
@@ -40,39 +36,35 @@ export default function GroupListItem(props) {
   }
 
   function toggleSelected() {
-    const element = document.getElementById(group.group_id);
+    const element = document.getElementById("G" + group.group_id);
     element.classList.toggle("selected");
   }
 
   return (
-    <Row xs={1} md={2} className="g-4">
-      {Array.from({ length: 1 }).map((_, idx) => (
-        <Col>
-          <Card
-            id={group.group_id}
-            className="groupCard"
-            onClick={() => {
-              selectGroup(group);
-              removeSelectedClass();
-              toggleSelected();
-            }}
-          >
-            <Card.Img
-              variant="top"
-              src="https://theairtravelgroup.com/wp-content/uploads/group-icon-768x768.png"
-              className="groupImage"
-            />
-            <Card.Body>
-              <Card.Title>{group.title}</Card.Title>
-              <ListGroup className="list-group-flush">
-                <ListGroupItem>
-                  {totalMembers + 1} {depluralize(totalMembers + 1, "Member")}
-                </ListGroupItem>
-              </ListGroup>
-            </Card.Body>
-          </Card>
-        </Col>
-      ))}
-    </Row>
+    <div
+      id={"G" + group.group_id}
+      className="groupCard"
+      onClick={() => {
+        selectGroup(group);
+        removeSelectedClass();
+        toggleSelected();
+      }}
+    >
+      <div className="groupImage">
+        <img
+          variant="top"
+          src="https://theairtravelgroup.com/wp-content/uploads/group-icon-768x768.png"
+          className="groupImage"
+          alt=""
+        />
+      </div>
+      <div className="groupText">
+        <h3>{group.title}</h3>
+
+        <h5>
+          {totalMembers + 1} {depluralize(totalMembers + 1, "Member")}
+        </h5>
+      </div>
+    </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import "./Login.scss";
 import { TokenUserContext } from "../App/App";
 import axios from "axios";
@@ -52,13 +52,6 @@ export default function Login(props) {
       })
       .catch((err) => err);
   }
-
-  useEffect(() => {
-    console.log("token", token);
-  }, [token]);
-  useEffect(() => {
-    console.log("user", user);
-  }, [user]);
 
   return (
     <div className="login-wrapper">

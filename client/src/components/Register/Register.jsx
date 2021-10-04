@@ -73,20 +73,10 @@ export default function Register(props) {
         .then((res) => {
           fetchToken();
         })
-        .then(() => {
-          console.log("success");
-        });
+        .catch((err) => err);
     }
-    console.log("err");
     return;
   }
-
-  useEffect(() => {
-    console.log("token", token);
-  }, [token]);
-  useEffect(() => {
-    console.log("user", user);
-  }, [user]);
 
   return (
     <div className="register-wrapper">

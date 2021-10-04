@@ -3,7 +3,8 @@ import "./center.scss";
 import { TokenUserContext } from "../../App/App";
 import FriendListItem from "../FriendList/FriendListItem";
 
-export default function CenterFriends() {
+export default function CenterFriends(props) {
+  const { panels } = props;
   const { userState } = useContext(TokenUserContext);
   const [user] = userState;
 
@@ -15,6 +16,8 @@ export default function CenterFriends() {
         friend_first_name={friend.friend_first_name}
         friend_last_name={friend.friend_last_name}
         friend_email={friend.friend_email}
+        friend_avatar={friend.friend_avatar}
+        panels={panels}
       />
     ));
   return (

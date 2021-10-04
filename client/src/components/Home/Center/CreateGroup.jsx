@@ -6,21 +6,23 @@ import Form from "react-bootstrap/Form";
 import axios from "axios";
 
 export default function CreateGroup(props) {
-  const [show, setShow] = useState(false);
-
   const { userState } = useContext(TokenUserContext);
-
   const [user, setUser] = userState;
+  const [state, setState] = useState({
+    show: false,
+    title: "",
+    url: "",
+  });
 
-  const [title, setTitle] = useState("");
-  const [url, setUrl] = useState("");
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = () => setState((prev) => ({ ...prev, show: false }));
+  const handleShow = () => setState((prev) => ({ ...prev, show: true }));
 
   function groupSubmit() {
     axios
-      .post("/api/groups/new_group", { userId: user.user.id, title })
+      .post("/api/groups/new_group", {
+        userId: user.user.id,
+        title: state.title,
+      })
       .then((res) => {
         const newGroup = res.data.groups[0];
         axios
@@ -54,7 +56,7 @@ export default function CreateGroup(props) {
         +
       </button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={state.show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>
             <h2>Create a New Group</h2>
@@ -72,7 +74,7 @@ export default function CreateGroup(props) {
                 type="text"
                 placeholder="New Group"
                 onChange={(event) => {
-                  setTitle(event.target.value);
+                  setState((prev) => ({ ...prev, title: event.target.value }));
                 }}
               />
               <Form.Text className="text-muted">
@@ -80,19 +82,20 @@ export default function CreateGroup(props) {
               </Form.Text>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
+            {/* For group pic */}
+            {/* <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Group Image URL</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="https://theairtravelgroup.com/wp-content/uploads/group-icon-768x768.png"
                 onChange={(event) => {
-                  setUrl(event.target.value);
+                  setState((prev) => ({ ...prev, url: event.target.value }));
                 }}
               />
               <Form.Text className="text-muted">
                 Or just stick with the default look
               </Form.Text>
-            </Form.Group>
+            </Form.Group> */}
             <Button variant="primary" type="submit" onClick={groupSubmit}>
               Create Group
             </Button>

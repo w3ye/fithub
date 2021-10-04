@@ -5,12 +5,11 @@ import GroupListItem from "../GroupList/GroupListItem";
 import CreateGroup from "./CreateGroup";
 
 export default function CenterGroups(props) {
-  const { setGroup } = props;
+  const { setGroup, panels } = props;
   const { userState } = useContext(TokenUserContext);
-
   const [user] = userState;
 
-  const selectGroup = function (group) {
+  const selectGroup = (group) => {
     setGroup(group);
   };
 
@@ -26,6 +25,15 @@ export default function CenterGroups(props) {
         user={user}
       />
     ));
+
+  if (panels === "groupfeed") {
+    return (
+      <div className="center container slim">
+        <h2>Select Group Feed</h2>
+        <ul className="groupsContainer">{user.user ? parsedGroups : ""}</ul>
+      </div>
+    );
+  }
 
   return (
     <div className="center container">

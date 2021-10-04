@@ -1,0 +1,6 @@
+DROP TABLE IF EXISTS workout_groups CASCADE;
+CREATE TABLE workout_groups (
+  id SERIAL PRIMARY KEY NOT NULL,
+  workout_id INTEGER REFERENCES workouts(id) ON DELETE CASCADE NOT NULL,
+  group_id INTEGER REFERENCES groups(id) ON DELETE CASCADE
+);

@@ -2,6 +2,13 @@ import "./center.scss";
 
 export default function CenterWorkouts() {
   return (
-    <div className="center">I'm the center panel for the workouts tab!</div>
+    <>
+      <div className="center">
+        <div className="feed">
+          This is the centerWorkouts
+          <div className="feedWrapper"></div>
+        </div>
+      </div>
+    </>
   );
 }
