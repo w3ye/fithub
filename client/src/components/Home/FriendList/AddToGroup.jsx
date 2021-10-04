@@ -1,5 +1,4 @@
-import { useState, useContext, useEffect } from "react";
-import { TokenUserContext } from "../../App/App";
+import { useState, useContext } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { MdGroupAdd } from "react-icons/md";
@@ -7,9 +6,6 @@ import "./FriendListItem.scss";
 
 export default function AddtoGroup(props) {
   const {
-    logout,
-    setMain,
-    setBar,
     friend_email,
     addMember,
     friend_first_name,
@@ -17,10 +13,6 @@ export default function AddtoGroup(props) {
     group,
   } = props;
   const [show, setShow] = useState(false);
-
-  const { tokenState, userState } = useContext(TokenUserContext);
-  const [token, setToken] = tokenState;
-  const [user, setUser] = userState;
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);

@@ -122,7 +122,6 @@ export default function ExerciseSearch(props) {
             Search
           </button>
         </form>
-        <ul>{parsedResponse}</ul>
         <div id="exerciseStorage"></div>
       </div>
       <div>
@@ -155,6 +154,7 @@ export default function ExerciseSearch(props) {
           Body Weight
         </button>
       </div>
+      <ul>{parsedResponse}</ul>
     </>
   );
 }
