@@ -12,8 +12,6 @@ export default function CenterGroupFeed(props) {
   const { setGroup, group } = props;
   const [groupData, setGroupData] = useState("");
 
-  useEffect(() => console.log(""), [groupData]);
-
   useEffect(() => {
     getWorkoutIds();
   }, [group]);
