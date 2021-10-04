@@ -14,24 +14,12 @@ export default function Posts(props) {
   const [likes, setLikes] = useState("");
   const [comment, setComment] = useState("");
 
-  // useEffect(() => {
-  //   axios
-  //     .get(`/api/posts/comments/${workoutId}`)
-  //     .then((response) => {
-  //       setPost(response.data);
-  //       console.log("response.data what is it", response.data);
-  //     })
-  //     .catch((err) => {
-  //       return err;
-  //     });
-  // }, []);
   useEffect(() => {
     Promise.all([
       axios.get(`/api/posts/comments/${workoutId}`),
       axios.get(`api/posts/likes/${workoutId}`),
-      // axios.get(`api/workout`),
+      // axios.get(`api/workout/${workoutid}`),
     ]).then((all) => {
-      // console.log("in the promise", all[1].data);
       setPost(all[0].data);
       setLikes(all[1].data);
       const starterLikes = all[1].data;

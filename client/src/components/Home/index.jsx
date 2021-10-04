@@ -24,7 +24,7 @@ export default function Home(props) {
   const [group, setGroup] = useState({});
 
   const onAdd = (exercise) => {
-    setWorkout([...workout, { ...exercise, set: "1", reps: "10" }]);
+    setWorkout([...workout, { ...exercise, set: 1, reps: 10 }]);
   };
 
   return (

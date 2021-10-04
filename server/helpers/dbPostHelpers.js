@@ -23,7 +23,7 @@ module.exports = (db) => {
    */
   const postExist = (workoutId, groupId) => {
     const query = {
-      text: "SELECT * FROM workout_groups WHERE workout_id = $1, group_id = $2",
+      text: "SELECT * FROM workout_groups WHERE workout_id = $1 AND group_id = $2",
       values: [workoutId, groupId],
     };
     return db
