@@ -7,8 +7,6 @@ export default function CenterGroupFeed(props) {
   const { group } = props;
   const [groupData, setGroupData] = useState("");
 
-  useEffect(() => console.log(""), [groupData]);
-
   useEffect(() => {
     if (group.group_id) {
       axios
