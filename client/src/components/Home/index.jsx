@@ -15,7 +15,7 @@ import "./index.scss";
 
 export default function Home(props) {
   const { setMain } = props;
-  const [panels, setPanels] = useState("home");
+  const [panels, setPanels] = useState("groupfeed");
   const [workout, setWorkout] = useState([]);
   const [stateId, setId] = useState("");
   const [editWorkoutObj, setEditWorkoutObj] = useState("");
