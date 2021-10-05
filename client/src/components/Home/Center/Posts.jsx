@@ -22,8 +22,6 @@ export default function Posts(props) {
   });
   const setPost = (post) => setState((prev) => ({ ...prev, post }));
 
-  console.log(state);
-
   useEffect(() => {
     Promise.all([
       axios.get(`/api/posts/comments/${workoutId}`),
@@ -146,7 +144,14 @@ export default function Posts(props) {
     <div className="post">
       <div className="postWrapper">
         <div className="postTop">
-          <div className="postTopLeft">Workout #{state.workout.title}</div>
+          {state.workout && (
+            <img
+              src={state.workout.exercises[0].gifUrl}
+              alt="ii"
+              onClick={() => handleShow(true)}
+            />
+          )}
+          <div className="postTopLeft">{state.workout.title}</div>
           <div
             className="postTopRight"
             id={workoutId}
