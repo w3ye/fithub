@@ -2,6 +2,7 @@ import WorkoutListItem from "./WorkoutListItem";
 import { useState, useContext, useEffect } from "react";
 import { TokenUserContext } from "../../App/App";
 import axios from "axios";
+import "./workoutList.scss";
 
 export default function WorkoutList(props) {
   const [error, setError] = useState("");

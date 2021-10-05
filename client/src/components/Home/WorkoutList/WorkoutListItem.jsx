@@ -1,3 +1,5 @@
+import "./workoutListItem.scss";
+
 export default function WorkoutListItem(props) {
   const { workout, setWorkout, exercise } = props;
 
@@ -48,28 +50,34 @@ export default function WorkoutListItem(props) {
   return (
     <div key={exercise.id} className="row">
       <div> {exercise.name}</div>
-      <label htmlFor="set">Set:</label>
-      <button onClick={() => onAddSet(exercise)} className="add">
-        +
-      </button>
-      <div>{exercise.set}</div>
-      <button onClick={() => onMinusSet(exercise)} className="minus">
-        -
-      </button>
+      <div className="sets-reps">
+        <label htmlFor="set">Set:</label>
+        <button onClick={() => onAddSet(exercise)} className="add">
+          +
+        </button>
+        <div>{exercise.set}</div>
+        <button onClick={() => onMinusSet(exercise)} className="minus">
+          -
+        </button>
+      </div>
       <br />
-      <label htmlFor="reps">Reps:</label>
+      <div className="sets-reps">
+        <label htmlFor="reps">Reps:</label>
 
-      <button onClick={() => onAddReps(exercise)} className="add">
-        +
-      </button>
-      <div>{exercise.reps}</div>
-      <button onClick={() => onMinusReps(exercise)} className="minus">
-        -
-      </button>
-      <br />
-      <button onClick={() => onRemove(exercise)} className="remove">
-        Remove
-      </button>
+        <button onClick={() => onAddReps(exercise)} className="add">
+          +
+        </button>
+        <div>{exercise.reps}</div>
+        <button onClick={() => onMinusReps(exercise)} className="minus">
+          -
+        </button>
+        <br />
+      </div>
+      <div className="remove">
+        <button onClick={() => onRemove(exercise)} className="remove">
+          Remove
+        </button>
+      </div>
       <br />
     </div>
   );
