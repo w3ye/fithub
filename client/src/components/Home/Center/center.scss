@@ -1,8 +1,20 @@
 @use "../../App/utilities/colors" as c;
 
 .center {
+  margin-left: 18%;
   flex: 5;
   padding: 1%;
+  .centerHeader {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+  .grouper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
   .searchBar {
     display: flex;
     justify-content: center;
