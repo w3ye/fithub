@@ -1,11 +1,12 @@
+@use "../../App/utilities/colors" as c;
+
 .groupCard {
   text-align: center;
   margin-top: 10px;
-  border: blue 2px dotted;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 2px black solid;
+  border: 2px c.$dark solid;
   border-radius: 5%;
   .groupText {
     width: 70%;
@@ -21,7 +22,7 @@
 .groupCard:hover {
   font-weight: bold;
   cursor: pointer;
-  background-color: lightgray;
+  background-color: c.$someLight;
 }
 
 .groupsContainer {
@@ -29,6 +30,7 @@
 }
 
 .selected {
-  background-color: coral;
+  background-color: c.$primary;
+  color: c.$veryLight;
   font-weight: bold;
 }

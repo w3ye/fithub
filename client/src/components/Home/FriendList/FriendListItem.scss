@@ -1,8 +1,10 @@
+@use "../../App/utilities/colors" as c;
+
 .friendCard {
   display: flex;
-  border: 2px black solid;
+  border: 2px c.$dark solid;
   padding: 10px;
-  background-color: rgb(255, 255, 255);
+  background-color: c.$veryLight(71, 11, 11);
   border-radius: 20px;
   justify-content: space-between;
   align-items: center;
@@ -24,7 +26,7 @@
 }
 
 .friendCard:hover {
-  box-shadow: 3px 3px #888888;
+  box-shadow: 3px 3px c.$secondary;
   cursor: pointer;
 }
 

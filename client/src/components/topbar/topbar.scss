@@ -1,7 +1,9 @@
+@use "../App/utilities/colors" as c;
+
 .topbarContainer {
   height: 50px;
   width: 100%;
-  background-color: orange;
+  background-color: c.$primary;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -12,7 +14,7 @@
 .logo {
   font-size: 24px;
   font-weight: bold;
-  color: white;
+  color: c.$veryLight;
 }
 
 .topbarLeft {
@@ -27,7 +29,7 @@
   display: flex;
   width: 100%;
   height: 30px;
-  background-color: white;
+  background-color: c.$veryLight;
   border-radius: 30px;
   display: flex;
   align-items: center;
@@ -80,7 +82,7 @@
   width: 34px;
   border-radius: 50%;
   object-fit: cover;
-  box-shadow: 0px 0px 0 1px #cf8d00;
+  box-shadow: 0px 0px 0 1px c.$primary;
 }
 
 #user-login-name {

@@ -1,6 +1,8 @@
+@use "../../App/utilities/colors" as c;
+
 .rightbar {
   flex: 3;
-  background-color: lightgreen;
+  background-color: c.$someLight;
 }
 
 .container {
@@ -9,9 +11,9 @@
 
 .friendRequestItem {
   display: flex;
-  border: 2px black solid;
+  border: 2px c.$dark solid;
   padding: 5px;
-  background-color: rgb(255, 255, 255);
+  background-color: c.$veryLight;
   border-radius: 20px;
   justify-content: space-between;
   align-items: center;
@@ -40,7 +42,7 @@
   }
 }
 .friendRequestItem:hover {
-  box-shadow: 3px 3px #888888;
+  box-shadow: 3px 3px c.$someLight;
   cursor: pointer;
 }
 

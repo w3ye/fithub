@@ -1,8 +1,11 @@
+@use "../../App/utilities/colors" as c;
+
 .leftbar {
   flex: 3;
   height: calc(100vh - 50px);
-  background-color: lightsalmon;
+  background-color: c.$someLight;
   max-width: 20%;
+  color: c.$secondary;
 }
 
 .leftbarWrapper {
@@ -18,12 +21,13 @@
   margin-top: 20px;
   padding: 20px;
   align-items: center;
-  border: black dotted 1px;
+  border: c.$dark dotted 1px;
   max-width: 100%;
 }
 
 .leftbarListItem:hover {
-  background-color: salmon;
+  background-color: c.$secondary;
+  color: c.$veryLight;
   cursor: pointer;
 }
 
