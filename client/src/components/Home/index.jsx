@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Topbar from "../topbar/Topbar";
 import Leftbar from "./LeftPanel/Leftbar";
 import Center from "./Center/Center";
-import CenterWorkouts from "./Center/CenterWorkouts";
+// import CenterWorkouts from "./Center/CenterWorkouts";
 import CenterFriends from "./Center/CenterFriends";
 import CenterGroups from "./Center/CenterGroups";
 import Rightbar from "./RightPanel/Rightbar";
@@ -44,9 +44,9 @@ export default function Home(props) {
           />
         )}
 
-        {panels === "workouts" && (
+        {/* {panels === "workouts" && (
           <CenterWorkouts panels={panels} setPanels={setPanels} />
-        )}
+        )} */}
         {panels === "workouts" && (
           <Workouts
             panels={panels}
