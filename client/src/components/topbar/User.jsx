@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { TokenUserContext } from "../App/App";
+import "./topbar.scss";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
@@ -51,9 +52,9 @@ export default function User(props) {
                   : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_640.png"
               }
               alt=""
-              className="topbarImg"
+              className="topbarImg in-modal"
             ></img>
-            <span>
+            <span class="usernameModal">
               {user.user ? user.user.first_name + " " : ""}
               {user.user ? user.user.last_name : ""}
             </span>
@@ -62,7 +63,9 @@ export default function User(props) {
         <Modal.Body>
           <h3>Update your avatar:</h3>
           <input type="text" placeholder="Image URL" id="urlField"></input>
-          <button onClick={updateImage}>Submit</button>
+          <Button variant="dark" onClick={updateImage}>
+            Submit
+          </Button>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

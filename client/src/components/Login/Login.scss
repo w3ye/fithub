@@ -1,6 +1,7 @@
 @use "../App/utilities/colors" as c;
 
 .login-wrapper {
+  border: brown 2px dotted;
   display: flex;
   flex-direction: column;
   align-items: center;
