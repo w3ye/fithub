@@ -16,6 +16,7 @@
     div {
       width: 40%;
     }
+  }
 }
 
 .leftbarList {
@@ -28,7 +29,7 @@
 .leftbarListItem {
   padding: 20px;
   align-items: center;
-  border-bottom: c.$dark solid 3px;
+  border-bottom: c.$secondary solid 3px;
   max-width: 100%;
 }
 
