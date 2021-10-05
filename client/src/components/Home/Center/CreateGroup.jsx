@@ -3,6 +3,8 @@ import { TokenUserContext } from "../../App/App";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import { CgAddR } from "react-icons/cg";
+import "./center.scss";
 import axios from "axios";
 
 export default function CreateGroup(props) {
@@ -46,15 +48,14 @@ export default function CreateGroup(props) {
 
   return (
     <>
-      <button
+      <CgAddR
+        size={50}
         variant="primary"
         onClick={handleShow}
         type="button"
         alt=""
-        className="topbarImg"
-      >
-        +
-      </button>
+        className="addGroupImg"
+      />
 
       <Modal show={state.show} onHide={handleClose}>
         <Modal.Header closeButton>

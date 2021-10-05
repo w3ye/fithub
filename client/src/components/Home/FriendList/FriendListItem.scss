@@ -2,9 +2,10 @@
 
 .friendCard {
   display: flex;
-  border: 2px c.$dark solid;
+  height: 5em;
+  border: 3px c.$dark solid;
   padding: 10px;
-  background-color: c.$veryLight(71, 11, 11);
+  background-color: c.$veryLight;
   border-radius: 20px;
   justify-content: space-between;
   align-items: center;
@@ -16,13 +17,24 @@
     cursor: pointer;
     background-color: rgb(149, 255, 128);
   }
+  .nameAndButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    p {
+      margin: 0;
+    }
+  }
 }
 .groupTab {
+  justify-content: space-evenly;
   width: 45%;
-  height: 100px;
+  height: 5em;
 }
 .friendTab {
   width: 45%;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .friendCard:hover {
@@ -31,13 +43,14 @@
 }
 
 .friendImage {
-  width: 60px;
-  padding: 5px;
+  width: 4em;
   border-radius: 50%;
 }
 
 .friendsContainer {
   padding: 5px;
+  display: flex;
+  justify-content: center;
 }
 
 .buttons {

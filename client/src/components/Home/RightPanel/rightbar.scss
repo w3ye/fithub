@@ -2,7 +2,35 @@
 
 .rightbar {
   flex: 3;
+  padding: 1%;
   background-color: c.$someLight;
+  .memberContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: c.$veryLight;
+    border-radius: 15px;
+    width: 90%;
+    height: 12em;
+    margin: 5%;
+    h2 {
+      padding: 5px;
+    }
+    #memberList {
+      display: flex;
+      height: 50px;
+      justify-content: center;
+      margin-bottom: 5%;
+      .memberItem {
+        img {
+          border-radius: 50%;
+          height: 100%;
+          padding-right: 2px;
+          padding-left: 2px;
+        }
+      }
+    }
+  }
 }
 
 .container {
@@ -44,19 +72,6 @@
 .friendRequestItem:hover {
   box-shadow: 3px 3px c.$someLight;
   cursor: pointer;
-}
-
-#memberList {
-  display: flex;
-  height: 30px;
-  justify-content: center;
-}
-
-.memberItem {
-  border-radius: 50%;
-  height: 100%;
-  padding-right: 2px;
-  padding-left: 2px;
 }
 
 .friendsContainer .small-size {
