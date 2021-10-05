@@ -1,4 +1,4 @@
 INSERT INTO groups(title, owner_id)
-VALUES ('Mushroom Kingdom', 1),
-  ('Banana Kingdom', 5),
-  ('Princess Gang', 3);
+VALUES ('Work Buds', 1),
+  ('Running Club', 5),
+  ('Team Leg Day', 3);
