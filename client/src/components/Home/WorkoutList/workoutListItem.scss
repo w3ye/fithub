@@ -1,0 +1,95 @@
+@use "../../App/utilities/colors" as c;
+.row{
+  display: flex;
+  margin: 10px;
+  border: black solid;
+  border-radius: 15px;
+  -webkit-box-shadow: 5px 8px 11px 4px #967c7c; 
+box-shadow: 5px 8px 11px 4px c.$secondary;
+align-items: center;
+background-color: c.$secondary;
+color: c.$veryLight;
+margin: 6px;
+}
+
+div.row {
+  margin: 5px;
+  margin-bottom: 15px
+}
+
+div.title{
+  display: flex;
+  justify-content: center;
+}
+
+div.exercise-name {
+  margin-top: 10px;
+  font-size: large;
+  align-self: center;
+  justify-content: center;
+  align-items:center;
+  font-weight: 600px;
+}
+
+label {
+margin-right: 20px;
+
+}
+
+.sets-reps-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.sets-reps-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 30px;
+  margin-right: 30px
+}
+
+.plus-minus-container {
+  display: flex;
+  margin-left: 200px;
+  align-items: center;
+  gap: 10px;
+  gap: 10px 10px;
+  justify-content: space-between;
+  margin: 5px
+}
+
+.number{
+display: flex;
+align-self: center;
+font-weight: bold;
+}
+
+button.add{
+  border-radius: 10px;
+  background-color: c.$someLight;
+  font-weight: bold;
+}
+button.minus {
+  border-radius: 10px;
+  background-color: c.$someLight;
+  font-weight: bold;
+}
+
+div.remove {
+  display: flex;
+  justify-content: center;
+}
+
+button.remove {
+  border-radius: 15px;
+  margin-bottom: 15px;
+  background-color: c.$someLight;
+  font-weight: bold;
+  color: c.$dark;
+  height: 40px;
+  width: 90px;
+} 

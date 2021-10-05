@@ -2,6 +2,7 @@ import WorkoutListItem from "./WorkoutListItem";
 import { useState, useContext, useEffect } from "react";
 import { TokenUserContext } from "../../App/App";
 import axios from "axios";
+import "./workoutList.scss";
 
 export default function WorkoutList(props) {
   const [error, setError] = useState("");
@@ -66,17 +67,17 @@ export default function WorkoutList(props) {
 
   return (
     <>
-      {panels === "edit" && <h1>Edit Workout</h1>}
+      {panels === "edit" && <h1 className="title">Edit Workout</h1>}
 
-      {panels === "home" && <h1>New Workout</h1>}
+      {panels === "home" && <h1 className="title">New Workout</h1>}
       <form autoComplete="off">
-        <h5>Name of Workout: </h5>
+        <h5 className="name-of-workout">Name of Workout: </h5>
         <input
           className="workout-name"
           value={name}
           onChange={(event) => setName(event.target.value)}
           type="text"
-          placeholder="New workout name"
+          placeholder="Workout name"
         />
       </form>
       <section className="workout__validation">{error}</section>
@@ -89,9 +90,11 @@ export default function WorkoutList(props) {
           setWorkout={setWorkout}
         />
       ))}
-      <button onClick={handleSave} className="save">
-        Save Workout
-      </button>
+      <div className="save-button">
+        <button onClick={handleSave} className="save">
+          Save Workout
+        </button>
+      </div>
     </>
   );
 }
