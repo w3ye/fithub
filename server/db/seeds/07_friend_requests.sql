@@ -1,2 +1,2 @@
 INSERT INTO friend_requests(sender_id, reciever_id, message, pending)
-VALUES (1, 4, 'Hi there, please add me!', true), (1, 5, 'Be my friend, please!', true), (2, 5, 'I like you!', true), (3, 5, 'I hate you!', true);
+VALUES (1, 4, 'Hi there, please add me!', true), (2, 5, 'Be my friend, please!', true), (3, 11, 'Wanna squad up?', true), (18, 3, 'Remember me?', true), (5, 2, 'Hi there, please add me!', true), (20, 1, 'Be my friend, please!', true), (6, 1, 'Wanna squad up?', true);
