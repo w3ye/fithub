@@ -3,6 +3,15 @@ import "./workoutListItem.scss";
 export default function WorkoutListItem(props) {
   const { workout, setWorkout, exercise } = props;
 
+  function capitalizeWords(string) {
+    const words = string.split(" ");
+    for (var i = 0; i < words.length; i++) {
+      words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+    }
+    const final = words.join(" ");
+    return final;
+  }
+
   const onAddReps = (exercise) => {
     const exist = workout.find((x) => x.id === exercise.id);
     setWorkout(
@@ -49,36 +58,37 @@ export default function WorkoutListItem(props) {
 
   return (
     <div key={exercise.id} className="row">
-      <div> {exercise.name}</div>
-      <div className="sets-reps">
+      <div> {capitalizeWords(exercise.name)}</div>
+      <div className="sets-reps-container">
         <label htmlFor="set">Set:</label>
-        <button onClick={() => onAddSet(exercise)} className="add">
-          +
-        </button>
-        <div>{exercise.set}</div>
-        <button onClick={() => onMinusSet(exercise)} className="minus">
-          -
-        </button>
+        <div className="plus-minus-container">
+          <button onClick={() => onAddSet(exercise)} className="add">
+            ^
+          </button>
+          <div className="set-number">{exercise.set}</div>
+          <button onClick={() => onMinusSet(exercise)} className="minus">
+            ˅
+          </button>
+        </div>
       </div>
-      <br />
-      <div className="sets-reps">
+      <div className="sets-reps-container">
         <label htmlFor="reps">Reps:</label>
-
-        <button onClick={() => onAddReps(exercise)} className="add">
-          +
-        </button>
-        <div>{exercise.reps}</div>
-        <button onClick={() => onMinusReps(exercise)} className="minus">
-          -
-        </button>
-        <br />
+        <div className="plus-minus-container">
+          <button onClick={() => onAddReps(exercise)} className="add">
+            +
+          </button>
+          <div className="rep-number">{exercise.reps}</div>
+          <button onClick={() => onMinusReps(exercise)} className="minus">
+            -
+          </button>
+        </div>
       </div>
+
       <div className="remove">
         <button onClick={() => onRemove(exercise)} className="remove">
           Remove
         </button>
       </div>
-      <br />
     </div>
   );
 }

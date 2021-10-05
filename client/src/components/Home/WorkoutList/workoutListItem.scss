@@ -1,1 +1,43 @@
 @use "../../App/utilities/colors" as c;
+.row{
+  display: flex;
+  margin: 10px;
+  border: black solid;
+  border-radius: 15px;
+  -webkit-box-shadow: 5px 8px 11px 4px #000000; 
+box-shadow: 5px 8px 11px 4px #000000;
+align-items: baseline
+  
+}
+
+.sets-reps-container {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.add {
+  border-radius: 25%;
+  
+}
+
+.minus {
+  border-radius: 25%;
+}
+
+.plus-minus-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 200px
+}
+
+.remove {
+  display: flex;
+  align-self: center
+}
+
+button{
+  border: 0;
+  background-color: gray;
+}

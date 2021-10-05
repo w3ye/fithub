@@ -1,1 +1,6 @@
 @use "../../App/utilities/colors" as c;
+
+.row {
+  display: flex;
+  margin: 25px
+}
