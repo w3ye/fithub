@@ -1,37 +1,73 @@
 INSERT INTO users(first_name, last_name, email, password, avatar_url)
 VALUES (
-    'Mario',
-    'Bros',
-    'mario@nintendo.com',
-    '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://www.pngkey.com/png/full/225-2252195_mario-head0-mario-head-transparent-background.png'
+    'Christine',
+    'Smith',
+    '1@example.com',
+    '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://images.generated.photos/oYszJhkiyo5Rrarwrs--z1FUU-rTNQ74eCxsPTCvkoc/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/OTE2MzcyLmpwZw.jpg'
   ),
   (
-    'Luigi',
-    'Bros',
-    'luigi@nintendo.com',
-    '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://www.seekpng.com/png/detail/32-321847_luigi-face-mario-and-luigi-face.png'
+    'Lisa',
+    'Dawson',
+    '2@example.com',
+    '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://images.generated.photos/oJfxzQg6EdyrA779jhR9vh39_Zm3-t8vibwl88JMxcE/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/NTA3MTA4LmpwZw.jpg'
   ),
   (
-    'Princess',
+    'June',
     'Peach',
-    'peach@nintendo.com',
-    '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://pbs.twimg.com/profile_images/378800000543472897/0fea119dd8a6ee0445838d5c7eecbf23_400x400.jpeg'
+    '3@example.com',
+    '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://images.generated.photos/lZE27h_eszgAtSxwcYj82_aqhfM6yvTrBtGEtKm-DpE/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MTk1NTc0LmpwZw.jpg'
   ),
   (
-    'Princess',
-    'Daisy',
-    'daisy@nintendo.com',
-    '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://cdn.costumewall.com/wp-content/uploads/2018/10/princess-daisy.jpg'
+    'Ryan',
+    'Borden',
+    '4@example.com',
+    '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://images.generated.photos/vQaoNCDvcEsVpMxWV1UyTGnRTxuSg8Yk438oh4tt2Oc/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/NDgxMTc0LmpwZw.jpg'
   ),
   (
-    'Donkey',
-    'Kong',
-    'donkey@nintendo.com',
-    '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://pbs.twimg.com/profile_images/1245523276128010240/kEFAcj1B_400x400.jpg'
+    'Mort',
+    'Young',
+    '5@example.com',
+    '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://images.generated.photos/Yrw80ZXKKhQidMBECk-WtsfvPoij4kWwTV-ndnUP9hs/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MjQ3OTcyLmpwZw.jpg'
   ),
   (
-    'Donkey',
-    'Kong Jr',
-    'donkeyjr@nintendo.com',
-    '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://w7.pngwing.com/pngs/473/189/png-transparent-donkey-kong-jr-donkey-kong-country-2-diddy-s-kong-quest-super-mario-bros-donkey-kong-mammal-super-mario-bros-hand.png'
+    'Ethan',
+    'Johnson',
+    '6@example.com',
+    '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://images.generated.photos/Se4jt-40Sc0HkFkpeEH4gQ-32u5jCGCWAAIcQzfqK5I/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/NDc1MzQ4LmpwZw.jpg'
+  ),
+  (
+    'Heather',
+    'Young',
+    '7@example.com',
+    '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://images.generated.photos/vO6qotsidouPgi-Lc2k97S1qjDhb7DkXUWmhaq_hWwY/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MzMzNTM3LmpwZw.jpg'
+  ),
+  (
+    'Georgia',
+    'Jorgenson',
+    '8@example.com',
+    '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://images.generated.photos/38dmLW71PaQKldWnGVHm-eOL--92jX_bOumdMTZgowM/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/NzYxODQ1LmpwZw.jpg'
+  ),
+  (
+    'Howie',
+    'Kampf',
+    '9@example.com',
+    '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://images.generated.photos/xO8FuNMR7yaak6R1Q3zuWWa95lmKzK0JolHJ0b_Udys/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/Mjc3MzcwLmpwZw.jpg'
+  ),
+  (
+    'Theresa',
+    'Jones',
+    '10@example.com',
+    '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://images.generated.photos/7svc6gElCZTF1PdIg_CyKyGD-Vg1gejD1Xz7tcRDEqQ/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MTQxNDk3LmpwZw.jpg'
+  ),
+  (
+    'Brianne',
+    'Wilson',
+    '11@example.com',
+    '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://images.generated.photos/UF_oipkw6tgDDAxc7QDbU9w7F30xxI4pQc3JiKjRyok/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/ODk4NzQxLmpwZw.jpg'
+  ),
+  (
+    'Ben',
+    'Nguyen',
+    '12@example.com',
+    '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://images.generated.photos/G0k_MSpxmyX4EwbTYxCiiSzvsq_zbAjiTvMKz0ZiLYc/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/Mjk4NzQ5LmpwZw.jpg'
   );
