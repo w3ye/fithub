@@ -78,6 +78,11 @@ export default function RightbarFriends(props) {
         });
     });
   }
+  function handleSubmit() {
+    sendFriendRequest(user.user.id, rec_email, message);
+    setRec_Email("");
+    setMessage("");
+  }
 
   useEffect(() => {
     fetchFRequests(user.user ? user.user.id : 0);
@@ -130,11 +135,12 @@ export default function RightbarFriends(props) {
 
   return (
     <>
-      <div className="rightbar container">
+      <div className="rightbar friendContainer">
         <div className="requestForm">
           <h4>Send a Friend Request:</h4>
           <input
             id="email-input"
+            class="formInput"
             type="email"
             name="rec_email"
             placeholder="Enter an email address"
@@ -142,19 +148,22 @@ export default function RightbarFriends(props) {
           />
           <input
             id="message-input"
+            class="formInput"
             type="text"
             name="message"
-            placeholder="message"
+            placeholder="Attach a message"
             onChange={(event) => setMessage(event.target.value)}
           />
           <button
             onClick={() => {
-              sendFriendRequest(user.user.id, rec_email, message);
+              handleSubmit();
+              // sendFriendRequest(user.user.id, rec_email, message);
             }}
           >
             Submit
           </button>
         </div>
+        <br />
         <h3>Friend Requests:</h3>
         <div>{request.length ? parsedRequests : []}</div>
       </div>

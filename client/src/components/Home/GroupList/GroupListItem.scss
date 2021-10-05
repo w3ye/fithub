@@ -1,18 +1,19 @@
 @use "../../App/utilities/colors" as c;
 
 .groupCard {
-  text-align: center;
+  text-align: left;
   margin-top: 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
-  border: 2px c.$dark solid;
-  border-radius: 5%;
+  border: 3px c.$dark solid;
+  border-radius: 10%;
   .groupText {
-    width: 70%;
+    width: 50%;
   }
   .groupImage {
-    width: 30%;
+    width: 40%;
+    text-align: center;
     img {
       width: 50%;
     }

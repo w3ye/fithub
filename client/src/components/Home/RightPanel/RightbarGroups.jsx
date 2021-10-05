@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { TokenUserContext } from "../../App/App";
+import { BsPersonPlusFill } from "react-icons/bs";
 import MemberListItem from "./MemberListItem";
 import FriendListItem from "../FriendList/FriendListItem";
 import "./rightbar.scss";
@@ -10,6 +11,7 @@ export default function RightbarGroups(props) {
   const [user] = userState;
   const { group, setPanels, panels } = props;
   const [members, setMembers] = useState([]);
+  const [addFriends, setAddFriends] = useState(false);
 
   useEffect(() => {
     getMembers(group.group_id);
@@ -25,6 +27,10 @@ export default function RightbarGroups(props) {
       .catch((err) => {
         return err;
       });
+  }
+
+  function showAddFriends() {
+    setAddFriends(true);
   }
 
   const parsedFriends =
@@ -50,19 +56,41 @@ export default function RightbarGroups(props) {
       <MemberListItem
         key={memberObj.user_id}
         avatar={memberObj.avatar_url}
-        name={memberObj.first_name + " " + memberObj.last_name}
+        first_name={memberObj.first_name}
+        last_name={memberObj.last_name}
       />
     ));
 
   if (!group.title) {
     return <></>;
   }
+  if (addFriends) {
+    return (
+      <div className="rightbar container">
+        <div class="memberContainer">
+          <h2 class="rightHeader">{group.title} Members</h2>
+          <div id="memberList">{parsedMembers}</div>
+        </div>
+        {group.title && <h5>Add Friends:</h5>}
+        <ul className="friendsContainer">{user.user ? parsedFriends : ""}</ul>
+      </div>
+    );
+  }
   return (
     <div className="rightbar container">
-      <h2>{group.title}</h2>
-      <div id="memberList">{parsedMembers}</div>
-      {group.title && <h5>Add Friends:</h5>}
-      <ul className="friendsContainer">{user.user ? parsedFriends : ""}</ul>
+      <div class="memberContainer">
+        <h2 class="rightHeader">{group.title} Members</h2>
+        <div id="memberList">{parsedMembers}</div>
+      </div>
+      <div
+        className="openAddButton"
+        onClick={() => {
+          showAddFriends();
+        }}
+      >
+        <h3>Add Friend</h3>
+        <BsPersonPlusFill size={50} />
+      </div>
     </div>
   );
 }
