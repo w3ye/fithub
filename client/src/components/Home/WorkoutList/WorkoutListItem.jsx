@@ -58,32 +58,36 @@ export default function WorkoutListItem(props) {
 
   return (
     <div key={exercise.id} className="row">
-      <div> {capitalizeWords(exercise.name)}</div>
-      <div className="sets-reps-container">
-        <label htmlFor="set">Set:</label>
-        <div className="plus-minus-container">
-          <button onClick={() => onAddSet(exercise)} className="add">
-            ^
-          </button>
-          <div className="set-number">{exercise.set}</div>
-          <button onClick={() => onMinusSet(exercise)} className="minus">
-            ˅
-          </button>
-        </div>
+      <div className="title">
+        <div className="exercise-name"> {capitalizeWords(exercise.name)}</div>
       </div>
       <div className="sets-reps-container">
-        <label htmlFor="reps">Reps:</label>
-        <div className="plus-minus-container">
-          <button onClick={() => onAddReps(exercise)} className="add">
-            +
-          </button>
-          <div className="rep-number">{exercise.reps}</div>
-          <button onClick={() => onMinusReps(exercise)} className="minus">
-            -
-          </button>
-        </div>
-      </div>
+        <div className="sets-reps-wrapper">
+          <label htmlFor="set">Set:</label>
+          <div className="plus-minus-container">
+            <button onClick={() => onMinusSet(exercise)} className="minus">
+              -
+            </button>
 
+            <div className="set-number">{exercise.set}</div>
+            <button onClick={() => onAddSet(exercise)} className="add">
+              +
+            </button>
+          </div>
+        </div>
+        <div className="sets-reps-wrapper">
+          <label htmlFor="reps">Reps:</label>
+          <div className="plus-minus-container">
+            <button onClick={() => onMinusReps(exercise)} className="minus">
+              -
+            </button>
+            <div className="rep-number">{exercise.reps}</div>
+            <button onClick={() => onAddReps(exercise)} className="add">
+              +
+            </button>
+          </div>
+        </div>
+      </div>
       <div className="remove">
         <button onClick={() => onRemove(exercise)} className="remove">
           Remove
