@@ -2,10 +2,7 @@
 
 .center {
   flex: 5;
-  min-height: 575px;
-  .feed {
-    width: 500px;
-  }
+  padding: 1%;
 }
 
 .container {
@@ -15,4 +12,12 @@
 .friendsContainer {
   display: flex;
   flex-wrap: wrap;
+}
+
+.addGroupImg {
+  color: c.$dark;
+}
+
+.addGroupImg:hover {
+  color: c.$primary;
 }

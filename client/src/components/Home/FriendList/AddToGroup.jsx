@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { MdGroupAdd } from "react-icons/md";
+import { BsPersonPlusFill } from "react-icons/bs";
 import "./FriendListItem.scss";
 
 export default function AddtoGroup(props) {
@@ -19,12 +19,12 @@ export default function AddtoGroup(props) {
 
   return (
     <>
-      <MdGroupAdd
+      <BsPersonPlusFill
         variant="primary"
         onClick={handleShow}
         type="button"
         alt=""
-        size={30}
+        size={40}
         className="addButton"
       />
 

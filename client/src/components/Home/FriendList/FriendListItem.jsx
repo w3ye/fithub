@@ -37,35 +37,14 @@ export default function FriendListItem(props) {
       });
   }
 
-  function removeChosenClass() {
-    const classes = document.getElementsByClassName("chosen");
-    while (classes.length) classes[0].classList.remove("chosen");
-  }
-
-  function toggleChosen() {
-    const element = document.getElementById("F" + thisId);
-    element.classList.toggle("chosen");
-  }
-
-  function selectFriend() {
-    removeChosenClass();
-    toggleChosen();
-  }
-
   if (panels === "groups") {
     return (
-      <div
-        className="friendCard groupTab"
-        id={"F" + thisId}
-        onClick={() => {
-          selectFriend();
-        }}
-      >
+      <div className="friendCard groupTab">
         <img alt="" src={friend_avatar} className="friendImage" />
-        <div>
-          <h5>
+        <div className="nameAndButton">
+          <p>
             {friend_first_name} {friend_last_name}
-          </h5>
+          </p>
           {panels === "groups" && (
             <AddToGroup
               friend_email={friend_email}
@@ -81,13 +60,7 @@ export default function FriendListItem(props) {
   }
 
   return (
-    <div
-      className="friendCard friendTab"
-      id={"F" + thisId}
-      onClick={() => {
-        selectFriend();
-      }}
-    >
+    <div className="friendCard friendTab">
       <img alt="" src={friend_avatar} className="friendImage" />
       <div>
         <h5>
