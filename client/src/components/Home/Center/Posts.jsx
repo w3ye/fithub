@@ -1,4 +1,7 @@
 import { TokenUserContext } from "../../App/App";
+import Modal from "react-bootstrap/Modal";
+import Button from "@restart/ui/esm/Button";
+import ModalWorkout from "../RightPanel/ModalWorkout";
 import { useContext, useState, useEffect } from "react";
 import { GiStrong } from "react-icons/gi";
 import "./posts.scss";
@@ -9,20 +12,27 @@ export default function Posts(props) {
   const { userState } = useContext(TokenUserContext);
   const [user] = userState;
   const { workoutId } = props;
+  const [fullscreen, setFullscreen] = useState(true);
+  const [show, setShow] = useState(false);
   const [state, setState] = useState({
     post: "",
     likes: "",
     comment: "",
+    workout: "",
   });
   const setPost = (post) => setState((prev) => ({ ...prev, post }));
+
+  console.log(state);
 
   useEffect(() => {
     Promise.all([
       axios.get(`/api/posts/comments/${workoutId}`),
       axios.get(`api/posts/likes/${workoutId}`),
+      axios.get(`api/workouts/wid/${workoutId}`),
     ]).then((all) => {
       setState((prev) => ({ ...prev, post: all[0].data }));
       setState((prev) => ({ ...prev, likes: all[1].data }));
+      setState((prev) => ({ ...prev, workout: all[2].data }));
       const starterLikes = all[1].data;
       starterLikes.forEach((like) => {
         if (like.user_id === user.user.id) {
@@ -119,11 +129,24 @@ export default function Posts(props) {
       .catch((err) => err);
   }
 
+  function handleShow(breakpoint) {
+    setFullscreen(breakpoint);
+    setShow(true);
+  }
+  const showModal = (
+    <ModalWorkout
+      key={state.workout.id}
+      id={state.workout.id}
+      title={state.workout.title}
+      exercises={state.workout.exercises}
+    />
+  );
+
   return (
     <div className="post">
       <div className="postWrapper">
         <div className="postTop">
-          <div className="postTopLeft">Workout #{workoutId}</div>
+          <div className="postTopLeft">Workout #{state.workout.title}</div>
           <div
             className="postTopRight"
             id={workoutId}
@@ -137,6 +160,9 @@ export default function Posts(props) {
             </div>
           </div>
         </div>
+        <Button variant="primary" onClick={() => handleShow(true)}>
+          Start Workout
+        </Button>
         <div className="postBottom">
           <div className="commentInput">
             <img alt="" src={user.user ? user.user.avatar_url : ""} />
@@ -157,6 +183,13 @@ export default function Posts(props) {
           </div>
           <div>{comments}</div>
         </div>
+        <Modal
+          show={show}
+          fullscreen={fullscreen}
+          onHide={() => setShow(false)}
+        >
+          {showModal}
+        </Modal>
       </div>
     </div>
   );
