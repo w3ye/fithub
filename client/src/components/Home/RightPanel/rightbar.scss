@@ -4,6 +4,9 @@
   flex: 3;
   padding: 1%;
   background-color: c.$someLight;
+  .friendContainer {
+    width: 50%;
+  }
   .memberContainer {
     display: flex;
     flex-direction: column;
@@ -22,6 +25,8 @@
       justify-content: center;
       margin-bottom: 5%;
       .memberItem {
+        margin: 2px;
+        font-weight: bold;
         img {
           border-radius: 50%;
           height: 100%;
@@ -94,11 +99,26 @@
 }
 
 .requestForm {
+  text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 160px;
-  .button {
+  input {
+    margin: 10px;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid c.$dark;
+  }
+  button {
     width: 50%;
+    border-radius: 10px;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-bottom: 25px;
   }
 }
+
+// h3 {
+//   margin: 10px;
+// }
