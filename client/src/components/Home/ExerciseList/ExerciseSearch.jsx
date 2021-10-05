@@ -8,6 +8,7 @@ export default function ExerciseSearch(props) {
   const [responseData, setResponseData] = useState(null);
   const [search, setSearch] = useState("");
   const [searchPart, setSearchPart] = useState("");
+  const [filter, setFilter] = useState("");
 
   const options = {
     method: "GET",
@@ -128,7 +129,7 @@ export default function ExerciseSearch(props) {
         </div>
         <div id="exerciseStorage"></div>
       </div>
-      <div>
+      <div id="filterButtons">
         <button
           onClick={handleSearchParts}
           value="upper arms"
@@ -151,6 +152,13 @@ export default function ExerciseSearch(props) {
           Abs
         </button>
         <button
+          value="back"
+          onClick={searchByBodyWeight}
+          className="square-button-item"
+        >
+          Back
+        </button>
+        <button
           value="body weight"
           onClick={searchByBodyWeight}
           className="square-button-item"
@@ -158,7 +166,7 @@ export default function ExerciseSearch(props) {
           Body Weight
         </button>
       </div>
-      <ul>{parsedResponse}</ul>
+      <div id="exerciseListContainer">{parsedResponse}</div>
     </>
   );
 }

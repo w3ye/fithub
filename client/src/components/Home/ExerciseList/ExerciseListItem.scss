@@ -1,6 +1,54 @@
 @use "../../App/utilities/colors" as c;
 
-li {
-  height: 100px;
-  width: 300px;
+div.exerciseItem {
+  padding: 1%;
+  margin: 2%;
+  border: 3px solid c.$dark;
+  border-radius: 25px;
+  width: 46%;
+  display: flex;
+  .leftBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: center;
+    width: 50%;
+    img {
+      width: 100%;
+    }
+  }
+  .rightBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: c.$secondary;
+    color: c.$veryLight;
+    border-radius: 20px;
+    align-items: center;
+    width: 50%;
+
+    .listAttribute {
+      width: 80%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      p {
+        padding-top: 20px;
+        padding-left: 15px;
+      }
+    }
+    button {
+      font-size: 2em;
+      width: 2em;
+      border-radius: 50%;
+      background-color: c.$someLight;
+      color: c.$dark;
+
+      margin-bottom: 15px;
+    }
+    button:hover {
+      background-color: c.$primary;
+      color: c.$veryLight;
+    }
+  }
 }

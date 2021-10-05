@@ -1,3 +1,7 @@
+import "./ExerciseListItem.scss";
+import { CgGym } from "react-icons/cg";
+import { BiBody } from "react-icons/bi";
+import { GiArcheryTarget } from "react-icons/gi";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -18,25 +22,41 @@ export default function ExerciseListItem(props) {
   }
 
   return (
-    <Row xs={1} md={2} className="g-4">
-      <Col>
-        <Card>
-          <Card.Img variant="top" src={gifUrl} />
-          <Card.Body>
-            <Card.Title>Name: {capitalizeWords(name)}</Card.Title>
-            <ListGroup className="list-group-flush">
-              <ListGroupItem>
-                Equipment: {capitalizeWords(equipment)}
-              </ListGroupItem>
-              <ListGroupItem>
-                Body Part: {capitalizeWords(bodyPart)}
-              </ListGroupItem>
-              <ListGroupItem>Target: {capitalizeWords(target)}</ListGroupItem>
-            </ListGroup>
-            <button onClick={() => onAdd(exercise)}>Add to Workout</button>
-          </Card.Body>
-        </Card>
-      </Col>
-    </Row>
+    <div className="exerciseItem">
+      <div class="leftBox">
+        <img variant="top" src={gifUrl} />
+        <h5>{capitalizeWords(name)}</h5>
+      </div>
+      <div className="rightBox">
+        <div class="listAttribute">
+          <div>
+            <CgGym size={30} />
+          </div>
+          <p>{capitalizeWords(equipment)}</p>
+        </div>
+        <div class="listAttribute">
+          <div>
+            {" "}
+            <BiBody size={30} />
+          </div>
+          <p>{capitalizeWords(bodyPart)}</p>
+        </div>
+        <div class="listAttribute">
+          <div>
+            <GiArcheryTarget size={30} />
+          </div>
+          <p>{capitalizeWords(target)}</p>
+        </div>
+        {/* <div class="listAttribute"></div>
+        <CgGym />
+        <p>Body Part: {capitalizeWords(bodyPart)}</p>
+        </div>
+        <div class="listAttribute"></div>
+        <CgGym />
+        <p>Target: {capitalizeWords(target)}</p>
+        </div> */}
+        <button onClick={() => onAdd(exercise)}>+</button>
+      </div>
+    </div>
   );
 }

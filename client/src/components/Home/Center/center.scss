@@ -14,6 +14,19 @@
     }
   }
 }
+#filterButtons {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+
+  button {
+    width: 16%;
+    margin: 2%;
+    border-radius: 10px;
+    background-color: c.$secondary;
+    color: c.$veryLight;
+  }
+}
 
 .container {
   text-align: center;
