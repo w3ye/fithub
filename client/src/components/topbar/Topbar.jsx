@@ -9,12 +9,8 @@ export default function Topbar(props) {
 
   const { tokenState, userState } = useContext(TokenUserContext);
   const [token, setToken] = tokenState;
-<<<<<<< HEAD
-  const [setUser] = userState;
-=======
   // Do not remove user from userState [] as it gets used on logout
   const [user, setUser] = userState;
->>>>>>> e7ba0382fc34a94e77e722db06e8ad95ea0f0cd4
 
   async function logout() {
     axios
