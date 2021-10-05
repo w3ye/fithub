@@ -28,6 +28,10 @@
       color: c.$veryLight;
       background-color: c.$primary;
     }
+    #webappTitle:hover,
+    h1:hover {
+      filter: opacity(100%);
+    }
   }
   .rightPage {
     padding-left: 10%;
@@ -44,4 +48,7 @@
       margin-top: 5%;
     }
   }
+}
+Button:hover {
+  box-shadow: 0px 0px 0 2px c.$primary;
 }

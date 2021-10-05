@@ -71,7 +71,9 @@ export default function User(props) {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button onClick={logout}>Logout</Button>
+          <Button variant="dark" onClick={logout}>
+            Logout
+          </Button>
         </Modal.Footer>
       </Modal>
     </>
