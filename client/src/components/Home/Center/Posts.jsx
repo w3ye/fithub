@@ -165,9 +165,6 @@ export default function Posts(props) {
             </div>
           </div>
         </div>
-        <Button variant="primary" onClick={() => handleShow(true)}>
-          Start Workout
-        </Button>
         <div className="postBottom">
           <div className="commentInput">
             <img alt="" src={user.user ? user.user.avatar_url : ""} />
