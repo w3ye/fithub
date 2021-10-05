@@ -1,5 +1,6 @@
 import "./leftbar.scss";
 import { GiMuscleUp } from "react-icons/gi";
+import { CgGym } from "react-icons/cg";
 import { FaUserFriends, FaHome, FaUser } from "react-icons/fa";
 
 export default function Leftbar(props) {
@@ -11,11 +12,20 @@ export default function Leftbar(props) {
           <li
             className="leftbarListItem"
             onClick={() => {
-              setPanels("home");
+              setPanels("groupfeed");
             }}
           >
             <FaHome className="leftbarIcon" />
-            <span className="leftbarListItemText">Home</span>
+            <span className="leftbarListItemText">Group Feed</span>
+          </li>
+          <li
+            className="leftbarListItem"
+            onClick={() => {
+              setPanels("home");
+            }}
+          >
+            <CgGym className="leftbarIcon" />
+            <span className="leftbarListItemText">Create Workout</span>
           </li>
           <li
             className="leftbarListItem"
@@ -24,7 +34,7 @@ export default function Leftbar(props) {
             }}
           >
             <GiMuscleUp className="leftbarIcon" />
-            <span className="leftbarListItemText">My workouts</span>
+            <span className="leftbarListItemText">My Workouts</span>
           </li>
           <li
             className="leftbarListItem"
@@ -44,7 +54,7 @@ export default function Leftbar(props) {
             <FaUserFriends className="leftbarIcon" />
             <span className="leftbarListItemText">Groups</span>
           </li>
-          <li
+          {/* <li
             className="leftbarListItem"
             onClick={() => {
               setPanels("groupfeed");
@@ -52,10 +62,9 @@ export default function Leftbar(props) {
           >
             <FaHome className="leftbarIcon" />
             <span className="leftbarListItemText">Group Feed</span>
-          </li>
+          </li> */}
         </ul>
       </div>
-      leftbar
     </div>
   );
 }
