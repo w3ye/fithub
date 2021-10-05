@@ -36,9 +36,11 @@ export default function CenterGroups(props) {
   }
 
   return (
-    <div className="center container">
-      <h1>My Groups</h1>
-      <CreateGroup />
+    <div className="center">
+      <div class="centerHeader grouper">
+        <h1>My Groups</h1>
+        <CreateGroup />
+      </div>
       <ul className="groupsContainer">{user.user ? parsedGroups : ""}</ul>
     </div>
   );

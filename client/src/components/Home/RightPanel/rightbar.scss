@@ -3,6 +3,7 @@
 .rightbar {
   flex: 3;
   padding: 1%;
+  height: calc(100vh - 50px);
   background-color: c.$someLight;
   .friendContainer {
     width: 50%;
