@@ -44,9 +44,9 @@ export default function Home(props) {
           />
         )}
 
-        {panels === "workouts" && (
+        {/* {panels === "workouts" && (
           <CenterWorkouts panels={panels} setPanels={setPanels} />
-        )}
+        )} */}
         {panels === "workouts" && (
           <Workouts
             panels={panels}
