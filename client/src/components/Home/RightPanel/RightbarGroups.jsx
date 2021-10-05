@@ -82,14 +82,14 @@ export default function RightbarGroups(props) {
         <h2 class="rightHeader">{group.title} Members</h2>
         <div id="memberList">{parsedMembers}</div>
       </div>
-      <div>
-        <h3>Add Friend to Group</h3>
-        <BsPersonPlusFill
-          size={50}
-          onClick={() => {
-            showAddFriends();
-          }}
-        />
+      <div
+        className="openAddButton"
+        onClick={() => {
+          showAddFriends();
+        }}
+      >
+        <h3>Add Friend</h3>
+        <BsPersonPlusFill size={50} />
       </div>
       {/* {group.title && <h5>Add Friends:</h5>}
       <ul className="friendsContainer">{user.user ? parsedFriends : ""}</ul> */}
