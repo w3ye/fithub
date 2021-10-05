@@ -111,18 +111,21 @@ export default function ExerciseSearch(props) {
   return (
     <>
       <div className="exercise-search">
-        Exercises
-        <form className="exercise-search-bar">
-          <input
-            onChange={handleChange}
-            value={search}
-            id="search-name"
-            placeholder="search by name"
-          ></input>
-          <button type="submit" onClick={handleSearch}>
-            Search
-          </button>
-        </form>
+        <div className="searchBar">
+          <h1>Exercises:</h1>
+          <form className="exercise-search-bar">
+            <input
+              onChange={handleChange}
+              value={search}
+              id="search-name"
+              placeholder="search by name"
+            ></input>
+
+            <button type="submit" onClick={handleSearch}>
+              Search
+            </button>
+          </form>
+        </div>
         <div id="exerciseStorage"></div>
       </div>
       <div>

@@ -3,6 +3,16 @@
 .center {
   flex: 5;
   padding: 1%;
+  .searchBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    #search-name {
+      margin-left: 10px;
+      border: none;
+      border-bottom: solid 3px c.$dark;
+    }
+  }
 }
 
 .container {

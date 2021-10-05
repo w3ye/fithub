@@ -16,7 +16,7 @@ export default function Leftbar(props) {
             }}
           >
             <FaHome className="leftbarIcon" />
-            <span className="leftbarListItemText">Group Feed</span>
+            <span className="leftbarListItemText">Home</span>
           </li>
           <li
             className="leftbarListItem"
