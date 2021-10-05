@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import "./Login.scss";
 import { TokenUserContext } from "../App/App";
 import axios from "axios";
+import Button from "react-bootstrap/Button";
 
 export default function Login(props) {
   const { setMain } = props;
@@ -55,32 +56,37 @@ export default function Login(props) {
 
   return (
     <div className="login-wrapper">
-      <h1>Please Log In</h1>
-      <form onSubmit={(event) => event.preventDefault()}>
-        <label>
-          <p>Email Address</p>
-          <input
-            name="email"
-            type="email"
-            onChange={(event) => setEmail(event.target.value)}
-          />
-        </label>
-        <label>
-          <p>Password</p>
-          <input
-            name="password"
-            type="password"
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label>
-        <div>
-          <button type="submit" onClick={submitLogin}>
-            Submit
-          </button>
-          <br />
-          <button onClick={() => setMain("dashboard")}>Back</button>
-        </div>
-      </form>
+      <div id="loginForm">
+        <h1>Please Log In</h1>
+        <form onSubmit={(event) => event.preventDefault()}>
+          <div>
+            <p>Email Address</p>
+            <input
+              name="email"
+              type="email"
+              onChange={(event) => setEmail(event.target.value)}
+            />
+          </div>
+
+          <div>
+            <p>Password</p>
+            <input
+              name="password"
+              type="password"
+              onChange={(event) => setPassword(event.target.value)}
+            />
+          </div>
+
+          <div class="buttonGroup">
+            <Button variant="light" onClick={() => setMain("dashboard")}>
+              Back
+            </Button>
+            <Button variant="light" type="submit" onClick={submitLogin}>
+              Submit
+            </Button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
