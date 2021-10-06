@@ -1,5 +1,5 @@
 import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
+import button from "react-bootstrap/Button";
 import "./modalWorkout.scss";
 import { useState } from "react";
 
@@ -23,13 +23,13 @@ export default function ModalWorkout(props) {
       <Modal.Header closeButton>
         <Modal.Title>{title}</Modal.Title>
       </Modal.Header>
-      <Modal.Body classname="modal-body">
+      <Modal.Body className="modal-body">
         {exercises.length !== index ? (
           <>
             {exercises[index].name}
             <img
               class
-              name="gifUrl"
+              Name="gifUrl"
               src={exercises[index].gifUrl}
               alt={exercises[index].name}
             />
@@ -38,26 +38,28 @@ export default function ModalWorkout(props) {
           </>
         ) : (
           <>
-            <div> You did it! </div>
+            <div className="success"> You did it! </div>
+
             <img
-              src="https://media1.giphy.com/media/BqijAlej4RV7O/giphy.gif?cid=ecf05e47nf3oiylzaxxzlk98mzb6t8nskx84noqgwicheqhf&rid=giphy.gif&ct=g"
-              alt="mario-party"
+              src="https://media2.giphy.com/media/h72H0tXcBjqI6edm6M/giphy.gif?cid=ecf05e47fsoormgf91btzfiznlivxpbk5ftkc0cx0njsjwsk&rid=giphy.gif&ct=g"
+              alt=""
+              className="gifUrl"
             />
           </>
         )}
         {index > 0 && (
-          <Button className="me-2" onClick={() => previous()}>
+          <button className="modal-button" onClick={() => previous()}>
             Previous
-          </Button>
+          </button>
         )}
         {exercises.length !== index && (
-          <Button className="me-2" onClick={() => next()}>
+          <button className="modal-button" onClick={() => next()}>
             Next
-          </Button>
+          </button>
         )}
-        <Button className="me-2" onClick={() => setIndex(0)}>
+        <button className="modal-button" onClick={() => setIndex(0)}>
           Restart
-        </Button>
+        </button>
       </Modal.Body>
     </>
   );

@@ -20,7 +20,11 @@ input.workout-name {
   font-size: 25px
 }
 
-
+.workout__validation {
+  color: c.$primary;
+  margin: 10px;
+  margin-top: 0px;
+}
 
 .workout-name {
   margin-bottom: 10px;
