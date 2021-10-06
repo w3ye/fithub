@@ -31,7 +31,7 @@ export default function ModalWorkout(props) {
       <Modal.Header closeButton>
         <Modal.Title id="modal-title">{title.toUpperCase()}</Modal.Title>
       </Modal.Header>
-      <Modal.Body className="modal">
+      <Modal.Body>
         <div className="modal-body">
           {exercises.length !== index ? (
             <>
