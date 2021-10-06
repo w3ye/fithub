@@ -70,7 +70,7 @@ export default function WorkoutList(props) {
       {panels === "edit" && <h1 className="title">Edit Workout</h1>}
 
       {panels === "home" && <h1 className="title">New Workout</h1>}
-      <form autoComplete="off">
+      <form className="workout-form" autoComplete="off">
         <h5 className="name-of-workout">Name of Workout: </h5>
         <input
           className="workout-name"
