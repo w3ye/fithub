@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useContext, useState } from "react";
 import { TokenUserContext } from "../../App/App";
 import { FcApprove, FcDisapprove } from "react-icons/fc";
+import { GiArrowWings } from "react-icons/gi";
 
 export default function RightbarFriends(props) {
   const { request, setRequest } = props;
@@ -164,7 +165,7 @@ export default function RightbarFriends(props) {
           </button>
         </div>
         <br />
-        <h3>Friend Requests:</h3>
+        {request.length ? <h3>Friend Requests:</h3> : null}
         <div>{request.length ? parsedRequests : []}</div>
       </div>
     </>
