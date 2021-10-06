@@ -53,6 +53,25 @@
 .usernameModal {
   font-size: 24px;
 }
+.footerBox {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+  margin: 10px;
+  border-top: 1px c.$secondary solid;
+  Button {
+    font-size: large;
+  }
+}
+.modalAdjust {
+  input {
+    font-size: large;
+    height: 40px;
+  }
+  Button {
+    font-size: large;
+  }
+}
 
 #urlField {
   margin-right: 10px;

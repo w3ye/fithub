@@ -69,14 +69,15 @@ export default function User(props) {
             </Button>
           </div>
         </Modal.Body>
-        <Modal.Footer>
+
+        <div class="footerBox">
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
           <Button variant="dark" onClick={logout}>
             Logout
           </Button>
-        </Modal.Footer>
+        </div>
       </Modal>
     </>
   );

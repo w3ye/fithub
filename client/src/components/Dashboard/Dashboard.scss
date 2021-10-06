@@ -20,11 +20,13 @@
       filter: opacity(80%);
       color: c.$veryLight;
       background-color: c.$primary;
+      padding: 5px;
     }
     #webappTitle {
       border-radius: 10px;
       filter: opacity(80%);
       font-size: 100px;
+      padding: 5px;
       color: c.$veryLight;
       background-color: c.$primary;
     }
@@ -46,6 +48,9 @@
     padding-bottom: 10%;
     div {
       margin-top: 5%;
+    }
+    Button {
+      font-size: x-large;
     }
   }
 }
