@@ -21,6 +21,7 @@ For user's that want to follow a working. Clicking on the start workout button, 
 
 ## Screenshots
 
+![workout](./screenshots/workout.gif)
 ![create new workout](./screenshots/create_workout.gif)
 ![like nad comment](./screenshots/like_and_comment.gif)
 ![friend request](./screenshots/friend_request.gif)
