@@ -1,3 +1,5 @@
+@use "../../App/utilities/colors" as c;
+
 .filtered {
   background-color: turquoise;
 }
@@ -5,4 +7,12 @@
 #exerciseListContainer {
   display: flex;
   flex-wrap: wrap;
+}
+
+.search-button {
+  border-radius: 10px;
+  background-color: c.$primary;
+  color: white;
+  font-weight: 600px;
+  width: 90px;
 }
