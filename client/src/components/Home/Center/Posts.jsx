@@ -1,6 +1,8 @@
 import { TokenUserContext } from "../../App/App";
 import Modal from "react-bootstrap/Modal";
-import Button from "@restart/ui/esm/Button";
+import Button from "react-bootstrap/Button";
+import Tooltip from "react-bootstrap/Tooltip";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import ModalWorkout from "../RightPanel/ModalWorkout";
 import { useContext, useState, useEffect } from "react";
 import { GiStrong } from "react-icons/gi";
@@ -20,6 +22,7 @@ export default function Posts(props) {
     comment: "",
     workout: "",
   });
+  const [postAuthor, setPostAuthor] = useState({});
   const setPost = (post) => setState((prev) => ({ ...prev, post }));
 
   useEffect(() => {
@@ -40,6 +43,16 @@ export default function Posts(props) {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  function getPostAuthor(postId) {
+    axios.get("/api/users").then((res) => {
+      setPostAuthor(res.data[postId]);
+    });
+  }
+
+  useEffect(() => {
+    getPostAuthor(state.workout.user_id);
+  }, [postAuthor]);
 
   function toggleSelected() {
     const element = document.getElementById(workoutId);
@@ -140,59 +153,82 @@ export default function Posts(props) {
     />
   );
 
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      Try {state.workout.title}
+    </Tooltip>
+  );
+
   return (
     <div className="post">
-      <div className="postWrapper">
-        <div className="postTop">
+      {postAuthor && (
+        <div className="infoBox">
+          <img alt="" src={postAuthor.avatar_url} className="postAuthorImg" />
+          <p>
+            {postAuthor.first_name} {postAuthor.last_name} shared:
+          </p>
+        </div>
+      )}
+      <div className="postTop">
+        <div className="postTopLeft">
+          <p class="workoutTitle">{state.workout.title}</p>
           {state.workout && (
-            <img
-              src={state.workout.exercises[0].gifUrl}
-              alt="ii"
-              onClick={() => handleShow(true)}
-            />
+            <OverlayTrigger
+              placement="right"
+              delay={{ show: 250, hide: 400 }}
+              overlay={renderTooltip}
+            >
+              <img
+                src={state.workout.exercises[0].gifUrl}
+                alt="ii"
+                onClick={() => handleShow(true)}
+              />
+            </OverlayTrigger>
           )}
-          <div className="postTopLeft">{state.workout.title}</div>
-          <div
-            className="postTopRight"
-            id={workoutId}
-            onClick={() => {
-              toggleLike();
-            }}
-          >
-            <p>{state.likes.length}</p>
-            <div className="like-icon">
-              <GiStrong />
-            </div>
+        </div>
+        <div
+          className="postTopRight"
+          id={workoutId}
+          onClick={() => {
+            toggleLike();
+          }}
+        >
+          <h4>{state.likes.length}</h4>
+          <div className="like-icon">
+            <GiStrong size={40} />
           </div>
         </div>
-        <div className="postBottom">
-          <div className="commentInput">
-            <img alt="" src={user.user ? user.user.avatar_url : ""} />
-            <input
-              id="commentInput"
-              type="text"
-              onChange={(event) =>
-                setState((prev) => ({ ...prev, comment: event.target.value }))
-              }
-            />
-            <button
+      </div>
+      <div className="postBottom">
+        <div className="commentInput">
+          <img
+            classname="userAvatar"
+            alt=""
+            src={user.user ? user.user.avatar_url : ""}
+          />
+          <input
+            id="commentInput"
+            type="text"
+            onChange={(event) =>
+              setState((prev) => ({ ...prev, comment: event.target.value }))
+            }
+          />
+          <div>
+            <Button
+              variant="dark"
               onClick={() => {
                 postComment(state.comment);
               }}
             >
               Comment
-            </button>
+            </Button>
           </div>
-          <div>{comments}</div>
         </div>
-        <Modal
-          show={show}
-          fullscreen={fullscreen}
-          onHide={() => setShow(false)}
-        >
-          {showModal}
-        </Modal>
+        <div className="commentContainer">{comments}</div>
       </div>
+      <Modal show={show} fullscreen={fullscreen} onHide={() => setShow(false)}>
+        {showModal}
+      </Modal>
     </div>
   );
 }
