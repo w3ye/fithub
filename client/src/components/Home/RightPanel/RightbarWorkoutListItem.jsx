@@ -1,6 +1,8 @@
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 import { useState, useContext } from "react";
 import "./RightbarWorkoutListItem.scss";
 import WorkoutListItemDescription from "./WorkoutListItemDescription";
@@ -23,6 +25,8 @@ export default function RightbarWorkoutListItem(props) {
   const [show, setShow] = useState(false);
   const { userState } = useContext(TokenUserContext);
   const [user] = userState;
+
+  const MySwalShare = withReactContent(Swal);
 
   function handleShow(breakpoint) {
     setFullscreen(breakpoint);
@@ -53,6 +57,17 @@ export default function RightbarWorkoutListItem(props) {
         });
     }
     setPanels("groupfeed");
+    MySwalShare.fire({
+      title: <p>Hello World</p>,
+      footer: "Copyright 2018",
+      didOpen: () => {
+        // `MySwal` is a subclass of `Swal`
+        //   with all the same instance & static methods
+        MySwalShare.clickConfirm();
+      },
+    }).then(() => {
+      return MySwalShare.fire(<p>Workout Shared</p>);
+    });
   }
 
   function handleDelete(id) {

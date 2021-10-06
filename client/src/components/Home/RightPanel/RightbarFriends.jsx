@@ -1,5 +1,7 @@
 import "./rightbar.scss";
 import axios from "axios";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 import { useEffect, useContext, useState } from "react";
 import { TokenUserContext } from "../../App/App";
 import { FcApprove, FcDisapprove } from "react-icons/fc";
@@ -13,6 +15,8 @@ export default function RightbarFriends(props) {
   const [user, setUser] = userState;
   const [rec_email, setRec_Email] = useState("");
   const [message, setMessage] = useState("");
+
+  const MySwalFriend = withReactContent(Swal);
 
   function fetchFRequests(id) {
     axios
@@ -81,11 +85,27 @@ export default function RightbarFriends(props) {
   }
   function handleSubmit() {
     sendFriendRequest(user.user.id, rec_email, message);
+    if (rec_email)
+      MySwalFriend.fire({
+        title: <p>Hello World</p>,
+        footer: "Copyright 2018",
+        didOpen: () => {
+          // `MySwal` is a subclass of `Swal`
+          //   with all the same instance & static methods
+          MySwalFriend.clickConfirm();
+        },
+      }).then(() => {
+        return MySwalFriend.fire(
+          <p>
+            Friend Request Sent <GiArrowWings />
+          </p>
+        );
+      });
     setRec_Email("");
     setMessage("");
+
     document.getElementById("email-input").value = "";
     document.getElementById("message-input").value = "";
-    alert("Request sent");
   }
 
   useEffect(() => {
