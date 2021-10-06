@@ -28,9 +28,8 @@ export default function CenterGroupFeed(props) {
 
   return (
     <div className="center group-feed">
-      {/* {group.title} */}
+      <h1>{group.title} Workouts</h1>
       <div className="feed">
-        {/* <Share /> */}
         {parsedWorkoutId}
         <div className="feedWrapper"></div>
       </div>
