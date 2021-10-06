@@ -32,18 +32,20 @@ export default function PostMessage(props) {
       <div className="flex-bar">
         <div className="userBar">
           <img alt="" src={avatar} />
-          <p>
+          <p class="commenterName">
             {first_name} {last_name}:
           </p>
         </div>
-        <div
-          className="delete-button"
-          onClick={() => {
-            deleteComment();
-          }}
-        >
-          <AiFillDelete />
-        </div>
+        {user.user.id === userId && (
+          <div
+            className="delete-button"
+            onClick={() => {
+              deleteComment();
+            }}
+          >
+            <AiFillDelete />
+          </div>
+        )}
       </div>
       <p>{message}</p>
     </div>
