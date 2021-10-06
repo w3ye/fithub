@@ -1,7 +1,48 @@
 @use "../App/utilities/colors" as c;
 
 .login-wrapper {
+  background-image: url(https://media3.giphy.com/media/TKdRL0QMZKUZpnvssI/giphy.gif?cid=ecf05e47xp4amppvj50pde7gq8o73rm8calfujof1r62ttvu&rid=giphy.gif&ct=g);
+  background-size: cover;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: 24px;
+  #loginForm {
+    margin-top: 5%;
+    background-color: c.$primary;
+    color: c.$veryLight;
+    padding: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    border-radius: 50px;
+    p {
+      margin-top: 5px;
+      margin-bottom: 0;
+    }
+    input {
+      border: none;
+      background: transparent;
+      border-bottom: 3px solid c.$veryLight;
+      color: c.$veryLight;
+    }
+    .buttonGroup {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 15px;
+      Button {
+        border: 2px solid c.$dark;
+      }
+      Button:hover {
+        box-shadow: 0px 0px 0 2px c.$secondary;
+      }
+    }
+  }
+}
+.registration {
+  background-image: url(https://media0.giphy.com/media/VYKtfTzYp84ww/giphy.gif?cid=ecf05e4759vvijew8z5zpigm997mot2417gq4zafmff0rf1b&rid=giphy.gif&ct=g);
+  background-size: cover;
+  img {
+    backdrop-filter: grayscale(100%);
+  }
 }

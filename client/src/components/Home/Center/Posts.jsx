@@ -1,4 +1,9 @@
 import { TokenUserContext } from "../../App/App";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import Tooltip from "react-bootstrap/Tooltip";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import ModalWorkout from "../RightPanel/ModalWorkout";
 import { useContext, useState, useEffect } from "react";
 import { GiStrong } from "react-icons/gi";
 import "./posts.scss";
@@ -9,20 +14,26 @@ export default function Posts(props) {
   const { userState } = useContext(TokenUserContext);
   const [user] = userState;
   const { workoutId } = props;
+  const [fullscreen, setFullscreen] = useState(true);
+  const [show, setShow] = useState(false);
   const [state, setState] = useState({
     post: "",
     likes: "",
     comment: "",
+    workout: "",
   });
+  // const [postAuthor, setPostAuthor] = useState({});
   const setPost = (post) => setState((prev) => ({ ...prev, post }));
 
   useEffect(() => {
     Promise.all([
       axios.get(`/api/posts/comments/${workoutId}`),
       axios.get(`api/posts/likes/${workoutId}`),
+      axios.get(`api/workouts/wid/${workoutId}`),
     ]).then((all) => {
       setState((prev) => ({ ...prev, post: all[0].data }));
       setState((prev) => ({ ...prev, likes: all[1].data }));
+      setState((prev) => ({ ...prev, workout: all[2].data }));
       const starterLikes = all[1].data;
       starterLikes.forEach((like) => {
         if (like.user_id === user.user.id) {
@@ -32,6 +43,16 @@ export default function Posts(props) {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // function getPostAuthor(postId) {
+  //   axios.get("/api/users").then((res) => {
+  //     setPostAuthor(res.data[postId]);
+  //   });
+  // }
+
+  // useEffect(() => {
+  //   getPostAuthor(state.workout.user_id);
+  // }, []);
 
   function toggleSelected() {
     const element = document.getElementById(workoutId);
@@ -119,45 +140,95 @@ export default function Posts(props) {
       .catch((err) => err);
   }
 
+  function handleShow(breakpoint) {
+    setFullscreen(breakpoint);
+    setShow(true);
+  }
+  const showModal = (
+    <ModalWorkout
+      key={state.workout.id}
+      id={state.workout.id}
+      title={state.workout.title}
+      exercises={state.workout.exercises}
+    />
+  );
+
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      Try {state.workout.title}
+    </Tooltip>
+  );
+
   return (
     <div className="post">
-      <div className="postWrapper">
-        <div className="postTop">
-          <div className="postTopLeft">Workout #{workoutId}</div>
-          <div
-            className="postTopRight"
-            id={workoutId}
-            onClick={() => {
-              toggleLike();
-            }}
-          >
-            <p>{state.likes.length}</p>
-            <div className="like-icon">
-              <GiStrong />
-            </div>
+      {/* {postAuthor && (
+        <div className="infoBox">
+          <img alt="" src={postAuthor.avatar_url} className="postAuthorImg" />
+          <p>
+            {postAuthor.first_name} {postAuthor.last_name} created:
+          </p>
+        </div>
+      )} */}
+      <div className="postTop">
+        <div className="postTopLeft">
+          <p class="workoutTitle">{state.workout.title}</p>
+          {state.workout && (
+            <OverlayTrigger
+              placement="right"
+              delay={{ show: 250, hide: 400 }}
+              overlay={renderTooltip}
+            >
+              <img
+                src={state.workout.exercises[0].gifUrl}
+                alt="ii"
+                onClick={() => handleShow(true)}
+              />
+            </OverlayTrigger>
+          )}
+        </div>
+        <div
+          className="postTopRight"
+          id={workoutId}
+          onClick={() => {
+            toggleLike();
+          }}
+        >
+          <h4>{state.likes.length}</h4>
+          <div className="like-icon">
+            <GiStrong size={40} />
           </div>
         </div>
-        <div className="postBottom">
-          <div className="commentInput">
-            <img alt="" src={user.user ? user.user.avatar_url : ""} />
-            <input
-              id="commentInput"
-              type="text"
-              onChange={(event) =>
-                setState((prev) => ({ ...prev, comment: event.target.value }))
-              }
-            />
-            <button
+      </div>
+      <div className="postBottom">
+        <div className="commentInput">
+          <img
+            classname="userAvatar"
+            alt=""
+            src={user.user ? user.user.avatar_url : ""}
+          />
+          <input
+            id="commentInput"
+            type="text"
+            onChange={(event) =>
+              setState((prev) => ({ ...prev, comment: event.target.value }))
+            }
+          />
+          <div>
+            <Button
+              variant="dark"
               onClick={() => {
                 postComment(state.comment);
               }}
             >
               Comment
-            </button>
+            </Button>
           </div>
-          <div>{comments}</div>
         </div>
+        <div className="commentContainer">{comments}</div>
       </div>
+      <Modal show={show} fullscreen={fullscreen} onHide={() => setShow(false)}>
+        {showModal}
+      </Modal>
     </div>
   );
 }

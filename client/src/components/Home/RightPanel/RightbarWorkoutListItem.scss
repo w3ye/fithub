@@ -1,2 +1,60 @@
 @use "../../App/utilities/colors" as c;
 @import "~bootstrap/scss/bootstrap";
+
+.container-myworkout {
+  margin: 20px;
+  border-radius: 15px;
+  display: flex;
+
+}
+.card-myworkout {
+  width:400px;
+  border: 7px solid c.$primary;
+  inline-size: min-content;
+  border-radius: 15px;
+}
+
+.card-myworkout:hover {
+  box-shadow: 22px 22px 24px -4px rgba(0,0,0,0.75);
+-webkit-box-shadow: 22px 22px 24px -4px rgba(0,0,0,0.75);
+-moz-box-shadow: 22px 22px 24px -4px rgba(0,0,0,0.75);
+}
+
+.workout-title{
+  margin: 15px
+}
+
+.contentBx {
+display: flex;
+justify-content: space-between;
+flex-direction: column
+}
+
+.exercises {
+font-size: 15px;
+}
+
+.card-buttons {
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 10px;
+}
+
+.other-icon {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.icon {
+  margin: 5px;
+  font-size: 20px;
+}
+
+.icon:hover{
+background-color: c.$someLight;
+}
+
+#my-modal {
+  background-color: c.$primary;
+}

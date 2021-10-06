@@ -21,11 +21,10 @@ export default function CenterFriends(props) {
       />
     ));
   return (
-    <div className="center container">
-      <h2>
-        {user.user ? user.user.first_name : ""}{" "}
-        {user.user ? user.user.last_name : ""}'s Friends
-      </h2>
+    <div className="center">
+      <div class="centerHeader">
+        <h1>My Friends</h1>
+      </div>
       <ul className="friendsContainer">{user.user ? parsedFriends : ""}</ul>
     </div>
   );
