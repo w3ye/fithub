@@ -43,7 +43,7 @@ export default function Workouts(props) {
   return (
     <div className="center" id="center-myworkout">
       <div className="container-title-workouts">
-        <h1 className="title-myworkouts"> My workouts</h1>
+        <h1 className="title-myworkouts"> My Workouts</h1>
         <div id="workoutListContainer">{parsedResponse}</div>
       </div>
     </div>

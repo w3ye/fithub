@@ -122,7 +122,11 @@ export default function ExerciseSearch(props) {
               placeholder="search by name"
             ></input>
 
-            <button type="submit" onClick={handleSearch}>
+            <button
+              className="search-button"
+              type="submit"
+              onClick={handleSearch}
+            >
               Search
             </button>
           </form>
