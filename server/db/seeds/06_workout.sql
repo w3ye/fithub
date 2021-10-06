@@ -20,7 +20,9 @@ VALUES (
     "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0987.gif",
     "id": "0987",
     "name": "band one arm single leg split squat",
-    "target": "quads"
+    "target": "quads",
+    "set": "1",
+    "reps": "10"
   }',
   '{
     "bodyPart": "upper legs",
@@ -28,7 +30,9 @@ VALUES (
     "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1001.gif",
     "id": "1001",
     "name": "band single leg split squat",
-    "target": "quads"
+    "target": "quads",
+     "set": "1",
+    "reps": "10"
   }',
   '{
     "bodyPart": "upper legs",
@@ -36,6 +40,8 @@ VALUES (
     "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1004.gif",
     "id": "1004",
     "name": "band squat",
-    "target": "glutes"
+    "target": "glutes", 
+    "set": "1",
+    "reps": "10"
   }']::jsonb []
   )

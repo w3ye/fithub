@@ -153,7 +153,7 @@ export default function ExerciseSearch(props) {
         </button>
         <button
           value="back"
-          onClick={handleSearchParts}
+          onClick={searchByBodyWeight}
           className="square-button-item"
         >
           Back

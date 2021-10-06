@@ -1,5 +1,5 @@
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
+import button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -9,6 +9,9 @@ import WorkoutListItemDescription from "./WorkoutListItemDescription";
 import axios from "axios";
 import ModalWorkout from "./ModalWorkout";
 import { TokenUserContext } from "../../App/App";
+import { BiEdit } from "react-icons/bi";
+import { FaShareAlt } from "react-icons/fa";
+import { AiFillDelete } from "react-icons/ai";
 
 export default function RightbarWorkoutListItem(props) {
   const {
@@ -91,39 +94,59 @@ export default function RightbarWorkoutListItem(props) {
 
   return (
     <>
-      <Card>
-        <Card.Header>Featured</Card.Header>
-        <Card.Body>
-          <Card.Title>{title.toUpperCase()}</Card.Title>
-          {exercises.map((item) => (
-            <WorkoutListItemDescription
-              key={item.id}
-              name={item.name}
-              set={item.set}
-              reps={item.reps}
+      <div className="container-myworkout">
+        <div className="card-myworkout">
+          <h2 className="workout-title">{title.toUpperCase()}</h2>
+          <div className="imgBx">
+            <img
+              src={exercises[0].gifUrl}
+              alt=""
+              onClick={() => handleShow(true)}
             />
-          ))}
-          <Button variant="primary" onClick={() => handleShow(true)}>
-            Start Workout
-          </Button>
-          <Button variant="primary" onClick={() => handleEdit(id)}>
-            Edit
-          </Button>
-          <Button variant="primary" onClick={() => handleShare(id)}>
-            Share
-          </Button>
-          <Button variant="primary" onClick={() => handleDelete(id)}>
-            Delete
-          </Button>
-        </Card.Body>
-        <Modal
-          show={show}
-          fullscreen={fullscreen}
-          onHide={() => setShow(false)}
-        >
-          {showModal}
-        </Modal>
-      </Card>
+          </div>
+          <div className="contentBx">
+            <div className="exercises">
+              {exercises.map((item) => (
+                <WorkoutListItemDescription
+                  key={item.id}
+                  name={item.name}
+                  set={item.set}
+                  reps={item.reps}
+                />
+              ))}
+              <div className="card-buttons">
+                <div className="other-icons">
+                  <BiEdit
+                    variant="primary"
+                    className="icon"
+                    onClick={() => handleEdit(id)}
+                  />
+                  <FaShareAlt
+                    variant="primary"
+                    className="icon"
+                    onClick={() => handleShare(id)}
+                  />
+                  <AiFillDelete
+                    variant="primary"
+                    className="icon"
+                    onClick={() => handleDelete(id)}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="modal">
+          <Modal
+            className="my-modal"
+            show={show}
+            fullscreen={fullscreen}
+            onHide={() => setShow(false)}
+          >
+            {showModal}
+          </Modal>
+        </div>
+      </div>
     </>
   );
 }

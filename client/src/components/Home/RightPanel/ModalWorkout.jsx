@@ -1,5 +1,6 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import "./modalWorkout.scss";
 import { useState } from "react";
 
 export default function ModalWorkout(props) {
@@ -22,11 +23,16 @@ export default function ModalWorkout(props) {
       <Modal.Header closeButton>
         <Modal.Title>{title}</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body classname="modal-body">
         {exercises.length !== index ? (
           <>
             {exercises[index].name}
-            <img src={exercises[index].gifUrl} alt={exercises[index].name} />
+            <img
+              class
+              name="gifUrl"
+              src={exercises[index].gifUrl}
+              alt={exercises[index].name}
+            />
             <div>Set: {exercises[index].set}</div>
             <div>Reps: {exercises[index].reps}</div>
           </>

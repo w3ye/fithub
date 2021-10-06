@@ -1,0 +1,15 @@
+@use "../../App/utilities/colors" as c;
+
+.container-title-workouts {
+  display: flex;
+  flex-direction: column;
+}
+
+#workoutListContainer{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.title-myworkouts {
+margin-left: 30px;
+}
