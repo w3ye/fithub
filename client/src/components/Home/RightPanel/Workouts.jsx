@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { TokenUserContext } from "../../App/App";
 import axios from "axios";
 import RightbarWorkoutListItem from "./RightbarWorkoutListItem";
+import "./workouts.scss";
 
 export default function Workouts(props) {
   const [responseData, setResponseData] = useState(null);
@@ -40,9 +41,11 @@ export default function Workouts(props) {
     ));
 
   return (
-    <div className="center">
-      My workouts
-      <div>{parsedResponse}</div>
+    <div className="center" id="center-myworkout">
+      <div className="container-title-workouts">
+        <h1 className="title-myworkouts"> My workouts</h1>
+        <div id="workoutListContainer">{parsedResponse}</div>
+      </div>
     </div>
   );
 }
