@@ -70,19 +70,29 @@ export default function ModalWorkout(props) {
               </div>
             </>
           )}
-          {index > 0 && (
-            <button className="modal-button" onClick={() => previous()}>
-              PREVIOUS
+          <div className="modal-buttons">
+            {index > 0 && (
+              <button
+                className="modal-button"
+                id="prev"
+                onClick={() => previous()}
+              >
+                PREVIOUS
+              </button>
+            )}
+            {exercises.length !== index && (
+              <button className="modal-button" id="next" onClick={() => next()}>
+                NEXT
+              </button>
+            )}
+            <button
+              className="modal-button"
+              id="restart"
+              onClick={() => setIndex(0)}
+            >
+              RESTART
             </button>
-          )}
-          {exercises.length !== index && (
-            <button className="modal-button" onClick={() => next()}>
-              NEXT
-            </button>
-          )}
-          <button className="modal-button" onClick={() => setIndex(0)}>
-            RESTART
-          </button>
+          </div>
         </div>
       </Modal.Body>
     </>
