@@ -138,7 +138,7 @@ export default function RightbarWorkoutListItem(props) {
         </div>
         <div className="modal">
           <Modal
-            className="my-modal"
+            id="my-modal"
             show={show}
             fullscreen={fullscreen}
             onHide={() => setShow(false)}

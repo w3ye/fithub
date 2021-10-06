@@ -1,3 +1,55 @@
-modal-body {
-  position:absolute
+@use "../../App/utilities/colors" as c;
+
+.modal-header{
+  background-color: c.$primary;
+  color: c.$veryLight
+}
+
+#modal-title {
+  font-size: 50px;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.gifUrl{
+  display: flex;
+  height: 700px;
+  width: 700px;
+  flex: 4;
+}
+
+.modal-set-rep {
+  font-size: 30px;
+  display:flex;
+  flex: 2;
+  margin: 20px
+}
+
+.modal-button {
+  background-color: c.$secondary;
+  width: 100px;
+  height: 60px;
+  margin: 20px;
+  border-radius: 15px;
+  color: white;
+}
+
+#success {
+  font-size: 50px;
+}
+
+.modal-end {
+  display:flex;
+  justify-content: center;
+}
+
+
+#finish-gif {
+  margin-left: 100px;
+  margin-right: 100px;
+  border-radius: 50%;
 }
