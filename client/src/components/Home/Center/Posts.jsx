@@ -165,7 +165,7 @@ export default function Posts(props) {
         <div className="infoBox">
           <img alt="" src={postAuthor.avatar_url} className="postAuthorImg" />
           <p>
-            {postAuthor.first_name} {postAuthor.last_name} shared:
+            {postAuthor.first_name} {postAuthor.last_name} created:
           </p>
         </div>
       )}

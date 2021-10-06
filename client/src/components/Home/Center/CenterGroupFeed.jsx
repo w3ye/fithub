@@ -30,7 +30,7 @@ export default function CenterGroupFeed(props) {
     <div className="center group-feed">
       <h1>{group.title} Workouts</h1>
       <div className="feed">
-        {parsedWorkoutId}
+        {parsedWorkoutId && parsedWorkoutId.reverse()}
         <div className="feedWrapper"></div>
       </div>
     </div>
