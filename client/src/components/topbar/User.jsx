@@ -61,11 +61,13 @@ export default function User(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h3>Update your avatar:</h3>
-          <input type="text" placeholder="Image URL" id="urlField"></input>
-          <Button variant="dark" onClick={updateImage}>
-            Submit
-          </Button>
+          <div class="modalAdjust">
+            <h3>Update your avatar:</h3>
+            <input type="text" placeholder="Image URL" id="urlField"></input>
+            <Button variant="dark" onClick={updateImage}>
+              Submit
+            </Button>
+          </div>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
