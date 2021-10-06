@@ -1,8 +1,8 @@
 @use "../../App/utilities/colors" as c;
 
-.modal-header{
+.modal-header {
   background-color: c.$primary;
-  color: c.$veryLight
+  color: c.$veryLight;
 }
 
 #modal-title {
@@ -15,18 +15,17 @@
   justify-content: center;
 }
 
-.gifUrl{
+.gifUrl {
   display: flex;
   height: 700px;
-  width: 700px;
-  flex: 4;
+  // width: 700px;
 }
 
 .modal-set-rep {
   font-size: 30px;
-  display:flex;
+  display: flex;
   flex: 2;
-  margin: 20px
+  margin: 20px;
 }
 
 .modal-button {
@@ -43,10 +42,9 @@
 }
 
 .modal-end {
-  display:flex;
+  display: flex;
   justify-content: center;
 }
-
 
 #finish-gif {
   margin-left: 100px;

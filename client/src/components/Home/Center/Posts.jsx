@@ -22,7 +22,7 @@ export default function Posts(props) {
     comment: "",
     workout: "",
   });
-  const [postAuthor, setPostAuthor] = useState({});
+  // const [postAuthor, setPostAuthor] = useState({});
   const setPost = (post) => setState((prev) => ({ ...prev, post }));
 
   useEffect(() => {
@@ -44,15 +44,15 @@ export default function Posts(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  function getPostAuthor(postId) {
-    axios.get("/api/users").then((res) => {
-      setPostAuthor(res.data[postId]);
-    });
-  }
+  // function getPostAuthor(postId) {
+  //   axios.get("/api/users").then((res) => {
+  //     setPostAuthor(res.data[postId]);
+  //   });
+  // }
 
-  useEffect(() => {
-    getPostAuthor(state.workout.user_id);
-  }, [postAuthor]);
+  // useEffect(() => {
+  //   getPostAuthor(state.workout.user_id);
+  // }, []);
 
   function toggleSelected() {
     const element = document.getElementById(workoutId);
@@ -161,14 +161,14 @@ export default function Posts(props) {
 
   return (
     <div className="post">
-      {postAuthor && (
+      {/* {postAuthor && (
         <div className="infoBox">
           <img alt="" src={postAuthor.avatar_url} className="postAuthorImg" />
           <p>
             {postAuthor.first_name} {postAuthor.last_name} created:
           </p>
         </div>
-      )}
+      )} */}
       <div className="postTop">
         <div className="postTopLeft">
           <p class="workoutTitle">{state.workout.title}</p>
