@@ -83,6 +83,9 @@ export default function RightbarFriends(props) {
     sendFriendRequest(user.user.id, rec_email, message);
     setRec_Email("");
     setMessage("");
+    document.getElementById("email-input").value = "";
+    document.getElementById("message-input").value = "";
+    alert("Request sent");
   }
 
   useEffect(() => {
