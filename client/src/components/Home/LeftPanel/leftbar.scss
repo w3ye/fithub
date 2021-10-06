@@ -2,10 +2,21 @@
 
 .leftbar {
   flex: 3;
-  height: calc(100vh - 50px);
+  height: 100vh;
   background-color: c.$someLight;
   max-width: 20%;
   color: c.$secondary;
+  position: fixed;
+  left: 0;
+  width: 18%;
+  .navTitle {
+    display: flex;
+    height: 100px;
+    align-items: center;
+    div {
+      width: 40%;
+    }
+  }
 }
 
 .leftbarList {
@@ -16,10 +27,9 @@
 }
 
 .leftbarListItem {
-  margin-top: 20px;
   padding: 20px;
   align-items: center;
-  border: c.$dark dotted 1px;
+  border-bottom: c.$secondary solid 3px;
   max-width: 100%;
 }
 

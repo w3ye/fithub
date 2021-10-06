@@ -15,8 +15,12 @@ export default function Leftbar(props) {
               setPanels("groupfeed");
             }}
           >
-            <FaHome className="leftbarIcon" />
-            <span className="leftbarListItemText">Home</span>
+            <div class="navTitle">
+              <div>
+                <FaHome className="leftbarIcon" size={40} />
+              </div>
+              <h3 className="leftbarListItemText">Home</h3>
+            </div>
           </li>
           <li
             className="leftbarListItem"
@@ -24,8 +28,12 @@ export default function Leftbar(props) {
               setPanels("home");
             }}
           >
-            <CgGym className="leftbarIcon" />
-            <span className="leftbarListItemText">Create Workout</span>
+            <div class="navTitle">
+              <div>
+                <CgGym className="leftbarIcon" size={40} />
+              </div>
+              <h3 className="leftbarListItemText">Create Workout</h3>
+            </div>
           </li>
           <li
             className="leftbarListItem"
@@ -33,8 +41,12 @@ export default function Leftbar(props) {
               setPanels("workouts");
             }}
           >
-            <GiMuscleUp className="leftbarIcon" />
-            <span className="leftbarListItemText">My Workouts</span>
+            <div class="navTitle">
+              <div>
+                <GiMuscleUp className="leftbarIcon" size={40} />
+              </div>
+              <h3 className="leftbarListItemText">My Workouts</h3>
+            </div>
           </li>
           <li
             className="leftbarListItem"
@@ -42,8 +54,12 @@ export default function Leftbar(props) {
               setPanels("friends");
             }}
           >
-            <FaUser className="leftbarIcon" />
-            <span className="leftbarListItemText">Friends</span>
+            <div class="navTitle">
+              <div>
+                <FaUser className="leftbarIcon" size={40} />
+              </div>
+              <h3 className="leftbarListItemText">Friends</h3>
+            </div>
           </li>
           <li
             className="leftbarListItem"
@@ -51,8 +67,12 @@ export default function Leftbar(props) {
               setPanels("groups");
             }}
           >
-            <FaUserFriends className="leftbarIcon" />
-            <span className="leftbarListItemText">Groups</span>
+            <div class="navTitle">
+              <div>
+                <FaUserFriends className="leftbarIcon" size={40} />
+              </div>
+              <h3 className="leftbarListItemText">Groups</h3>
+            </div>
           </li>
           {/* <li
             className="leftbarListItem"

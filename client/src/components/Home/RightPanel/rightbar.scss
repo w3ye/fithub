@@ -3,9 +3,11 @@
 .rightbar {
   flex: 3;
   padding: 1%;
+  height: calc(100vh - 50px);
   background-color: c.$someLight;
-  .friendContainer {
-    width: 50%;
+  height: 100vh;
+  .requestContainer {
+    margin-top: 10%;
   }
   .memberContainer {
     display: flex;
@@ -58,7 +60,7 @@
 
 .friendRequestItem {
   display: flex;
-  border: 2px c.$dark solid;
+  border: 3px c.$dark solid;
   padding: 5px;
   background-color: c.$veryLight;
   border-radius: 20px;
@@ -82,9 +84,11 @@
     width: 60px;
   }
   .infobox {
+    margin-left: 10px;
     width: 60%;
+    font-size: 16px;
     p {
-      font-size: 14px;
+      font-size: 16px;
     }
   }
 }
@@ -109,13 +113,15 @@
     background: transparent;
     border: none;
     border-bottom: 3px solid c.$dark;
+    font-size: 20px;
   }
   button {
-    width: 50%;
+    width: 30%;
     border-radius: 10px;
-    margin-left: 25%;
-    margin-right: 25%;
+    margin-left: 35%;
+    margin-right: 35%;
     margin-bottom: 25px;
+    font-size: 24px;
   }
 }
 
