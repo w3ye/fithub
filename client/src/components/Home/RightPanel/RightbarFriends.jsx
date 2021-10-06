@@ -137,7 +137,7 @@ export default function RightbarFriends(props) {
     <>
       <div className="rightbar friendContainer">
         <div className="requestForm">
-          <h4>Send a Friend Request:</h4>
+          <h3>Send a Friend Request:</h3>
           <input
             id="email-input"
             class="formInput"
@@ -163,9 +163,10 @@ export default function RightbarFriends(props) {
             Submit
           </button>
         </div>
-        <br />
-        <h3>Friend Requests:</h3>
-        <div>{request.length ? parsedRequests : []}</div>
+        <div className="requestContainer">
+          <h3>Friend Requests:</h3>
+          <div>{request.length ? parsedRequests : []}</div>
+        </div>
       </div>
     </>
   );
