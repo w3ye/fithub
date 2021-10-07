@@ -33,6 +33,7 @@
       Button {
         border: 2px solid c.$dark;
         font-size: x-large;
+        color:c.$secondary;
       }
       Button:hover {
         box-shadow: 0px 0px 0 2px c.$secondary;
