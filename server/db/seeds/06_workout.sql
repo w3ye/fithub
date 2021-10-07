@@ -1,6 +1,6 @@
 INSERT INTO workouts (title, user_id, exercises)
 VALUES (
-    'Beach body',
+    'Beach Body',
     3,
     ARRAY [ 
     '{ "bodyPart": "back",
@@ -11,7 +11,7 @@ VALUES (
     "target": "lats" }' ]::jsonb []
   ),
   (
-    'Jump training',
+    'Jump Training',
     1,
     ARRAY ['
   {
