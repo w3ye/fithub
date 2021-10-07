@@ -18,10 +18,10 @@ VALUES (
     '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://images.generated.photos/lZE27h_eszgAtSxwcYj82_aqhfM6yvTrBtGEtKm-DpE/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MTk1NTc0LmpwZw.jpg'
   ),
   (
-    'Sawyer',
-    'Koch',
-    '4@example.com',
-    '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://images.generated.photos/vQaoNCDvcEsVpMxWV1UyTGnRTxuSg8Yk438oh4tt2Oc/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/NDgxMTc0LmpwZw.jpg'
+    'Kyle',
+    'Forsyth',
+    'kyle@lighthouse.com',
+    '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://media-exp1.licdn.com/dms/image/C4E03AQExMU8WkPkYww/profile-displayphoto-shrink_800_800/0/1516899352138?e=1639008000&v=beta&t=Xzky1m29fbGR71EF-hc-iTXf5CAi6GqpHFHCrI_XdCs'
   ),
   (
     'Muhammad',
