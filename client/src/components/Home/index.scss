@@ -1,11 +1,12 @@
 @use "../App/utilities/colors" as c;
+@import url("https://fonts.googleapis.com/css2?family=Amaranth&display=swap");
 
 .homeContainer {
   display: flex;
   height: 100%;
-  // font-family: 'Audiowide', cursive;
-// font-family: 'Bungee', cursive;
-// font-family: 'Gochi Hand', cursive;
-// font-family: 'Sigmar One', cursive;
+  // font-family: "Amaranth", sans-serif;
+  // font-family: "Audiowide", cursive;
+  // font-family: "Bungee", cursive;
+  // font-family: "Gochi Hand", cursive;
+  // font-family: "Sigmar One", cursive;
 }
-
