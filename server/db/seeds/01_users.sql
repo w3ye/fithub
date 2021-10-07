@@ -1,9 +1,9 @@
 INSERT INTO users(first_name, last_name, email, password, avatar_url)
 VALUES (
-    'Avery',
-    'Morse',
-    '1@example.com',
-    '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://images.generated.photos/oYszJhkiyo5Rrarwrs--z1FUU-rTNQ74eCxsPTCvkoc/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/OTE2MzcyLmpwZw.jpg'
+    'Kyle',
+    'Forsyth',
+    'kyle@lighthouse.com',
+    '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://media-exp1.licdn.com/dms/image/C4E03AQExMU8WkPkYww/profile-displayphoto-shrink_800_800/0/1516899352138?e=1639008000&v=beta&t=Xzky1m29fbGR71EF-hc-iTXf5CAi6GqpHFHCrI_XdCs'
   ),
   (
     'Kierra',
@@ -18,10 +18,10 @@ VALUES (
     '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://images.generated.photos/lZE27h_eszgAtSxwcYj82_aqhfM6yvTrBtGEtKm-DpE/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MTk1NTc0LmpwZw.jpg'
   ),
   (
-    'Kyle',
-    'Forsyth',
-    'kyle@lighthouse.com',
-    '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://media-exp1.licdn.com/dms/image/C4E03AQExMU8WkPkYww/profile-displayphoto-shrink_800_800/0/1516899352138?e=1639008000&v=beta&t=Xzky1m29fbGR71EF-hc-iTXf5CAi6GqpHFHCrI_XdCs'
+    'Juliet',
+    'Li',
+    'juliet@lighthouse.com',
+    '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://media-exp1.licdn.com/dms/image/C5603AQEHa2_mD36aNw/profile-displayphoto-shrink_800_800/0/1517622936262?e=1639008000&v=beta&t=Jb41DlEsQVcdWmQ-q1YYrA2H7OHwpKEAZFXF0ahkAHo'
   ),
   (
     'Muhammad',
@@ -36,7 +36,7 @@ VALUES (
     '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://images.generated.photos/VzYG-9C7knMIaKttvDjhxRaVbdcggPAsv9dbETh25RY/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MDkxODYyLmpwZw.jpg'
   ),
   (
-    'Carmen',
+    'Sheila',
     'Vega',
     '7@example.com',
     '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://images.generated.photos/vO6qotsidouPgi-Lc2k97S1qjDhb7DkXUWmhaq_hWwY/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MzMzNTM3LmpwZw.jpg'
@@ -112,8 +112,8 @@ VALUES (
     '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://images.generated.photos/_q0cehWw28v06MVocC3yKD3mxN7jodEKPf69UfLXNJ4/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/NDQyMzcxLmpwZw.jpg'
   ),
   (
-    'Gina',
-    'Holden',
-    '20@example.com',
-    '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://images.generated.photos/nAbsDqEqnTV-VsPV3o1m42-LDfnXfa7rTBYZDFn4Z_g/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/NzU0OTMwLmpwZw.jpg'
+    'William',
+    'Ye',
+    'william@lighthouse.com',
+    '$2a$10$zRo0.PfEYw5L5OFEgi5JUOqwt8mMawizH7DvhyLHfkKDWoXZhvYju', 'https://media-exp1.licdn.com/dms/image/C4D03AQH_oKxKsURoNQ/profile-displayphoto-shrink_800_800/0/1618846126498?e=1639008000&v=beta&t=dQMdeZ9H7MyHlNIBXAXMYb_TdJ9cl-t1YKyiUXr4VS4'
   );
