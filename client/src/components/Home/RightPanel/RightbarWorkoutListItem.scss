@@ -12,6 +12,10 @@
   border: 7px solid c.$primary;
   inline-size: min-content;
   border-radius: 15px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+
 }
 
 .card-myworkout:hover {
@@ -21,7 +25,9 @@
 }
 
 .workout-title{
-  margin: 15px
+  margin: 15px;
+  display: flex;
+  align-self: center;
 }
 
 .contentBx {
@@ -48,7 +54,7 @@ font-size: 15px;
 
 .icon {
   margin: 5px;
-  font-size: 20px;
+  font-size: 40px;
 }
 
 .icon:hover{
@@ -57,4 +63,5 @@ background-color: c.$someLight;
 
 #my-modal {
   background-color: c.$primary;
+  font-family: 'Poppins', sans-serif;
 }

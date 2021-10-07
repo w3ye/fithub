@@ -1,4 +1,6 @@
 @use "../App/utilities/colors" as c;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
 .dash-wrapper {
   height: 100vh;
@@ -15,16 +17,19 @@
     justify-content: center;
     align-items: center;
     padding-bottom: 10%;
+    font-family: "Montserrat Alternates", sans-serif;
     h1 {
       border-radius: 10px;
       filter: opacity(80%);
       color: c.$veryLight;
       background-color: c.$primary;
+      padding: 5px;
     }
     #webappTitle {
       border-radius: 10px;
       filter: opacity(80%);
       font-size: 100px;
+      padding: 5px;
       color: c.$veryLight;
       background-color: c.$primary;
     }
@@ -44,8 +49,13 @@
     height: 100%;
     width: 50%;
     padding-bottom: 10%;
+    font-family: "Poppins", sans-serif;
     div {
       margin-top: 5%;
+    }
+    Button {
+      font-size: x-large;
+      color: c.$secondary;
     }
   }
 }

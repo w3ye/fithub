@@ -1,4 +1,5 @@
 @use "../App/utilities/colors" as c;
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
 .login-wrapper {
   background-image: url(https://media3.giphy.com/media/TKdRL0QMZKUZpnvssI/giphy.gif?cid=ecf05e47xp4amppvj50pde7gq8o73rm8calfujof1r62ttvu&rid=giphy.gif&ct=g);
@@ -8,6 +9,7 @@
   flex-direction: column;
   align-items: center;
   font-size: 24px;
+  font-family: "Poppins", sans-serif;
   #loginForm {
     margin-top: 5%;
     background-color: c.$primary;
@@ -32,6 +34,8 @@
       padding-top: 15px;
       Button {
         border: 2px solid c.$dark;
+        font-size: x-large;
+        color: c.$secondary;
       }
       Button:hover {
         box-shadow: 0px 0px 0 2px c.$secondary;

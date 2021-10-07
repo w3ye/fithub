@@ -44,7 +44,7 @@ export default function PostMessage(props) {
                 deleteComment();
               }}
             >
-              <AiFillDelete />
+              <AiFillDelete size={25} />
             </div>
           )}
         </div>

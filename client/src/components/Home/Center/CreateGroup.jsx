@@ -97,7 +97,7 @@ export default function CreateGroup(props) {
                 Or just stick with the default look
               </Form.Text>
             </Form.Group> */}
-            <Button variant="primary" type="submit" onClick={groupSubmit}>
+            <Button variant="dark" type="submit" onClick={groupSubmit}>
               Create Group
             </Button>
             <br />

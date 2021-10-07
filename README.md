@@ -1,12 +1,12 @@
 # FitHub
 
-Ever since covid, it has been extremely difficult to keep up with personal fitness goals. We feel disconnected with others, rather spend our times being a couch potato than doing some push ups to keep our bodies in shape.
+Since the beginning of the pandemic, it has been extremely difficult to keep up with personal fitness goals. This is especially true for any gym goers who miss the social element of going to the gym and needing the extra motivation. Instead of becoming a coach potato during these times, why not get in shape with some push-ups.
 
-FitHub is a social fitness application that focuses on community. Having a strong emphasis on buiding and maintaining a community, users can create a group on FitHub to share their workouts and participate other workout routines posted in groups by other users.
+FitHub is a social fitness application that focuses on community. Having a strong emphasis on building and maintaining a community, users can create a group on FitHub to share their workouts and participate in other shared workout routines  posted in the group forum/feed. They can comment and also “like” the workout by adding a “flex”.
 
-Workout builder is another main feature of Fithub. For this project we used [Exercise DB API](https://rapidapi.com/justin-WFnsXH_t6/api/exercisedb/) to fuel Fithub with exercise information and guidance GIF. When building an exercise, users can find the exercise they want by searching exercise name or clicking buttons that display body part specific exercises. Users can also define the sets and reps for an exercise.
+Workout builder is another main feature of Fithub. For this project we used [Exercise DB API](https://rapidapi.com/justin-WFnsXH_t6/api/exercisedb/) to fuel Fithub with exercise information and GIFs that show specific exercise movements. When building an exercise, users can search by exercise name or pre-programmed search criterias such as legs, arms, abs, back and bodyweight. Users can also define the sets and reps for an exercise.
 
-For user's that want to follow a working. Clicking on the start workout button, a guidance GIF will appear along with the number of reps and sets of the current exercise.
+For user's that want to follow a workout, the user could click on the image of the workout and the first exercise will appear along with the number of reps and sets. Once the user has completed their first exercise, they can proceed with the next exercise GIF.
 
 ## Features
 
